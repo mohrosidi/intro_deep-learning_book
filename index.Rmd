@@ -1,0 +1,29 @@
+--- 
+title: "Analisis Statistika Menggunakan Rcmdr"
+author: "Mohammad Rosidi"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: krantz
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+colorlinks: yes
+graphics: yes
+lot: yes
+lof: yes
+fontsize: 12pt
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.7"
+link-citations: yes
+description: "Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika."
+---
+
+# Pengantar{-}
+
+
+<style>
+body{
+text-align: justify}
+</style>
+
+
+

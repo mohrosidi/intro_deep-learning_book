@@ -1,0 +1,6 @@
+# Linier dan *Generalized Linear* Model
+
+<style>
+body{
+text-align: justify}
+</style>

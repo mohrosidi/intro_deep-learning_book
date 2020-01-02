@@ -1,0 +1,651 @@
+# Manajemen Data{#datamanage}
+
+<style>
+body{
+text-align: justify}
+</style>
+
+Pada Chapter \@ref(datamanage), penulis akan menjelaskan kepada pembaca bagaimana cara menyiapkan data sebelum dilakukan analisa pada `R Commander`. Adapun yang akan dijelaskan pada Chapter \@ref(datamanage), antara lain:
+
+* Operator operasi yang digunakan pada `R`,
+* Jenis dan struktur data yang ada pada `R`,
+* Konsep *tidy data*,
+* Input data pada `R Commander`,
+* Membaca data dari file eksternal,
+* Membaca data dari paket,
+* Menyimpan dan memuat data,
+* Modifikasi Variabel, dan
+* Transformasi Dataset.
+
+## Operator Operasi Pada `R`
+
+<style>
+body{
+text-align: justify}
+</style>
+
+Terdapat sejumlah operator operasi yang penting untuk pembaca ketahui, antara lain:
+
+* Operator aritmatika,
+* Operator perbandingan, dan
+* Operator logika.
+
+
+### Operator Aritmatika {#aritmatikop}
+
+Proses perhitungan akan ditangani oleh fungsi khusus. `R` akan memahami urutannya secara benar. Kecuali kita secara eksplisit menetapkan yang lain. Sebagai contoh tuliskan dan jalankan sintaks berikut pada Console `R` (tekan enter) maupun `R Commander` (tekan tombol submit):
+
+```{r}
+2+4*2
+```
+
+Bandingkan dengan sintaks berikut:
+
+```{r}
+(2+4)*2
+```
+
+> **TIPS!**:`R` dapat digunakan sebagai kalkulator
+
+
+Berdasarkan kedua hasil tersebut dapat disimpulkan bahwa ketika kita tidak menetapkan urutan perhitungan menggunakan tanda kurung, `R` akan secara otomatis akan menghitung terlebih dahulu perkalian atau pembangian. 
+
+Operator aritmatika yang disediakan `R` disajikan pada Tabel \@ref(tab:oparitmatika):
+
+
+**Simbol**     | **Keterangan**
+---------------|--------------------------------------------------------------------------------------
+`+`              | *Addition*, untuk operasi penjumlahan
+`-`              | *Substraction*, untuk operasi pengurangan
+`*`              | *Multiplication*, untuk operasi pembagian
+`/`              | *Division*, untuk operasi pembagian
+`^`              | *Eksponentiation*, untuk operasi pemangkatan
+`%%`             | *Modulus*, Untuk mencari sisa pembagian
+`%/%`            | *Integer*, Untuk mencari bilangan bulat hasil pembagian saja dan tanpa sisa pembagian
+
+: (\#tab:oparitmatika) Operator Aritmatika `R`.
+
+Untuk lebih memahaminya berikut contoh sintaks penerapan operator tersebut.
+
+```{r}
+# Addition
+5+3
+
+# Substraction
+5-3
+
+# Multiplication
+5*3
+
+# Division
+5/3
+
+# Eksponetiation
+5^3
+
+# Modulus
+5%%3
+
+# Integer
+5%/%3
+
+```
+
+Penggunaan operator aritmatika perlu mempertimbangkan hierarki prioritas operasinya. Pada contoh sebelumnya kita telah belajar bahwa operasi aritmatika akan dikerjakan terlebih dahulu dari yang ada di dalam tanda kurung lalu setelah itu akan diikuti oleh operasi lainnya. Secara lengkap, hierarki prioritas operasi aritmatika dirangkum pada Tabel \@ref(tab:hieraritop):
+
+| **Prioritas** | **Operator**      | **Keterangan**    |
+|:--------------|:------------------|:------------------|
+| 1             | `+`,`-`           | unari (tanda +,-) |
+| 2             | `^`               |                   |
+| 3             | `*`,`/`,`%%`,`%/%`|                   |
+| 4             | `+`,`-`           | binari            |
+
+: (\#tab:hieraritop) Hierarki prioritas operasi operator aritmatika.
+
+Berdasarkan Tabel \@ref(tab:hieraritop), pembaca dapat memprediksi output dari operasi berikut:
+
+```{r, eval=FALSE}
+-2+(3^2*2)/3
+```
+
+Operasi tersebut akan menghasilkan nilai `r -2+(3^2*2)/3` dengan urutan pengerjaan sebagai berikut:
+
+1. Pemberian tanda negatif pada angka 2
+2. Operasi dalam tanda kurung dengan urutan eksponensiasi (`3^2`) diikuti perkalian (`9*2`)
+3. Operasi pembagian terhadap nilai dalam kurung dengan angka 3 (`18/3`)
+4. Operasi penjumlahan (`-2+6`)
+
+### Operator Perbandingan
+
+Operator relasi digunakan untuk membandingkan satu objek dengan objek lainnya. Operator yang disediakan `R` disajikan pada Tabel \@ref(tab:oprelasi).
+
+|**Simbol**     | **Keterangan**         | **Deskripsi**                                                                            |
+|:--------------|:-----------------------|:-----------------------------------------------------------------------------------------|
+| `==`          | sama dengan            | bernilai `TRUE` jika kedua objek bernilai sama                                           |
+| `!=`          | tidak sama denga       | bernilai `TRUE` jika kedua objek tidak bernilai sama                                     |
+| `>`           | lebih besar dari       | bernilai `TRUE` jika nilai objek kanan lebih besar dari nilai objek kiri                 |
+| `<`           | lebih kecil dari       | bernilai `TRUE` jika nilai objek kanan lebih kecil dari nilai objek kiri                 |
+| `>=`          | lebih besar sama dengan| bernilai `TRUE` jika nilai objek kanan lebih besar atau sama dengan dari nilai objek kiri|
+| `<=`          | lebih kecil sama dengan| bernilai `TRUE` jika nilai objek kanan lebih kecil atau sama dengan dari nilai objek kiri|
+
+: (\#tab:oprelasi) Operator Relasi `R`.
+
+Berikut adalah penerapan operator pada tabel tersebut:
+
+```{r}
+x <- 34
+y <- 35
+
+# Operator >
+x > y
+
+# Operator <
+x < y
+
+# operator ==
+x == y
+
+# Operator >=
+x >= y
+
+# Operator <=
+x <= y
+
+# Operator !=
+x != y
+
+```
+
+Operator perbandingan memiliki hierarki prioritas yang lebih rendah dibandingkan dengan operator aritmatika. Pembaharuan Tabel \@ref(tab:hieraritop) dilakukan dengan menambahkan operator perbandingan ditampilkan pada Tabel \@ref(tab:hierperbandtop).
+
+| **Prioritas** | **Operator**      | **Keterangan**    |
+|:--------------|:------------------|:------------------|
+| 1             | `+`,`-`           | unari (tanda +,-) |
+| 2             | `^`               |                   |
+| 3             | `*`,`/`,`%%`,`%/%`|                   |
+| 4             | `+`,`-`           | binari            |
+| 5             | `<`,`<=`,`>`,`>=` |                   |
+| 6             | `==`,`!=`         |                   |
+
+: (\#tab:hierperbandtop) Hierarki prioritas operasi dengan penambahan operator perbandingan.
+
+### Operator Logika
+
+Operator logika hanya berlaku pada vektor dengan tipe logical, numeric, atau complex. Semua angka bernilai 1 akan dianggap bernilai logika `TRUE`. Operator logika yang disediakan `R` dapat dilihat pada Tabel \@ref(tab:oplogika).
+
+**Simbol**     | **Keterangan**           
+---------------|----------------------------------
+`&&`             | Operator logika AND
+`||`             | Operator logika OR
+`!`              | Opeartor logika NOT
+`&`              | Operator logika AND element wise
+`|`              | Operator logika OR element wise
+ 
+: (\#tab:oplogika) Operator logika `R`.
+
+Penerapannya terdapat pada sintaks berikut:
+
+```{r}
+v <- c(TRUE,TRUE, FALSE)
+t <- c(FALSE,FALSE,FALSE)
+
+# Operator &&
+print(v&&t)
+
+# Operator ||
+print(v||t)
+
+# Operator !
+print(!v)
+
+# operator &
+print(v&t)
+
+# Operator |
+print(v|t)
+```
+
+operator `&` dan `|` akan mengecek logika tiap elemen pada vektor secara berpesangan (sesuai urutan dari kiri ke kanan). Operator `%%` dan `||` hanya mengecek dari kiri ke kanan pada observasi pertama. Misal saat menggunakan && jika observasi pertama `TRUE` maka observasi pertama pada vektor lainnya akan dicek, namun jika observasi pertama `FALSE` maka proses akan segera dihentikan dan menghasilkan `FALSE`.
+
+## Tipe dan Struktur Data
+
+<style>
+body{
+text-align: justify}
+</style>
+
+Data pada `R` dapat dikelompokan berdasarkan beberapa tipe. Tipe data pada `R` disajikan pada Tabel \@ref(tab:tipedata).
+
+**Tipe Data**  | **Contoh**              | **Keterangan**
+---------------|-------------------------|---------------------------------------------------------------------------------
+Logical        | TRUE, FALSE             | Nilai Boolean
+Numeric        | 12.3, 5, 999            | Segala jenis angka
+Integer        | 23L, 97L, 3L            | Bilangan integer (bilangan bulat)
+Complex        | 2i, 3i, 9i              | Bilangan kompleks
+Character      | 'a', "b", "123"         | Karakter dan string
+Factor         | 1, 0, "Merah"           | Dapat berupa numerik atau string (namun pada proses akan terbaca sebagai angka)
+Raw            | Identik dengan "hello"  | Segala jenis data yang disimpan sebagai raw bytes
+
+: (\#tab:tipedata) Tipe data `R`.
+
+Sintaks berikut adalah contoh dari tipe data pada `R`. Untuk mengetahui tipa data suatu objek kita dapat menggunakan perintah `class()`
+
+```{r}
+# Logical
+apel <- TRUE
+class(apel)
+
+# Numeric
+x <- 2.3
+class(x)
+
+# Integer
+y <- 2L
+class(y)
+
+# Compleks
+z <- 5+2i
+class(z)
+
+# string
+w <- "saya"
+class(w)
+
+# Raw
+xy <- charToRaw("hello world")
+class(xy)
+
+```
+
+Keenam jenis data tersebut disebut sebagai tipe data atomik. Hal ini disebabkan karena hanya dapat menangani satu tipe data saja. Misalnya hanya numeric atau hanya integer.
+
+Selain menggunakan fungsi `class()`, kita dapat pula menggunakan fungsi `is_numeric()`, `is.character()`, `is.logical()`, dan sebagainya berdasarkan jenis data apa yang ingin kita cek. Berbeda dengan fungsi `class()`, ouput yang dihasilkan pada fungsi seperti `is_numeric()` adalah nilai Boolean sehingga fungsi ini hanya digunakan untuk mengecek apakah jenis data pada objek sama seperti yang kita pikirkan. Sebagai contoh disajikan pada sintaks berikut:
+
+Struktur data diklasifikasikan berdasarkan dimensi data dan tipe data di dalamnya (homogen atau heterogen). Klasifikasi jenis data disajikan pada Tabel \@ref(tab:strukturdata).
+
+**Dimensi**  | **Homogen**      | **Heterogen**
+-------------|------------------|---------------
+1d           | Atomik vektor    | List
+2d           | Matriks          | Dataframe
+nd           | Array            |               
+
+: (\#tab:strukturdata) Struktur data `R`.
+
+Berdasarkan Tabel tersebut dapat kita lihat bahwa objek terbagi atas dua buah struktur data yaitu homogen dan heterogen. Objek dengan struktur data homogen hanya dapat menyimpan satu tipe atau jenis data saja (numerik saja atau factor saja), sedangkan objek dengan struktur data heterogen akan dapat menyimpan berbagai jenis data. 
+
+## Konsep *Tidy Data* {#tidydata}
+
+<style>
+body{
+text-align: justify}
+</style>
+
+Sebelum memulai analisa terhadap data yang kita miliki, umumnya kita akan merapikan data yang akan kita gunakan. Tujuannya adalah agar data yang akan digunakan sudah siap untuk dilakukan analisa dengan software tertentu seperti `R` atau `R Commander`, dimana pada dataset perlu jelas antara variabel dan nilai (*value*), serta untuk mempermudah dalah memperoleh informasi pada data. Sebelum kita melakukan analisa di dataset tersebut, kita harus tahu terlebih dahulu apa saja syarat suatu dataset dikatakan rapi (*tidy*). Berikut adalah syaratnya:
+
+- Setiap variabel harus memiliki kolomnya sendiri
+- Setiap observasi harus memiliki barisnya sendiri
+- Setiap nilai berada pada sel tersendiri
+
+Ketiga syarat tersebut saling berhubungan sehingga jika salah satu syarat tersebut tidak terpenuhi, maka dataset belum bisa dikatakan *tidy*. Ketiga syarat tersebut dapat divisualisasikan melalui Gambar \@ref(fig:tidy).
+
+```{r tidy, echo=FALSE, fig.cap='Visualisasi 3 rule tidy data (Sumber: Grolemund dan Wickham, 2017).', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/tidy.png"
+include_graphics(img1_path)
+
+```
+
+## Input Data pada `R Commander`
+
+<style>
+body{
+text-align: justify}
+</style>
+
+Input data dapat dilakukan secara langsung pada `R Commander`. Input data secara langsung umumnya dilakukan jika jumlah data yag kita miliki relatif kecil. Untuk melakukanya jalakan tahapan berikut:
+
+1. Pada menu, klik `Data/New data set...`. Klik `OK`,
+2. Pada jedela yang muncul, ketikkan nama dataset yang kita inginkan. Klik `OK`
+3. Pada jendela `Data Editor:Nama_Dataset`, ketikkan data yang kita miliki.
+4. Untuk menambah baris klik tombol `Add row`, sedangkan untuk menambah kolom klik tombol `Add column`.
+5. Untuk mengubah nama kolom, klik pada bagian nama kolom dan ketikkan nama kolom yang diinginkan.
+6. Secara *default* *rowname* akan dinamai urutan observasi. Namun, kita dapat memberikan nama pada masing-masing kolom dengan cara meng-klik nama baris pada tiap barisnya.
+7. Untuk mengecek dataset yang telah kita buat, klik *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:inputdata).
+
+```{r inputdata, echo=FALSE, fig.cap='Visualisasi tahapan input dataset pada R Commander.', tidy=FALSE, fig.width=5, fig.align='center', out.width='70%', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/input_data.png"
+include_graphics(img1_path)
+
+```
+
+Terdapat beberapa hal yang perlu diperhatikan pada proses input data, antara lain:
+
+* Dalam pemberian *rownames*. Jika *rownames* mengandung spasi, input *rownames* disertai tanda *quote* (contoh:`"Nama Baris"`). Jika tidak ingin menggunakan spasi pada *rownames*, gunakan tanda titik atau koma sebagai pemisah kata (contoh:`Nama.Baris` atau `Nama_Baris`).
+* Pastikan *rownames* bersifat unik (tidak ada duplikasi nama).
+* Pembaca dapat menggunakan tombol pada pada *keyboard* untuk bernavigasi pada *data editor* atau gunakan klik kiri pada sel yang ingin dituju.
+* Jenis data pada kolom akan secara otomatis ditentukan oleh seluruh data yang ada pada kolomnya. Jika data berupa angka, program secara otomatis mengkonversinya menjadi data `numeric`. Jika data berupa campuran angka atau karakter, secara otomatis program mengkonversinya menjadi `Character`.
+* Pembaca dapat memperluas area sel dengan cara menggeser sisi sel atau dengan cara memperluas melalui menggeser ujung jendela editor.
+* Dataset yang telah dibuat dapat diedit kembali dengan cara klik *toolbar* `Edit data set`.
+
+## Membaca Data dari File Eksternal {#impeks}
+
+<style>
+body{
+text-align: justify}
+</style>
+
+Pada Chapter \@ref(impeks), pembaca akan mempelajari bagaimana cara melakukan import data dari berbagai sumber seperti *plain text*, *spreadsheets*, SPSS, STATA, SAS, dan Minitab. Sebelum melakukan hal tersebut terdapat beberapa hal yang perlu pembaca perhatikan, antara lain:
+
+* Pastikan data berada dalam format *tidy data* (lihat Chapter \@ref(tidydata)), dan
+* Pastikan *missing value* berada pada notasi yang konsisten.
+
+Data yang berasal dari berbagai sumber akan memberikan format notasi *missing value* yang berbeda-beda, misalnya data yag berasal dari database akan memberikan notasi `NULL` terhadap *missing value*, sedangkan data yang berasal dari *spreadsheet* akan memberikan notasi *missing value* berdasarkan operasi yang dilakukan pada datanya (contoh: `#VALUE!` untuk hasil operasi 2 buah objek berbeda tipe datanya). `RCommander` tidak dapat menangani kondisi di mana pada satu kolom data terdapat lebih dari 1 notasi *missing value*. Untuk mengatasi hal tersebut, pembaca perlu menyeragamkan notasi *missing value* pada data (contoh: mengubahnya menjadi notasi `NA` atau dikosongkan jika data bersumber dari *spreadsheet*).
+
+Pada Chapter \@ref(impeks), pembaca akan diberikan contoh bagaimana melakukan import data yang disajikan pada Tabel \@ref(tab:mtcars). 
+
+```{r mtcars, echo=FALSE, message=FALSE, warning=FALSE}
+library(readr)
+        
+df <- read_csv("./dataset/mtcars.csv")
+
+
+knitr::kable(
+  head(df,10), caption = 'Sepuluh Observasi pertama dataset mtcars'
+)
+```
+
+
+Adapun penjelasan terkait Tabel \@ref(tab:mtcars) ditampilkan pada Tabel \@ref(tab:mtcars2)
+
+| **Variabel** | **Keterangan**                                    |
+|:-------------|:--------------------------------------------------|
+| `mpg`        | Mil/(US) galon                                    |
+| `cyl`        | Jumlah silinder                                   |
+| `disp`       | *Displacement* (cu.in)                            |
+| `hp`         | *Gross horsepower*                                |
+| `drat`       | Rasio gandar belakang                             |
+| `wt`         | Berat (1000 lb)                                   |
+| `qsec`       | Watu tempuh 1/4 mil                               |
+| `vs`         | Mesin (0=*V-shape*, 1=*straight*)                 |
+| `am`         | Transmisi (0=otomatis, 1=manual)                  |
+| `gear`       | Jumlah *gear* depan                               |
+| `carb`       | Jumlah karburator                                 |
+
+: (\#tab:mtcars2) Penjelasan variabel dataset mtcars.
+
+### Membaca Data dari Sumber *Plain Text*
+
+Terdapat 3 buah metode untuk membaca data dari *plain text*. Metode tersebut dibagi berdasarkan lokasi file *plain text* tersebut berada. 
+
+**Membaca file yang berada pada sistem lokal**
+
+1. Pada menu `Data`, klik `Data/Import data/from text file,clipboard,or URL...`. 
+2. Pada jendela yang muncul, isikan spesifikasi file (lihat Tabel \@ref(tab:readpltext)) dan nama objek dataset yang diinginkan. Pada bagian `Location of Data File` pilih `Local file system`. Klik `OK`.
+3. Pada jendela `Windows Explorer` yang muncul, pilih file yang hendak dibaca. Klik `Open`.
+4. Untuk melihat dataset yang berhasil dibuat, klik pada *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:implocal).
+
+```{r implocal, echo=FALSE, fig.cap='Visualisasi tahapan membaca file plain text dari sistem lokal.', tidy=FALSE, fig.width=5, fig.align='center', out.width='70%', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/implocal.png"
+include_graphics(img1_path)
+
+```
+
+**Membaca file yang berada pada _clipboard_**
+
+1. *Higlight* tabel dataset yang pembaca miliki dan *copy* dataset tersebut. Dataset tersebut selanjutnya akan tersimpan pada *clipboard*.
+2. Pada menu `Data`, klik `Data/Import data/from text file,clipboard,or URL...`. 
+3. Pada jendela yang muncul, isikan spesifikasi file (lihat Tabel \@ref(tab:readpltext)) dan nama objek dataset yang diinginkan. Pada bagian `Location of Data File` pilih `clipboard`  .Klik `OK`.
+4. Dataset akan secara otomatis dibuat oleh program dengan mengambil data yang tersimpan pada *clipboard*.
+5. Untuk melihat dataset yang berhasil dibuat, klik pada *toolbar* `View data set`.
+
+**Membaca file yang berada pada URL**
+
+1. *Copy* halaman URL lokasi dataset berada.
+2. Pada menu `Data`, klik `Data/Import data/from text file,clipboard,or URL...`. 
+3. Pada jendela yang muncul, isikan spesifikasi file (lihat Tabel \@ref(tab:readpltext)) dan nama objek dataset yang diinginkan. Pada bagian `Location of Data File` pilih `Internet URL`. Klik `OK`.
+4. Pada jendela yang muncul tempelkan (*pasting*) halaman URL yang telah di *copy* sebelumnya.
+4. Untuk melihat dataset yang berhasil dibuat, klik pada *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:impurl).
+
+```{r impurl, echo=FALSE, fig.cap='Visualisasi tahapan membaca file plain text dari internet URL.', tidy=FALSE, fig.width=5, fig.align='center', out.width='70%', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/impurl.png"
+include_graphics(img1_path)
+
+```
+
+Sintaks yang muncul pada `R Console` saat proses telah dilakukan adalah sebagai berikut:
+
+```{r, eval=FALSE}
+# sistem lokal
+Dataset <- read.table("D:/mtcars.txt", header=TRUE, 
+                      sep="", na.strings="NA", dec=".",
+                      strip.white=TRUE)
+# clipboard
+Dataset <- read.table("clipboard", header=TRUE, 
+                      sep="", na.strings="NA",
+                      dec=".", strip.white=TRUE)
+# URL
+Dataset <- read.table("www.abcde.com/mtcars.txt", 
+                      header=TRUE, sep="",na.strings="NA", 
+                      dec=".", strip.white=TRUE)
+
+```
+
+| **Item**                 | **Keterangan**                                                                             |
+|:-------------------------|:-------------------------------------------------------------------------------------------|
+| `Enter name for data set`| Input nama dataset yang diinginkan sebagai output                                          |
+| `Variable name in file`  | Jika di centang, program membaca baris pertama tabel sebagai nama kolom                    |
+| `Missing value indikator`| Karakter yang mengidikasikan missing value dalam file (misal: *White space*, NA, NaN, dll) |
+| `Location of Data File`  | Lokasi file yang akan dibaca berada                                                        |
+| `Field Separator`        | Pemisah antar kolom data yang digunakan                                                    |
+| `Decimal-Point Character`| Karakter yang digunakan sebagai penunjuk *decimal-point*                                   |
+
+: (\#tab:readpltext)  Penjelasan terkait item pada jendela Read Text Data From File, Clipboard, or URL.
+
+### Membaca Data dari Sumber *Spreadsheet* dan Lainnya
+
+Format data lain yang dapat dibaca oleg `R Commander` adalah `xlsx` (Excel) ,`.dta` (STATA), `.sav` (SPSS), `.sas7bdat` dan `.xport` (SAS), serta `.mtp` (minitab). Cara membaca data dengan format tersebut cukup sederhana dilakukan pada `R Commander`. Pembaca hanya perlu menuju menu `Data/Import data` dan memilih sumber data yang ingin dibaca. Pada jendela yang muncul (kecuali format `.xport`) pembaca diminta untuk melakukan sejumlah konfigurasi seperti apakah *rownames* terletak pada kolom pertama, apakah perlu mengubah jenis data karakter menjadi faktor, dll. Pada kondisi dimana pembaca diminta untuk mengkonversi karakter menjadi faktor, penulis menyarankan untuk tidak melakukannya saat awal membaca data sebab akan menyulitkan pada saat melakukan analisis data selanjutnya. Konversi karakter menjadi faktor dilakukan pada sejumlah variabel yang memang ingin diubah menjadi faktor (bisa numerik atau karakter). Tampilan jendela konfigurasi awal saat membaca data ditampilkan pada Gambar \@ref(fig:impanother).
+
+```{r impanother, echo=FALSE, fig.cap='Tampilan jendela konfigurasi import data berbagai format file.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/impanother.png"
+include_graphics(img1_path)
+
+```
+
+Contoh sintaks yang akan muncul saat proses tersebut selesai adalah sebagai berikut:
+
+```{r, eval=FALSE}
+# .xlsx
+Dataset <- readXL("D:/mtcars.xlsx", rownames=FALSE, 
+                  header=TRUE, na="", sheet="mtcars",
+                  stringsAsFactors=TRUE)
+
+# .sav
+Dataset <- readSPSS("D:/mtcars.sav", rownames=FALSE,
+                    stringsAsFactors=TRUE, tolower=FALSE)
+
+# .xport
+Datasets <- read.xport("D:/mtcars.xport")
+
+# .sasb7dat
+Dataset <- readSAS("D:/mtcars.sas7bdat",
+                   stringsAsFactors=TRUE, rownames=FALSE)
+
+# .dta
+Dataset <- readStata("D:/mtcars.dta", convert.dates=TRUE,
+                     stringsAsFactors=TRUE, rownames=FALSE)
+```
+
+## Membaca Data dari Paket
+
+<style>
+body{
+text-align: justify}
+</style>
+
+### Memuat Paket
+
+Jika pembaca ingin mengakses dataset dari paket yang pembaca inginkan, pembaca dapat menjalankan perintah berikut pada `R Console`:
+
+```{r, eval=FALSE}
+library(nama_paket)
+```
+
+Jika paket tersebut belum terpasang, jalankan perintah berikut:
+
+```{r, eval=FALSE}
+install.packages("nama_paket")
+```
+
+Jika pembaca kesulitan menggunakan cara tersebut, pembaca dapat menggunakan metode yang sama dengan cara memasang paket `Rcmdr` (lihat Chapter \@ref(installrcmdr)) dan memuat paket `Rcmdr` (lihat Chapter \@ref(loadrcmdr)).
+
+### Memuat Dataset Pada Paket
+
+Untuk mengecek dataset apa saja yang tersedia paket yang telah aktif, lakukan langkah-langkah berikut:
+
+1. Pada menu `Data`, klik `Data/Data in packages/List data set in packages`.
+2. Jendela `R data sets` yang memberikan daftar seluruh dataset yang tersedia pada paket yang telah dimuat akan muncul.
+
+Pada proses tersebut, `R Script` akan memunculkan sebuah sintaks berikut:
+
+```{r, eval=FALSE}
+data()
+```
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:loaddata).
+
+```{r loaddata, echo=FALSE, fig.cap='Tampilan langkah menampilkan seluruh dataset dari paket.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/loaddata.png"
+include_graphics(img1_path)
+
+```
+
+### Membaca Data
+
+Untuk membaca dataset dari paket, jalankan langkah-langkah berikut:
+
+1. Pada menu `Data`, klik `Data/Data in packages/Read data set from an attached package...`.
+2. Pada kotak `package`, *double click* paket yang pembaca ingin lihat datasetnya. Daftar dataset selanjutnya akan muncul pada kotak `Data set`.
+3. Pilih dataset yang pembaca ingin baca. Pembaca dapat merubah nama dataset yang akan dibaca melalui kotak `Enter nama of data set`. Klik `OK`.
+4. Untuk melihat dataset yang telah dimuat, klik *toolbar* `View data set`.
+
+Pada contoh berikut, penulis mencoba memuat dataset `mtcars` dari paket `datasets`. Sintaks yang muncul pada `R Script` dan kotat `Output` adalah sebagai berikut:
+
+```{r, eval=FALSE}
+data(mtcars, package="datasets")
+```
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:datapaket).
+
+```{r datapaket, echo=FALSE, fig.cap='Tampilan langkah membaca dataset pada paket.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/datapaket.png"
+include_graphics(img1_path)
+
+```
+
+## Meyimpan dan Memuat Data
+
+<style>
+body{
+text-align: justify}
+</style>
+
+### Menyimpan Dataset
+
+Data pada `R Commander` dapat disimpan ke dalam format `.RData`. Penyimpanan dalam format tersebut akan mempermudah pembaca untuk memperoleh data tersebut saat akan dibaca kembali dan pembaca tidak perlu mengulangi kembali proses membaca data pada bagian sebelumnya. 
+Untuk dapat menyimpan data menggunakan format `.RData` yang telah berhasil dibaca pada `R Commander`, pembaca dapat melakukan langkah-langkah berikut:
+
+1. Pada menu `Data`, klik `Data/Active data set/Save active data set...`.
+2. Pada jendela `Windows Explorer` yang muncul, navigasikan ke lokasi atau folder di mana data tersebut akan disimpan. Beri nama data tersebut sesuai dengan nama yang diinginkan. Klik `Save`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:saverdata).
+
+```{r saverdata, echo=FALSE, fig.cap='Tampilan tahapan menyimpan data ke dalam format RData.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/saverdata.png"
+include_graphics(img1_path)
+
+```
+
+Pada `R Script` dan kotak `Output` akan muncul sintaks berikut yang menandakan bahwa data yang ada pada `R Commander` telah disimpan pada folder yang telah penulis inginkan.
+
+```{r, eval=FALSE}
+save("mtcars", file="D:/EnvStat/Rcmdr-book/dataset/mtcars.RData")
+```
+
+Selain menyimpan data ke dalam format `.RData`, `R Commander` juga dapat menyimpan data ke dalam format `.csv`. Untuk melakukannya jalankan langkah berikut:
+
+1. Pada menu `Data`, klik `Data/Active data set/Export active data set...`.
+2. Pada jendela yang muncul, spesifikasikan format data yang akan disimpan (lihat Tabel \@ref(tab:exdata)).
+3. Pada jendela `Windows Explorer` yang muncul, navigasikan ke lokasi atau folder di mana data tersebut akan disimpan. Beri nama data tersebut sesuai dengan nama yang diinginkan. Klik `Save`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:savecsv).
+
+```{r savecsv, echo=FALSE, fig.cap='Tampilan tahapan menyimpan data ke dalam format csv.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/savecsv.png"
+include_graphics(img1_path)
+
+```
+
+Pada `R Script` dan kotak `Output` akan muncul sintaks berikut yang menandakan bahwa data yang ada pada `R Commander` telah disimpan pada folder yang telah penulis inginkan.
+
+```{r, eval=FALSE}
+write.table(mtcars, "D:/mtcars2.csv", sep=",", 
+            col.names=TRUE, row.names=TRUE, 
+            quote=TRUE, na="NA")
+```
+
+| **Item**                        | **Keterangan**                                                           |
+|:--------------------------------|:-------------------------------------------------------------------------|
+| `Write variable names`          | pilihan apakah nama variabel akan disertakan ke dalam file csv           |
+| `Write row names`               | pilihan apakah nama baris disertakan ke dalam file csv                   |
+| `Quotes around character values`| pilihan apakah tipe data karakter diberi tanda petik                     |
+| `Missing values`                | simbol atau karakter *missing value* yang digunakan pada file csv        |
+| `Field Separator`               | pemisah antar kolom data yang digunakan                                  |
+
+: (\#tab:exdata) Penjelasan jendela Export active data set.
+
+
+### Memuat Data
+
+Data yang telah disimpan ke dalam format `.RData` dapat langsung dimuat ke dalam `R Commander` tanpa perlu menspesifikasikan kembali format data yang hendak dibaca. Untuk melakukannya jalankan langkah berikut:
+
+1. Pada menu `Data`, klik `Data/Load data set...`.
+2. Pada jendela `Windows Explorer` yang muncul, navigasikan ke lokasi atau folder di mana data tersebut berada. Pilih data yang akan dimuat. Klik `Open`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:loadrdata).
+
+```{r loadrdata, echo=FALSE, fig.cap='Tampilan tahapan memuat data dalam format RData.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/loadrdata.png"
+include_graphics(img1_path)
+
+```
+
+## Modifikasi Variabel
+
+<style>
+body{
+text-align: justify}
+</style>
+
+## Transformasi Dataset
+
+<style>
+body{
+text-align: justify}
+</style>
+
+

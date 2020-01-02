@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.7 Meyimpan dan Memuat Data | Analisis Statistika Menggunakan Rcmdr</title>
+  <meta name="description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.7 Meyimpan dan Memuat Data | Analisis Statistika Menggunakan Rcmdr" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.7 Meyimpan dan Memuat Data | Analisis Statistika Menggunakan Rcmdr" />
+  
+  <meta name="twitter:description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
+  
+
+<meta name="author" content="Mohammad Rosidi" />
+
+
+<meta name="date" content="2020-01-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="membaca-data-dari-paket.html"/>
+<link rel="next" href="modifikasi-variabel.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Analisis Statistika Menggunakan Rcmdr</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Pengenalan R dan Rcmdr</a><ul>
+<li class="chapter" data-level="1.1" data-path="whatR.html"><a href="whatR.html"><i class="fa fa-check"></i><b>1.1</b> Apa Itu <code>R</code> dan <code>Rcmdr</code>?</a></li>
+<li class="chapter" data-level="1.2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>1.2</b> Memasang <code>R</code> dan <code>R Commander</code></a><ul>
+<li class="chapter" data-level="1.2.1" data-path="install.html"><a href="install.html#memasang-r-pada-windows"><i class="fa fa-check"></i><b>1.2.1</b> Memasang <code>R</code> pada Windows</a></li>
+<li class="chapter" data-level="1.2.2" data-path="install.html"><a href="install.html#memasang-r-pada-mac-os-x"><i class="fa fa-check"></i><b>1.2.2</b> Memasang <code>R</code> pada Mac OS X</a></li>
+<li class="chapter" data-level="1.2.3" data-path="install.html"><a href="install.html#memasang-r-pada-linux-dan-unix"><i class="fa fa-check"></i><b>1.2.3</b> Memasang <code>R</code> pada Linux dan Unix</a></li>
+<li class="chapter" data-level="1.2.4" data-path="install.html"><a href="install.html#installrcmdr"><i class="fa fa-check"></i><b>1.2.4</b> Memasang <code>R Commander</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="loadrcmdr.html"><a href="loadrcmdr.html"><i class="fa fa-check"></i><b>1.3</b> Menjalankan <code>R</code> dan <code>R Commander</code></a></li>
+<li class="chapter" data-level="1.4" data-path="tampilan-r-dan-r-commander.html"><a href="tampilan-r-dan-r-commander.html"><i class="fa fa-check"></i><b>1.4</b> Tampilan <code>R</code> dan <code>R Commander</code></a><ul>
+<li class="chapter" data-level="1.4.1" data-path="tampilan-r-dan-r-commander.html"><a href="tampilan-r-dan-r-commander.html#antarmuka-r"><i class="fa fa-check"></i><b>1.4.1</b> Antarmuka <code>R</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="tampilan-r-dan-r-commander.html"><a href="tampilan-r-dan-r-commander.html#antarmuka-r-commander"><i class="fa fa-check"></i><b>1.4.2</b> Antarmuka <code>R Commander</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="datamanage.html"><a href="datamanage.html"><i class="fa fa-check"></i><b>2</b> Manajemen Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html"><i class="fa fa-check"></i><b>2.1</b> Operator Operasi Pada <code>R</code></a><ul>
+<li class="chapter" data-level="2.1.1" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html#aritmatikop"><i class="fa fa-check"></i><b>2.1.1</b> Operator Aritmatika</a></li>
+<li class="chapter" data-level="2.1.2" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html#operator-perbandingan"><i class="fa fa-check"></i><b>2.1.2</b> Operator Perbandingan</a></li>
+<li class="chapter" data-level="2.1.3" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html#operator-logika"><i class="fa fa-check"></i><b>2.1.3</b> Operator Logika</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="tipe-dan-struktur-data.html"><a href="tipe-dan-struktur-data.html"><i class="fa fa-check"></i><b>2.2</b> Tipe dan Struktur Data</a></li>
+<li class="chapter" data-level="2.3" data-path="tidydata.html"><a href="tidydata.html"><i class="fa fa-check"></i><b>2.3</b> Konsep <em>Tidy Data</em></a></li>
+<li class="chapter" data-level="2.4" data-path="input-data-pada-r-commander.html"><a href="input-data-pada-r-commander.html"><i class="fa fa-check"></i><b>2.4</b> Input Data pada <code>R Commander</code></a></li>
+<li class="chapter" data-level="2.5" data-path="impeks.html"><a href="impeks.html"><i class="fa fa-check"></i><b>2.5</b> Membaca Data dari File Eksternal</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="impeks.html"><a href="impeks.html#membaca-data-dari-sumber-plain-text"><i class="fa fa-check"></i><b>2.5.1</b> Membaca Data dari Sumber <em>Plain Text</em></a></li>
+<li class="chapter" data-level="2.5.2" data-path="impeks.html"><a href="impeks.html#membaca-data-dari-sumber-spreadsheet-dan-lainnya"><i class="fa fa-check"></i><b>2.5.2</b> Membaca Data dari Sumber <em>Spreadsheet</em> dan Lainnya</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html"><i class="fa fa-check"></i><b>2.6</b> Membaca Data dari Paket</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html#memuat-paket"><i class="fa fa-check"></i><b>2.6.1</b> Memuat Paket</a></li>
+<li class="chapter" data-level="2.6.2" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html#memuat-dataset-pada-paket"><i class="fa fa-check"></i><b>2.6.2</b> Memuat Dataset Pada Paket</a></li>
+<li class="chapter" data-level="2.6.3" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html#membaca-data"><i class="fa fa-check"></i><b>2.6.3</b> Membaca Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="meyimpan-dan-memuat-data.html"><a href="meyimpan-dan-memuat-data.html"><i class="fa fa-check"></i><b>2.7</b> Meyimpan dan Memuat Data</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="meyimpan-dan-memuat-data.html"><a href="meyimpan-dan-memuat-data.html#menyimpan-dataset"><i class="fa fa-check"></i><b>2.7.1</b> Menyimpan Dataset</a></li>
+<li class="chapter" data-level="2.7.2" data-path="meyimpan-dan-memuat-data.html"><a href="meyimpan-dan-memuat-data.html#memuat-data"><i class="fa fa-check"></i><b>2.7.2</b> Memuat Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="modifikasi-variabel.html"><a href="modifikasi-variabel.html"><i class="fa fa-check"></i><b>2.8</b> Modifikasi Variabel</a></li>
+<li class="chapter" data-level="2.9" data-path="transformasi-dataset.html"><a href="transformasi-dataset.html"><i class="fa fa-check"></i><b>2.9</b> Transformasi Dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ringkasan-dan-visualisasi-data.html"><a href="ringkasan-dan-visualisasi-data.html"><i class="fa fa-check"></i><b>3</b> Ringkasan dan Visualisasi Data</a></li>
+<li class="chapter" data-level="4" data-path="uji-statistik-sederhana.html"><a href="uji-statistik-sederhana.html"><i class="fa fa-check"></i><b>4</b> Uji Statistik Sederhana</a></li>
+<li class="chapter" data-level="5" data-path="linier-dan-generalized-linear-model.html"><a href="linier-dan-generalized-linear-model.html"><i class="fa fa-check"></i><b>5</b> Linier dan <em>Generalized Linear</em> Model</a></li>
+<li class="chapter" data-level="6" data-path="distribusi-probabilitas-dan-simulasi.html"><a href="distribusi-probabilitas-dan-simulasi.html"><i class="fa fa-check"></i><b>6</b> Distribusi Probabilitas dan Simulasi</a></li>
+<li class="chapter" data-level="" data-path="referensi.html"><a href="referensi.html"><i class="fa fa-check"></i>Referensi</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analisis Statistika Menggunakan Rcmdr</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="meyimpan-dan-memuat-data" class="section level2">
+<h2><span class="header-section-number">2.7</span> Meyimpan dan Memuat Data</h2>
+<style>
+body{
+text-align: justify}
+</style>
+<div id="menyimpan-dataset" class="section level3">
+<h3><span class="header-section-number">2.7.1</span> Menyimpan Dataset</h3>
+<p>Data pada <code>R Commander</code> dapat disimpan ke dalam format <code>.RData</code>. Penyimpanan dalam format tersebut akan mempermudah pembaca untuk memperoleh data tersebut saat akan dibaca kembali dan pembaca tidak perlu mengulangi kembali proses membaca data pada bagian sebelumnya.
+Untuk dapat menyimpan data menggunakan format <code>.RData</code> yang telah berhasil dibaca pada <code>R Commander</code>, pembaca dapat melakukan langkah-langkah berikut:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Active data set/Save active data set...</code>.</li>
+<li>Pada jendela <code>Windows Explorer</code> yang muncul, navigasikan ke lokasi atau folder di mana data tersebut akan disimpan. Beri nama data tersebut sesuai dengan nama yang diinginkan. Klik <code>Save</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="meyimpan-dan-memuat-data.html#fig:saverdata">2.8</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:saverdata"></span>
+<img src="images/chp2/saverdata.png" alt="Tampilan tahapan menyimpan data ke dalam format RData." width="70%" />
+<p class="caption">
+Gambar 2.8: Tampilan tahapan menyimpan data ke dalam format RData.
+</p>
+</div>
+<p>Pada <code>R Script</code> dan kotak <code>Output</code> akan muncul sintaks berikut yang menandakan bahwa data yang ada pada <code>R Commander</code> telah disimpan pada folder yang telah penulis inginkan.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="kw">save</span>(<span class="st">&quot;mtcars&quot;</span>, <span class="dt">file=</span><span class="st">&quot;D:/EnvStat/Rcmdr-book/dataset/mtcars.RData&quot;</span>)</a></code></pre></div>
+<p>Selain menyimpan data ke dalam format <code>.RData</code>, <code>R Commander</code> juga dapat menyimpan data ke dalam format <code>.csv</code>. Untuk melakukannya jalankan langkah berikut:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Active data set/Export active data set...</code>.</li>
+<li>Pada jendela yang muncul, spesifikasikan format data yang akan disimpan (lihat Tabel <a href="meyimpan-dan-memuat-data.html#tab:exdata">2.11</a>).</li>
+<li>Pada jendela <code>Windows Explorer</code> yang muncul, navigasikan ke lokasi atau folder di mana data tersebut akan disimpan. Beri nama data tersebut sesuai dengan nama yang diinginkan. Klik <code>Save</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="meyimpan-dan-memuat-data.html#fig:savecsv">2.9</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:savecsv"></span>
+<img src="images/chp2/savecsv.png" alt="Tampilan tahapan menyimpan data ke dalam format csv." width="70%" />
+<p class="caption">
+Gambar 2.9: Tampilan tahapan menyimpan data ke dalam format csv.
+</p>
+</div>
+<p>Pada <code>R Script</code> dan kotak <code>Output</code> akan muncul sintaks berikut yang menandakan bahwa data yang ada pada <code>R Commander</code> telah disimpan pada folder yang telah penulis inginkan.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">write.table</span>(mtcars, <span class="st">&quot;D:/mtcars2.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, </a>
+<a class="sourceLine" id="cb65-2" title="2">            <span class="dt">col.names=</span><span class="ot">TRUE</span>, <span class="dt">row.names=</span><span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb65-3" title="3">            <span class="dt">quote=</span><span class="ot">TRUE</span>, <span class="dt">na=</span><span class="st">&quot;NA&quot;</span>)</a></code></pre></div>
+<table>
+<caption><span id="tab:exdata">Tabel 2.11: </span> Penjelasan jendela Export active data set.</caption>
+<colgroup>
+<col width="30%" />
+<col width="69%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Item</strong></th>
+<th align="left"><strong>Keterangan</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Write variable names</code></td>
+<td align="left">pilihan apakah nama variabel akan disertakan ke dalam file csv</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Write row names</code></td>
+<td align="left">pilihan apakah nama baris disertakan ke dalam file csv</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Quotes around character values</code></td>
+<td align="left">pilihan apakah tipe data karakter diberi tanda petik</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Missing values</code></td>
+<td align="left">simbol atau karakter <em>missing value</em> yang digunakan pada file csv</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Field Separator</code></td>
+<td align="left">pemisah antar kolom data yang digunakan</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="memuat-data" class="section level3">
+<h3><span class="header-section-number">2.7.2</span> Memuat Data</h3>
+<p>Data yang telah disimpan ke dalam format <code>.RData</code> dapat langsung dimuat ke dalam <code>R Commander</code> tanpa perlu menspesifikasikan kembali format data yang hendak dibaca. Untuk melakukannya jalankan langkah berikut:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Load data set...</code>.</li>
+<li>Pada jendela <code>Windows Explorer</code> yang muncul, navigasikan ke lokasi atau folder di mana data tersebut berada. Pilih data yang akan dimuat. Klik <code>Open</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="meyimpan-dan-memuat-data.html#fig:loadrdata">2.10</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:loadrdata"></span>
+<img src="images/chp2/loadrdata.png" alt="Tampilan tahapan memuat data dalam format RData." width="70%" />
+<p class="caption">
+Gambar 2.10: Tampilan tahapan memuat data dalam format RData.
+</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="membaca-data-dari-paket.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modifikasi-variabel.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mohrosidi/Rcmdr-book/02-manajemen_data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Rcmdr-book.pdf", "Rcmdr-book.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.5 Membaca Data dari File Eksternal | Analisis Statistika Menggunakan Rcmdr</title>
+  <meta name="description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.5 Membaca Data dari File Eksternal | Analisis Statistika Menggunakan Rcmdr" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.5 Membaca Data dari File Eksternal | Analisis Statistika Menggunakan Rcmdr" />
+  
+  <meta name="twitter:description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
+  
+
+<meta name="author" content="Mohammad Rosidi" />
+
+
+<meta name="date" content="2020-01-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="input-data-pada-r-commander.html"/>
+<link rel="next" href="membaca-data-dari-paket.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Analisis Statistika Menggunakan Rcmdr</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Pengenalan R dan Rcmdr</a><ul>
+<li class="chapter" data-level="1.1" data-path="whatR.html"><a href="whatR.html"><i class="fa fa-check"></i><b>1.1</b> Apa Itu <code>R</code> dan <code>Rcmdr</code>?</a></li>
+<li class="chapter" data-level="1.2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>1.2</b> Memasang <code>R</code> dan <code>R Commander</code></a><ul>
+<li class="chapter" data-level="1.2.1" data-path="install.html"><a href="install.html#memasang-r-pada-windows"><i class="fa fa-check"></i><b>1.2.1</b> Memasang <code>R</code> pada Windows</a></li>
+<li class="chapter" data-level="1.2.2" data-path="install.html"><a href="install.html#memasang-r-pada-mac-os-x"><i class="fa fa-check"></i><b>1.2.2</b> Memasang <code>R</code> pada Mac OS X</a></li>
+<li class="chapter" data-level="1.2.3" data-path="install.html"><a href="install.html#memasang-r-pada-linux-dan-unix"><i class="fa fa-check"></i><b>1.2.3</b> Memasang <code>R</code> pada Linux dan Unix</a></li>
+<li class="chapter" data-level="1.2.4" data-path="install.html"><a href="install.html#installrcmdr"><i class="fa fa-check"></i><b>1.2.4</b> Memasang <code>R Commander</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="loadrcmdr.html"><a href="loadrcmdr.html"><i class="fa fa-check"></i><b>1.3</b> Menjalankan <code>R</code> dan <code>R Commander</code></a></li>
+<li class="chapter" data-level="1.4" data-path="tampilan-r-dan-r-commander.html"><a href="tampilan-r-dan-r-commander.html"><i class="fa fa-check"></i><b>1.4</b> Tampilan <code>R</code> dan <code>R Commander</code></a><ul>
+<li class="chapter" data-level="1.4.1" data-path="tampilan-r-dan-r-commander.html"><a href="tampilan-r-dan-r-commander.html#antarmuka-r"><i class="fa fa-check"></i><b>1.4.1</b> Antarmuka <code>R</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="tampilan-r-dan-r-commander.html"><a href="tampilan-r-dan-r-commander.html#antarmuka-r-commander"><i class="fa fa-check"></i><b>1.4.2</b> Antarmuka <code>R Commander</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="datamanage.html"><a href="datamanage.html"><i class="fa fa-check"></i><b>2</b> Manajemen Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html"><i class="fa fa-check"></i><b>2.1</b> Operator Operasi Pada <code>R</code></a><ul>
+<li class="chapter" data-level="2.1.1" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html#aritmatikop"><i class="fa fa-check"></i><b>2.1.1</b> Operator Aritmatika</a></li>
+<li class="chapter" data-level="2.1.2" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html#operator-perbandingan"><i class="fa fa-check"></i><b>2.1.2</b> Operator Perbandingan</a></li>
+<li class="chapter" data-level="2.1.3" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html#operator-logika"><i class="fa fa-check"></i><b>2.1.3</b> Operator Logika</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="tipe-dan-struktur-data.html"><a href="tipe-dan-struktur-data.html"><i class="fa fa-check"></i><b>2.2</b> Tipe dan Struktur Data</a></li>
+<li class="chapter" data-level="2.3" data-path="tidydata.html"><a href="tidydata.html"><i class="fa fa-check"></i><b>2.3</b> Konsep <em>Tidy Data</em></a></li>
+<li class="chapter" data-level="2.4" data-path="input-data-pada-r-commander.html"><a href="input-data-pada-r-commander.html"><i class="fa fa-check"></i><b>2.4</b> Input Data pada <code>R Commander</code></a></li>
+<li class="chapter" data-level="2.5" data-path="impeks.html"><a href="impeks.html"><i class="fa fa-check"></i><b>2.5</b> Membaca Data dari File Eksternal</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="impeks.html"><a href="impeks.html#membaca-data-dari-sumber-plain-text"><i class="fa fa-check"></i><b>2.5.1</b> Membaca Data dari Sumber <em>Plain Text</em></a></li>
+<li class="chapter" data-level="2.5.2" data-path="impeks.html"><a href="impeks.html#membaca-data-dari-sumber-spreadsheet-dan-lainnya"><i class="fa fa-check"></i><b>2.5.2</b> Membaca Data dari Sumber <em>Spreadsheet</em> dan Lainnya</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html"><i class="fa fa-check"></i><b>2.6</b> Membaca Data dari Paket</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html#memuat-paket"><i class="fa fa-check"></i><b>2.6.1</b> Memuat Paket</a></li>
+<li class="chapter" data-level="2.6.2" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html#memuat-dataset-pada-paket"><i class="fa fa-check"></i><b>2.6.2</b> Memuat Dataset Pada Paket</a></li>
+<li class="chapter" data-level="2.6.3" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html#membaca-data"><i class="fa fa-check"></i><b>2.6.3</b> Membaca Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="meyimpan-dan-memuat-data.html"><a href="meyimpan-dan-memuat-data.html"><i class="fa fa-check"></i><b>2.7</b> Meyimpan dan Memuat Data</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="meyimpan-dan-memuat-data.html"><a href="meyimpan-dan-memuat-data.html#menyimpan-dataset"><i class="fa fa-check"></i><b>2.7.1</b> Menyimpan Dataset</a></li>
+<li class="chapter" data-level="2.7.2" data-path="meyimpan-dan-memuat-data.html"><a href="meyimpan-dan-memuat-data.html#memuat-data"><i class="fa fa-check"></i><b>2.7.2</b> Memuat Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="modifikasi-variabel.html"><a href="modifikasi-variabel.html"><i class="fa fa-check"></i><b>2.8</b> Modifikasi Variabel</a></li>
+<li class="chapter" data-level="2.9" data-path="transformasi-dataset.html"><a href="transformasi-dataset.html"><i class="fa fa-check"></i><b>2.9</b> Transformasi Dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ringkasan-dan-visualisasi-data.html"><a href="ringkasan-dan-visualisasi-data.html"><i class="fa fa-check"></i><b>3</b> Ringkasan dan Visualisasi Data</a></li>
+<li class="chapter" data-level="4" data-path="uji-statistik-sederhana.html"><a href="uji-statistik-sederhana.html"><i class="fa fa-check"></i><b>4</b> Uji Statistik Sederhana</a></li>
+<li class="chapter" data-level="5" data-path="linier-dan-generalized-linear-model.html"><a href="linier-dan-generalized-linear-model.html"><i class="fa fa-check"></i><b>5</b> Linier dan <em>Generalized Linear</em> Model</a></li>
+<li class="chapter" data-level="6" data-path="distribusi-probabilitas-dan-simulasi.html"><a href="distribusi-probabilitas-dan-simulasi.html"><i class="fa fa-check"></i><b>6</b> Distribusi Probabilitas dan Simulasi</a></li>
+<li class="chapter" data-level="" data-path="referensi.html"><a href="referensi.html"><i class="fa fa-check"></i>Referensi</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analisis Statistika Menggunakan Rcmdr</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="impeks" class="section level2">
+<h2><span class="header-section-number">2.5</span> Membaca Data dari File Eksternal</h2>
+<style>
+body{
+text-align: justify}
+</style>
+<p>Pada Chapter <a href="impeks.html#impeks">2.5</a>, pembaca akan mempelajari bagaimana cara melakukan import data dari berbagai sumber seperti <em>plain text</em>, <em>spreadsheets</em>, SPSS, STATA, SAS, dan Minitab. Sebelum melakukan hal tersebut terdapat beberapa hal yang perlu pembaca perhatikan, antara lain:</p>
+<ul>
+<li>Pastikan data berada dalam format <em>tidy data</em> (lihat Chapter <a href="tidydata.html#tidydata">2.3</a>), dan</li>
+<li>Pastikan <em>missing value</em> berada pada notasi yang konsisten.</li>
+</ul>
+<p>Data yang berasal dari berbagai sumber akan memberikan format notasi <em>missing value</em> yang berbeda-beda, misalnya data yag berasal dari database akan memberikan notasi <code>NULL</code> terhadap <em>missing value</em>, sedangkan data yang berasal dari <em>spreadsheet</em> akan memberikan notasi <em>missing value</em> berdasarkan operasi yang dilakukan pada datanya (contoh: <code>#VALUE!</code> untuk hasil operasi 2 buah objek berbeda tipe datanya). <code>RCommander</code> tidak dapat menangani kondisi di mana pada satu kolom data terdapat lebih dari 1 notasi <em>missing value</em>. Untuk mengatasi hal tersebut, pembaca perlu menyeragamkan notasi <em>missing value</em> pada data (contoh: mengubahnya menjadi notasi <code>NA</code> atau dikosongkan jika data bersumber dari <em>spreadsheet</em>).</p>
+<p>Pada Chapter <a href="impeks.html#impeks">2.5</a>, pembaca akan diberikan contoh bagaimana melakukan import data yang disajikan pada Tabel <a href="impeks.html#tab:mtcars">2.8</a>.</p>
+<table>
+<caption><span id="tab:mtcars">Tabel 2.8: </span>Sepuluh Observasi pertama dataset mtcars</caption>
+<thead>
+<tr class="header">
+<th align="right">mpg</th>
+<th align="right">cyl</th>
+<th align="right">disp</th>
+<th align="right">hp</th>
+<th align="right">drat</th>
+<th align="right">wt</th>
+<th align="right">qsec</th>
+<th align="right">vs</th>
+<th align="right">am</th>
+<th align="right">gear</th>
+<th align="right">carb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.620</td>
+<td align="right">16.46</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.875</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">108.0</td>
+<td align="right">93</td>
+<td align="right">3.85</td>
+<td align="right">2.320</td>
+<td align="right">18.61</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">21.4</td>
+<td align="right">6</td>
+<td align="right">258.0</td>
+<td align="right">110</td>
+<td align="right">3.08</td>
+<td align="right">3.215</td>
+<td align="right">19.44</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">18.7</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">175</td>
+<td align="right">3.15</td>
+<td align="right">3.440</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">18.1</td>
+<td align="right">6</td>
+<td align="right">225.0</td>
+<td align="right">105</td>
+<td align="right">2.76</td>
+<td align="right">3.460</td>
+<td align="right">20.22</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">14.3</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">245</td>
+<td align="right">3.21</td>
+<td align="right">3.570</td>
+<td align="right">15.84</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">24.4</td>
+<td align="right">4</td>
+<td align="right">146.7</td>
+<td align="right">62</td>
+<td align="right">3.69</td>
+<td align="right">3.190</td>
+<td align="right">20.00</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">140.8</td>
+<td align="right">95</td>
+<td align="right">3.92</td>
+<td align="right">3.150</td>
+<td align="right">22.90</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">19.2</td>
+<td align="right">6</td>
+<td align="right">167.6</td>
+<td align="right">123</td>
+<td align="right">3.92</td>
+<td align="right">3.440</td>
+<td align="right">18.30</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
+<p>Adapun penjelasan terkait Tabel <a href="impeks.html#tab:mtcars">2.8</a> ditampilkan pada Tabel <a href="impeks.html#tab:mtcars2">2.9</a></p>
+<table>
+<caption><span id="tab:mtcars2">Tabel 2.9: </span> Penjelasan variabel dataset mtcars.</caption>
+<thead>
+<tr class="header">
+<th align="left"><strong>Variabel</strong></th>
+<th align="left"><strong>Keterangan</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>mpg</code></td>
+<td align="left">Mil/(US) galon</td>
+</tr>
+<tr class="even">
+<td align="left"><code>cyl</code></td>
+<td align="left">Jumlah silinder</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>disp</code></td>
+<td align="left"><em>Displacement</em> (cu.in)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>hp</code></td>
+<td align="left"><em>Gross horsepower</em></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>drat</code></td>
+<td align="left">Rasio gandar belakang</td>
+</tr>
+<tr class="even">
+<td align="left"><code>wt</code></td>
+<td align="left">Berat (1000 lb)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>qsec</code></td>
+<td align="left">Watu tempuh 1/4 mil</td>
+</tr>
+<tr class="even">
+<td align="left"><code>vs</code></td>
+<td align="left">Mesin (0=<em>V-shape</em>, 1=<em>straight</em>)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>am</code></td>
+<td align="left">Transmisi (0=otomatis, 1=manual)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>gear</code></td>
+<td align="left">Jumlah <em>gear</em> depan</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>carb</code></td>
+<td align="left">Jumlah karburator</td>
+</tr>
+</tbody>
+</table>
+<div id="membaca-data-dari-sumber-plain-text" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Membaca Data dari Sumber <em>Plain Text</em></h3>
+<p>Terdapat 3 buah metode untuk membaca data dari <em>plain text</em>. Metode tersebut dibagi berdasarkan lokasi file <em>plain text</em> tersebut berada.</p>
+<p><strong>Membaca file yang berada pada sistem lokal</strong></p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Import data/from text file,clipboard,or URL...</code>.</li>
+<li>Pada jendela yang muncul, isikan spesifikasi file (lihat Tabel <a href="impeks.html#tab:readpltext">2.10</a>) dan nama objek dataset yang diinginkan. Pada bagian <code>Location of Data File</code> pilih <code>Local file system</code>. Klik <code>OK</code>.</li>
+<li>Pada jendela <code>Windows Explorer</code> yang muncul, pilih file yang hendak dibaca. Klik <code>Open</code>.</li>
+<li>Untuk melihat dataset yang berhasil dibuat, klik pada <em>toolbar</em> <code>View data set</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="impeks.html#fig:implocal">2.3</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:implocal"></span>
+<img src="images/chp2/implocal.png" alt="Visualisasi tahapan membaca file plain text dari sistem lokal." width="70%" />
+<p class="caption">
+Gambar 2.3: Visualisasi tahapan membaca file plain text dari sistem lokal.
+</p>
+</div>
+<p><strong>Membaca file yang berada pada <em>clipboard</em></strong></p>
+<ol style="list-style-type: decimal">
+<li><em>Higlight</em> tabel dataset yang pembaca miliki dan <em>copy</em> dataset tersebut. Dataset tersebut selanjutnya akan tersimpan pada <em>clipboard</em>.</li>
+<li>Pada menu <code>Data</code>, klik <code>Data/Import data/from text file,clipboard,or URL...</code>.</li>
+<li>Pada jendela yang muncul, isikan spesifikasi file (lihat Tabel <a href="impeks.html#tab:readpltext">2.10</a>) dan nama objek dataset yang diinginkan. Pada bagian <code>Location of Data File</code> pilih <code>clipboard</code> .Klik <code>OK</code>.</li>
+<li>Dataset akan secara otomatis dibuat oleh program dengan mengambil data yang tersimpan pada <em>clipboard</em>.</li>
+<li>Untuk melihat dataset yang berhasil dibuat, klik pada <em>toolbar</em> <code>View data set</code>.</li>
+</ol>
+<p><strong>Membaca file yang berada pada URL</strong></p>
+<ol style="list-style-type: decimal">
+<li><em>Copy</em> halaman URL lokasi dataset berada.</li>
+<li>Pada menu <code>Data</code>, klik <code>Data/Import data/from text file,clipboard,or URL...</code>.</li>
+<li>Pada jendela yang muncul, isikan spesifikasi file (lihat Tabel <a href="impeks.html#tab:readpltext">2.10</a>) dan nama objek dataset yang diinginkan. Pada bagian <code>Location of Data File</code> pilih <code>Internet URL</code>. Klik <code>OK</code>.</li>
+<li>Pada jendela yang muncul tempelkan (<em>pasting</em>) halaman URL yang telah di <em>copy</em> sebelumnya.</li>
+<li>Untuk melihat dataset yang berhasil dibuat, klik pada <em>toolbar</em> <code>View data set</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="impeks.html#fig:impurl">2.4</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:impurl"></span>
+<img src="images/chp2/impurl.png" alt="Visualisasi tahapan membaca file plain text dari internet URL." width="70%" />
+<p class="caption">
+Gambar 2.4: Visualisasi tahapan membaca file plain text dari internet URL.
+</p>
+</div>
+<p>Sintaks yang muncul pada <code>R Console</code> saat proses telah dilakukan adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># sistem lokal</span></a>
+<a class="sourceLine" id="cb58-2" title="2">Dataset &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;D:/mtcars.txt&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb58-3" title="3">                      <span class="dt">sep=</span><span class="st">&quot;&quot;</span>, <span class="dt">na.strings=</span><span class="st">&quot;NA&quot;</span>, <span class="dt">dec=</span><span class="st">&quot;.&quot;</span>,</a>
+<a class="sourceLine" id="cb58-4" title="4">                      <span class="dt">strip.white=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb58-5" title="5"><span class="co"># clipboard</span></a>
+<a class="sourceLine" id="cb58-6" title="6">Dataset &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;clipboard&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb58-7" title="7">                      <span class="dt">sep=</span><span class="st">&quot;&quot;</span>, <span class="dt">na.strings=</span><span class="st">&quot;NA&quot;</span>,</a>
+<a class="sourceLine" id="cb58-8" title="8">                      <span class="dt">dec=</span><span class="st">&quot;.&quot;</span>, <span class="dt">strip.white=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb58-9" title="9"><span class="co"># URL</span></a>
+<a class="sourceLine" id="cb58-10" title="10">Dataset &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;www.abcde.com/mtcars.txt&quot;</span>, </a>
+<a class="sourceLine" id="cb58-11" title="11">                      <span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>,<span class="dt">na.strings=</span><span class="st">&quot;NA&quot;</span>, </a>
+<a class="sourceLine" id="cb58-12" title="12">                      <span class="dt">dec=</span><span class="st">&quot;.&quot;</span>, <span class="dt">strip.white=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<table>
+<caption><span id="tab:readpltext">Tabel 2.10: </span> Penjelasan terkait item pada jendela Read Text Data From File, Clipboard, or URL.</caption>
+<colgroup>
+<col width="22%" />
+<col width="77%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Item</strong></th>
+<th align="left"><strong>Keterangan</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Enter name for data set</code></td>
+<td align="left">Input nama dataset yang diinginkan sebagai output</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Variable name in file</code></td>
+<td align="left">Jika di centang, program membaca baris pertama tabel sebagai nama kolom</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Missing value indikator</code></td>
+<td align="left">Karakter yang mengidikasikan missing value dalam file (misal: <em>White space</em>, NA, NaN, dll)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Location of Data File</code></td>
+<td align="left">Lokasi file yang akan dibaca berada</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Field Separator</code></td>
+<td align="left">Pemisah antar kolom data yang digunakan</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Decimal-Point Character</code></td>
+<td align="left">Karakter yang digunakan sebagai penunjuk <em>decimal-point</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="membaca-data-dari-sumber-spreadsheet-dan-lainnya" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Membaca Data dari Sumber <em>Spreadsheet</em> dan Lainnya</h3>
+<p>Format data lain yang dapat dibaca oleg <code>R Commander</code> adalah <code>xlsx</code> (Excel) ,<code>.dta</code> (STATA), <code>.sav</code> (SPSS), <code>.sas7bdat</code> dan <code>.xport</code> (SAS), serta <code>.mtp</code> (minitab). Cara membaca data dengan format tersebut cukup sederhana dilakukan pada <code>R Commander</code>. Pembaca hanya perlu menuju menu <code>Data/Import data</code> dan memilih sumber data yang ingin dibaca. Pada jendela yang muncul (kecuali format <code>.xport</code>) pembaca diminta untuk melakukan sejumlah konfigurasi seperti apakah <em>rownames</em> terletak pada kolom pertama, apakah perlu mengubah jenis data karakter menjadi faktor, dll. Pada kondisi dimana pembaca diminta untuk mengkonversi karakter menjadi faktor, penulis menyarankan untuk tidak melakukannya saat awal membaca data sebab akan menyulitkan pada saat melakukan analisis data selanjutnya. Konversi karakter menjadi faktor dilakukan pada sejumlah variabel yang memang ingin diubah menjadi faktor (bisa numerik atau karakter). Tampilan jendela konfigurasi awal saat membaca data ditampilkan pada Gambar <a href="impeks.html#fig:impanother">2.5</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:impanother"></span>
+<img src="images/chp2/impanother.png" alt="Tampilan jendela konfigurasi import data berbagai format file." width="70%" />
+<p class="caption">
+Gambar 2.5: Tampilan jendela konfigurasi import data berbagai format file.
+</p>
+</div>
+<p>Contoh sintaks yang akan muncul saat proses tersebut selesai adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># .xlsx</span></a>
+<a class="sourceLine" id="cb59-2" title="2">Dataset &lt;-<span class="st"> </span><span class="kw">readXL</span>(<span class="st">&quot;D:/mtcars.xlsx&quot;</span>, <span class="dt">rownames=</span><span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb59-3" title="3">                  <span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">na=</span><span class="st">&quot;&quot;</span>, <span class="dt">sheet=</span><span class="st">&quot;mtcars&quot;</span>,</a>
+<a class="sourceLine" id="cb59-4" title="4">                  <span class="dt">stringsAsFactors=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb59-5" title="5"></a>
+<a class="sourceLine" id="cb59-6" title="6"><span class="co"># .sav</span></a>
+<a class="sourceLine" id="cb59-7" title="7">Dataset &lt;-<span class="st"> </span><span class="kw">readSPSS</span>(<span class="st">&quot;D:/mtcars.sav&quot;</span>, <span class="dt">rownames=</span><span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb59-8" title="8">                    <span class="dt">stringsAsFactors=</span><span class="ot">TRUE</span>, <span class="dt">tolower=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb59-9" title="9"></a>
+<a class="sourceLine" id="cb59-10" title="10"><span class="co"># .xport</span></a>
+<a class="sourceLine" id="cb59-11" title="11">Datasets &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class="st">&quot;D:/mtcars.xport&quot;</span>)</a>
+<a class="sourceLine" id="cb59-12" title="12"></a>
+<a class="sourceLine" id="cb59-13" title="13"><span class="co"># .sasb7dat</span></a>
+<a class="sourceLine" id="cb59-14" title="14">Dataset &lt;-<span class="st"> </span><span class="kw">readSAS</span>(<span class="st">&quot;D:/mtcars.sas7bdat&quot;</span>,</a>
+<a class="sourceLine" id="cb59-15" title="15">                   <span class="dt">stringsAsFactors=</span><span class="ot">TRUE</span>, <span class="dt">rownames=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb59-16" title="16"></a>
+<a class="sourceLine" id="cb59-17" title="17"><span class="co"># .dta</span></a>
+<a class="sourceLine" id="cb59-18" title="18">Dataset &lt;-<span class="st"> </span><span class="kw">readStata</span>(<span class="st">&quot;D:/mtcars.dta&quot;</span>, <span class="dt">convert.dates=</span><span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb59-19" title="19">                     <span class="dt">stringsAsFactors=</span><span class="ot">TRUE</span>, <span class="dt">rownames=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="input-data-pada-r-commander.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="membaca-data-dari-paket.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mohrosidi/Rcmdr-book/02-manajemen_data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Rcmdr-book.pdf", "Rcmdr-book.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
