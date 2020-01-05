@@ -14,8 +14,8 @@ Pada Chapter \@ref(datamanage), penulis akan menjelaskan kepada pembaca bagaiman
 * Membaca data dari file eksternal,
 * Membaca data dari paket,
 * Menyimpan dan memuat data,
-* Modifikasi Variabel, dan
-* Transformasi Dataset.
+* Memodifikasi Variabel pada data, dan
+* Memanipulasi Dataset.
 
 ## Operator Operasi Pada `R`
 
@@ -439,14 +439,15 @@ Dataset <- read.table("www.abcde.com/mtcars.txt",
 
 ```
 
-| **Item**                 | **Keterangan**                                                                             |
-|:-------------------------|:-------------------------------------------------------------------------------------------|
-| `Enter name for data set`| Input nama dataset yang diinginkan sebagai output                                          |
-| `Variable name in file`  | Jika di centang, program membaca baris pertama tabel sebagai nama kolom                    |
-| `Missing value indikator`| Karakter yang mengidikasikan missing value dalam file (misal: *White space*, NA, NaN, dll) |
-| `Location of Data File`  | Lokasi file yang akan dibaca berada                                                        |
-| `Field Separator`        | Pemisah antar kolom data yang digunakan                                                    |
-| `Decimal-Point Character`| Karakter yang digunakan sebagai penunjuk *decimal-point*                                   |
+
+|**No.**| **Item**                 |**Jenis Input**| **Keterangan**                                                                            | 
+|:------|:-------------------------|:--------------|:------------------------------------------------------------------------------------------|
+|1.     | `Enter name for data set`| *text input*  |Input nama dataset yang diinginkan sebagai output                                          |
+|2.     | `Variable name in file`  | *Check box*   |Jika di centang, program membaca baris pertama tabel sebagai nama kolom                    |
+|3.     | `Missing value indikator`| *text input*  |Karakter yang mengidikasikan missing value dalam file (misal: *White space*, NA, NaN, dll) |
+|4.     | `Location of Data File`  | *radio button*|Lokasi file yang akan dibaca berada                                                        |
+|5.     | `Field Separator`        | *radio button*|Pemisah antar kolom data yang digunakan                                                    |
+|6.     | `Decimal-Point Character`| *radio button*|Karakter yang digunakan sebagai penunjuk *decimal-point*                                   |
 
 : (\#tab:readpltext)  Penjelasan terkait item pada jendela Read Text Data From File, Clipboard, or URL.
 
@@ -607,13 +608,13 @@ write.table(mtcars, "D:/mtcars2.csv", sep=",",
             quote=TRUE, na="NA")
 ```
 
-| **Item**                        | **Keterangan**                                                           |
-|:--------------------------------|:-------------------------------------------------------------------------|
-| `Write variable names`          | pilihan apakah nama variabel akan disertakan ke dalam file csv           |
-| `Write row names`               | pilihan apakah nama baris disertakan ke dalam file csv                   |
-| `Quotes around character values`| pilihan apakah tipe data karakter diberi tanda petik                     |
-| `Missing values`                | simbol atau karakter *missing value* yang digunakan pada file csv        |
-| `Field Separator`               | pemisah antar kolom data yang digunakan                                  |
+|**No.**| **Item**                        |**Jenis Imput**| **Keterangan**                                                           |
+|:------|:--------------------------------|:--------------|:-------------------------------------------------------------------------|
+|1.     | `Write variable names`          | *check box*   |pilihan apakah nama variabel akan disertakan ke dalam file csv            |
+|2.     | `Write row names`               | *check box*   |pilihan apakah nama baris disertakan ke dalam file csv                    |
+|3.     | `Quotes around character values`| *check box*   |pilihan apakah tipe data karakter diberi tanda petik                      |
+|4.     | `Missing values`                | *text input*  |simbol atau karakter *missing value* yang digunakan pada file csv         |
+|5.     | `Field Separator`               | *radio button*|pemisah antar kolom data yang digunakan                                   |
 
 : (\#tab:exdata) Penjelasan jendela Export active data set.
 
@@ -634,18 +635,430 @@ include_graphics(img1_path)
 
 ```
 
-## Modifikasi Variabel
+## Memodifikasi Variabel pada Data {#modvar}
 
 <style>
 body{
 text-align: justify}
 </style>
 
-## Transformasi Dataset
+Menu `Data/Manage variables in active data set` merupakan menu yang dibuat untuk memodifikasi variabel dan membuat variabel baru pada dataset. Pada Chapter \@ref(modvar), penulis akan memjelaskan cara menggunakan submenu `Recode variables` untuk merubah level pada tipe data `factor` dan membuat variabel baru dari variabel dengan tipe data `numeric`, penulis juga akan menjelaskan cara menggunakan submenu `Reorder Factor Levels` untuk mengubah urutan `factor` yang semula berdasarkan urutan alfabet menjadi sesuai dengan yang kita inginkan, serta informasi lain terkait penggunaan submenu pada menu `Data/Manage variables in active data set`. 
+
+### Variabel *Recoding* {#revar}
+
+Terdapat dua kegunaan submenu `Recode Variables`, yaitu: membuat `factor` baru dengan cara mentransformasi variabel `numeric` menjadi `factor`, serta merubah urutan level suatu `factor`. 
+
+Ketentuan *recode* pada `Recode Variables` secara umum memiliki formula `*nilai-lama=nilai-baru*`, dimana `nilai-baru` (nilai awal variabel tercatat) dispesifikasi sesuai dengan Tabel \@ref(tab:recodevar). Berikut adalah sejumlah informasi yang perlu pembaca perhatikan untuk memahami penggunaan submenu `Recode Varibles`:
+
+* Jika nilai variabel lama yang tercatat sama sekali ketentuan *recode* yang kita tetapkan, nilai tersebut hanya dibawa menuju `Recode Variables`. Sebagai contoh, jika aturan `"sangat setuju"="setuju"` ditetapkan, tapi nilai lama untuk `factor` `"setuju"` tidak dicatat, maka kedua nilai lama (`factor` lama) tersebut digabung menjadi satu sehingga `("sangat setuju","setuju")="setuju"`.
+* Jika nilai variabel lama yang dicatat memenuhi lebih dari satu ketetapan *recode*, maka ketentuan pertama yang berlaku diterapkan. Sebagai contoh, jika terdapat variabel `pendapatan` dengan ketentuan *recode* `lo:2.500.000="rendah"` dan `2.500.000:7.500.000="sedang"`, maka sebuah observasi dengan variabel `pendapatan` bernilai `2.500.000` akan dikategorikan sebagai `"rendah"`.
+* Seperti yang telah dijabarkan pada poin sebelumnya, karakter spesial `lo` digunakan untuk menyatakan nilai variabel `numeric` terkecil, sedangkan `hi` digunakan untuk variabel `numeric` dengan nilai tertinggi.
+* Pada setiap ketentuan *recode* pastikan diakhiri dengan nilai `else` yang menunjukkan nilai lain diluar ketentuan *recode* sebelumnya (termasuk *missing value*).
+
+
+|**No.** |**Nilai Lama**                 |**Contoh Ketentuan _Recode_**                                                     |
+|:-------|:------------------------------|:---------------------------------------------------------------------------------|
+|1.      |nilai individual(`a`)          | `99=NA`; `NA="missing"`; `"sangat setuju="setuju"`                               |
+|2.      |sebuah set nilai (`a,b,...,k`) | `1,3,5,..,k="ganjil"`; `"sangat setuju","cukup setuju"="setuju"`                 |
+|3.      |rentang numerik  (`a:b`)       | `1901:2000="abad 21"`; `lo:2.000.000="rendah"`; `10.000.000:hi="tinggi"`         |
+|4.      |lainnya (`else`)               | `else="lainnya"`
+
+
+: (\#tab:recodevar) Ketentuan recode pada submenu Recode Variables.
+
+Pada dataset `mtcars` (lihat Tabel \@ref(tab:mtcars)), misalkan kita ingin menambahkan variabel baru berupa `factor` yang menyatakan klasifikasi kendaraan berdasarkan tingkat penggunaan bahan bakar per mil (`mpg`). Untuk kendaraan dengan ketentuan `mpg` `lo:20="boros"`, `20:30="sedang"`, dan `else="hemat"`. Berikut adalah langkah-langkah untuk melakukannya:
+
+1. Pada menu `Data`, klik `Data/Manage variables in active data set/Recode variables..`.
+2. Pada jendela yang muncul pilih variabel yang ingin dilakukan *recoding*, tentukan ketentuan *recodingnya*, dan nama variabel baru yang dihasilkan. Penjelasan terkait jendela tersebut ditampilkan pada Tabel \@ref(tab:recodevar2). 
+3. Spesifikasikan apakah tipe data variabel tersebut adalah `factor` atau bukan dengan mencentang *checkbox*. Klik `OK`.
+4. Untuk melihat variabel baru yang telah terbentuk, klik `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:recode).
+
+```{r recode, echo=FALSE, fig.cap='Tampilan tahapan recoding variabel.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/recodevar.png"
+include_graphics(img1_path)
+
+```
+
+Proses tersebut akan memunculkan sintaks pada `R Script` sebagai berikut:
+
+```{r, eval=FALSE}
+mtcars <- within(mtcars, {kategori <- Recode(mpg,
+          `lo:20.0="boros"; 20.0:30.0="sedang"; else="hemat"; ;',
+          as.factor=TRUE)
+})
+```
+
+|**No.**|**Item**               |**Jenis Input**| **Keterangan**                            |
+|:------|:----------------------|:--------------|:------------------------------------------|
+|1.     |Variables to recode    | *select box*  |daftar nama variabel yang akan di *recode* |
+|2.     |New variable name or.. | *text input*  |nama baru untuk variabel yang dibuat       |
+|3.     |Make (each) variable.. | *check box*   |pilihan apakah variabel baru adalah factor |
+|4.     |Enter recode directives| *text input*  |kotak untuk memasukkan ketentuan *recode*  |
+
+: (\#tab:recodevar2) Penjelasan jendela Recode Variables.
+
+### Komputasi Variabel Baru
+
+Pada saat analisis data, variabel yang kita miliki terkadang tidak cukup untuk menjelaskan suatu fenomena. Namun, kita dapat membentuk sebuah variabel baru yang dapat membantu menjelaskan fenomena tersebut. Pembentukan variabel baru dapat berupa tranformasi sebuah variabel atau pembentukan variabel berdasarkan beberapa formulasi beberapa variabel lain.
+
+Dalam melakukan tranformasi variabel, kita dapat memanfaatkan sejumlah operator operasi yang telah penulis jelaskan pada Chapter \@ref(aritmatikop). Selain operator tersebut, terdapat sejumlah fungsi operasi arimatika yang tersedia pada `R`. Fungsi-fungsi tersebut, antara lain:
+
+1. Logaritma dan eksponensial
+
+Untuk contoh fungsi logaritmik dan eksponensial jalankan sintaks berikut:
+
+```{r}
+log2(8) # logaritma basis 2 untuk 8
+log10(8) # logaritma basis 10 untuk 8
+exp(8) # eksponensial 8
+```
+
+2. Fungsi trigonometri
+
+fungsi trigonometri yang ditampilkan seperti sin,cos, tan, dll.
+
+```{r, eval=FALSE}
+cos(x) # cos x
+sin(x) # Sin x
+tan(x) # Tan x
+acos(x) # arc-cos x
+asin(x) # arc-sin x
+atan(x) #arc-tan x
+```
+
+
+> **PENTING!!!: x dalam fungsi trigonometri memiliki satuan radian
+
+
+
+Berikut adalah salah satu contoh penggunaannya:
+
+```{r}
+cos(pi)
+```
+
+
+3. Fungsi matematik lainnya
+
+Fungsi lainnya yang dapat digunakan adalah fungsi absolut, akar kuadrat, dll. Berikut adalah contoh sintaks penggunaan fungsi absolut dan akar kuadrat.
+
+```{r}
+abs(-2) # nilai absolut -2
+sqrt(4) # akar kuadrat 4
+```
+
+Untuk memahami permasalahan terkait komputasi variabel baru, kita akan membuat variabel baru pada dataset `mtcars` yang telah dijelaskan pada Tabel \@ref(tab:mtcars). Variabel baru yang akan kita buat adalah variabel rasio antara jarak tempuh per satuan bahan bakar (`mpg`) terhadap berat kendaraan (`wt`) dan kita namai variabel baru tersebut `rwt`. Variabel baru ini dapat menjadi alternatif lain dalam menjelaskan efisiensi suatu mobil yang ditandai dengan rasio antara jarak tempuh terhadap bobot dan konsumsi bahan bakarnya. Berikut adalah tahapan untuk melakukannya:
+
+1. Pada menu `Data`, klik `Data/Manage variables in active data set/Compute new variable`.
+2. Pada jendela yang muncul, ketikkan formula pembentuk variabel baru pada kotak `Expression to compute`.
+3. Untuk memasukkan nama variabel ke dalam formula, pembaca dapat mengetikkan nama variabel secara manual atau melakukan *double click* nama variabel yang tersedia pada kotak `Current variables`.
+4. Ketikkan nama variabel baru pada kotak `New variable name`. Klik `OK`.
+5. Untuk mengecek variabel yang telah terbentuk, klik `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:computevar).
+
+```{r computevar, echo=FALSE, fig.cap='Tampilan tahapan komputasi variabel baru.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/computevar.png"
+include_graphics(img1_path)
+
+```
+
+Berdasarkan tahapan tersebut, sintaks yang terbentuk pada `R Script` adalah sebagai berikut:
+
+```{r, eval=FALSE}
+mtcars$rwt <- with(mtcars, mpg/ wt)
+```
+
+### Menambahkan Variabel Nomor Observasi Pada Dataset
+
+Untuk menambahkan variabel nomor observasi pada dataset jalankan langkah-langkah berikut:
+
+1. Pada menu `Data`, klik `Data/Manage variables in active data set/Add observation numbers to data set`.
+2. Variabel `ObsNumber` berupa nomor observasi akan secara otomatis ditambahkan pada akhir kolom dataset.
+3. Untuk mengecek variabel baru tersebut, klik *toolbar* `View data set`.
+
+Pada akhir tahapan, sintaks berikut tercetak pada `R Script`:
+
+```{r, eval=FALSE}
+dataset$ObsNumber <- 1:"number of observation"
+```
+
+### Standardisasi Variabel
+
+Standardisasi variabel bertujuan untuk mentransformasi variabel sehingga variabel tersebut memiliki nilai rata-rata 0 dan simpangan baku 1. Tahapan melakukan standardisasi variabel pada `R Commander` adalah sebagai berikut:
+
+1. Pada menu `Data`, klik `Data/Manage variables in active data set/Standardize variables...`.
+2. Pada jendela yang muncul, pilih variabel yang akan di standardisasi. Pembaca dapat memilih lebih dari satu variabel dengan cara menekan tombol ctrl+klik (pada Windows) saat memilih variabel. Klik `OK`.
+3. Untuk mengecek variabel yang telah distandadrdisasi, klik *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:stanvar).
+
+```{r stanvar, echo=FALSE, fig.cap='Tampilan tahapan standardisasi variabel.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/stanvar.png"
+include_graphics(img1_path)
+
+```
+
+Sintaks yang digunakan dalam tahapan tersebut adalah sebagai berikut:
+
+```{r, eval=FALSE}
+dataset <- local({
+  .Z <- scale(dataset[,c("namavariabel")])
+  within(dataset, {
+    Z.namavariabel <- .Z[,nomor_kolom_variabel] 
+  })
+})
+```
+
+### Merubah Variabel *Numeric* Menjadi *Factor* {#numfac}
+
+Pada Chapter \@ref(revar), kita telah belajar bagaimana cara melakukan *recoding* variabel dan membentuk *factor*. Pada Chapter \@ref(numfac), kita akan membahas cara merubah variabel *numeric* menjadi *factor* tanpa perlu melakukan proses *recoding*. Pada Chapter ini, kita hanya perlu mesuplai variabel *numeric* yang akan diubah menjadi *factor*. Kita juga dapat menambahkan label pada *factor* tersebut. Untuk melakukannya jalankan langkah-langkah berikut:
+
+1. Pada menu `Data`, klik `Data/Manage variables in active data set/Convert numeric varibles to factors`.
+2. Spesifikasikan variabel yang akan diubah menjadi *factor* (lihat Tabel \@ref(tab:numtofac2)). Klik `OK`
+3. Untuk mengecek apakah variabel telah terkonversi menjadi *factor*, klik `Statistics/Summaries/Active data set`. Variabel yang telah dikonversi menjadi *factor* akan memberikan ringkasan data berupa tabel kontingensi (tidak menampilkan mean, min, max, dll).
+
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:numtofac).
+
+```{r numtofac, echo=FALSE, fig.cap='Tampilan tahapan merubah variabel numeric menjadi factor.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/numtofac.png"
+include_graphics(img1_path)
+
+```
+
+Sintaks yang dihasilkan pada proses tersebut adalah sebagai berikut:
+
+```{r, eval=FALSE}
+# use numbers
+dataset <- within(dataset, {
+  namavariabel <- as.factor(namavariabel)
+})
+
+# supply level names
+dataset<- within(dataset, {
+  namavariabel <- factor(namavariabel, 
+                         labels=c('label1','label2',...))
+})
+```
+
+|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |Variables              | *select box*  |daftar nama variabel yang akan diubah menjadi *factor*                                               |
+|2.     |Factor levels          | *radio button*|pilihan apakah perlu menambahkan label pada *factor* atau tidak                                      |
+|3.     |New variable name or...| *text input*  |jika tidak diisi maka variabel lama akan diganti variabel baru (tidak ada variabel baru ditambahkan) |
+
+: (\#tab:numtofac2) Penjelasan convert numeric variables to factors.
+
+### Melakukan *Binning* pada Variabel *Numeric*
+
+*Binning* variabel numeric merupakan cara untuk mengelompokkan nilai variabel *numeric* ke dalam suatu kelas berdasarkan rentang tertentu. Penetapan rentang pada proses *binning* di `R Commander` terbagi atas 3 metode, yaitu:
+
+* **_Equal-width_** : membagi data ke dalam kelas berdasarkan interval yang seragam.
+* **_Equal-count_** : membagi data ke dalam  kelas berdasarkan jumlah kelas yang sama.
+* **_Natural break_** : membagi data ke dalam kelas berdasarkan jarak terdekat (biasanya menggunakan jarak Euclidian) pada pusat masing-masing kelas. Algoritma pengelompokan yang biasa digunakan adalah algoritma *k-means* (baca [K-Means](https://id.wikipedia.org/wiki/K-means)).
+
+Tahapan untuk melakukan proses *binning* variabel numeric antara lain:
+
+1. Pada menu `Data`, klik `Data/Manage variables in active data set/Bin numeric variable...`.
+2. Pada jendela yang muncul spesifikasikan variabel numeric yang akan di *binning* dan metode pengelompokan yang digunakan (lihat Tabel \@ref(tab:binvartab). Klik `OK`.
+3. Untuk mengecek variabel hasil *binning*, klik *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:binvar).
+
+```{r binvar, echo=FALSE, fig.cap='Tampilan tahapan binning variabel numeric.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/binvar.png"
+include_graphics(img1_path)
+
+```
+
+Sintaks yang digunakan pada masing-masing metode *binning*, antara lain:
+
+```{r, eval=FALSE}
+# Equal-width
+dataset$namavariabel <- with(dataset, binVariable(variabel, 
+                        bins="jumlah_bin", method='intervals',
+                        labels=c("label1",...)))
+dataset$namavariabel <- with(dataset, binVariable(variabel, 
+                        bins="jumlah_bin", method='proportions', 
+                        labels=c("label1",...)))
+dataset$namavariabel <- with(dataset, binVariable(variabel, 
+                        bins="jumlah_bin", method='natural',
+                        labels=c("label1",...)))
+```
+
+|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |Variables to bin       | *select box*  |daftar nama variabel *numeric* yang akan dilakukan *binning*                                         |
+|2.     |New variable name      | *text input*  |Input nama variabel baru                                                                             |
+|3.     |Number of bins         | *slider*      |spesifikasi jumlah bin atau kelas yang digunakan                                                     |
+|4.     |Level Names            | *radio button*|spesifikasi metode penamaan bin                                                                      |
+|5.     |Binning Method         | *radio button*|spesifikasi metode *binning*                                                                         |
+
+: (\#tab:binvartab) Penjelasan convert numeric variables to factors.
+
+
+### Merubah Urutan *Factor Levels*
+
+Secara umum saat kita merubah sebuah variabel *character* atau *string* menjadi *factor* level *factor* hasil konversi tersebut diurutkan berdasarkan abjad. Sebuah variabel yang terdiri dari nilai "setuju", "netral", dan "tidak setuju", jika diubah menjadi *factor* akan memiliki urutan level "netral", "setuju", dan "tidak setuju". Urutan tersebut tidak benar dan perlu dirubah. Untuk melakukannya pada `R Commander` jalankan langkah-langkah berikut:
+
+1. Pada menu `Data`, klik `Data/Manage variables in active data set/Reorder factor levels...`.
+2. Pada jendela yang muncul spesifikasikan variable *factor* yang akan dirubah (lihat Tabel \@ref(tab:reofac). Klik `OK`.
+3. Pada jendela yang muncul, rubah urutan *factor* lama. Klik `OK`.
+4. Untuk mengecek *factor level*, jalankan sintaks berikut:
+
+```{r, eval=FALSE}
+# ubah nama dataset dan variabel
+levels(dataset$namavariabel)
+```
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:reorderfac).
+
+```{r reorderfac, echo=FALSE, fig.cap='Tampilan tahapan merubah urutan factor level.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/reorderfac.png"
+include_graphics(img1_path)
+
+```
+
+Sintaks dari tahapan merubah urutan *factor* secara umum ditampilkan sebagai berikut:
+
+```{r, eval=FALSE}
+dataset$namavariabel <- with(dataset, factor(namavariabel, 
+                                  levels=c('level1',
+                                            'level2',
+                                            ....), 
+                            ordered=TRUE))
+```
+
+|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |Factor                 | *select box*  |daftar variabel *factor* pada dataset                                                                |
+|2.     |Name for factor        | *text input*  |nama variabel *factor* yang baru (jika ingin membuat variabel baru)                                  |
+|3.     |Make ordered factor    | *check box*   |spesifikasi apakah *factor* akan diurutkan atau tidak                                                |
+
+: (\#tab:reofac) Penjelasan jendela reorder factor levels.
+
+
+### Melakukan *Drop* pada *Factor Levels*
+
+Saat melakukan subset pada dataset yang akan dijelaskan pada Chapter \@ref(transdata) sering kali tidak semua *factor level* ada pada dataset tersebut (sejumlah *factor level* memiliki observasi nol) yang berpengaruh pada analisis data yang kita lakukan. Untuk mengatasinya, kita dapat melakukan *drop* pada *factor level tersebut*. Untuk melakukannya, jalankan langkah-langkah berikut:
+
+1. Pada menu `Data`, klik `Data/Manage variables in active data set/Drop unused factor levels...`.
+2. Pada jendela yang muncul spesifikasikan variable *factor* yang akan didrop *factor levelnya*. Klik `OK`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:dropfac).
+
+```{r dropfac, echo=FALSE, fig.cap='Tampilan tahapan drop factor level.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/dropfact.png"
+include_graphics(img1_path)
+
+```
+
+Sintaks untuk melakukan *drop factor levels* secara umum adalah sebagai berikut:
+
+```{r, eval=FALSE}
+dataset <- within(dataset, {
+  namavariabel <- droplevels(namavariabel) 
+})
+```
+
+### Merubah Nama Variabel pada Data
+
+Untuk merubah nama variabel pada `R Commander` dapat dilakukan dengan dua cara, antara lain:
+
+**Cara 1**
+
+1. Klik *toolbar* `Edit data set`.
+2. Pada jendela dataset yang muncul , *double click* nama variabel yang ingin dirubah dan ubah nama variabel tersebut. Klik `OK`
+
+**Cara 2**
+
+1. Pada menu `Data`, klik `Data/Manage variables in active data set/Rename variables...`.
+2. Pada jendela yang muncul pilih variabel yang ingin dirubah namanya. Klik `OK`.
+3. Pada jendela yang muncul, isikan nama variabel baru dan Klik `OK` jika telah selesai.
+4. Untuk mengecek apakah proses telah berhasil, klik *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:renamevar).
+
+```{r renamevar, echo=FALSE, fig.cap='Tampilan tahapan merubah nama variabel.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/renamevar.png"
+include_graphics(img1_path)
+
+```
+
+Sintaks untuk merubah nama variabel secara umum adalah sebagai berikut:
+
+```{r, eval=FALSE}
+names(dataset)[c(nomorvariabel)] <- c("namavariabelbaru")
+```
+
+### Menghapus Variabel
+
+Untuk menghapus variabel pada dataset, jalankan langkah-langkah berikut:
+
+1. Pada menu `Data`, klik `Data/Manage variables in active data set/Delete variables from data set...`.
+2. Pada jendela yang muncul pilih variabel yang ingin dihapus. Klik `OK`.
+3. Untuk mengecek apakah proses telah berhasil, klik *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:deletevar).
+
+```{r deletevar, echo=FALSE, fig.cap='Tampilan tahapan menghapus variabel.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/deletevar.png"
+include_graphics(img1_path)
+
+```
+
+Sintaks untuk menghapus variabel secara umum adalah sebagai berikut:
+
+```{r, eval=FALSE}
+dataset <- within(dataset, {
+  namavariabel1 <- NULL
+  namavariabel2 <- NULL 
+})
+
+```
+
+
+## Memanipulasi Dataset{#transdata}
 
 <style>
 body{
 text-align: justify}
 </style>
+
+Pada Chapter \@ref(transdata), kita akan belajar bagaimana memanipuasi dataset. Adapun yang menjadi topik bahasan dalam Chapter \@ref(transdata), antara lain:
+
+* Melakukan subset dataset,
+* Agregasi variabel pada dataset,
+* Melakukan *drop* observasi pada dataset,
+* Melakukan *drop* observasi dengan *missing value*,
+* Mengelompokkan variabel menjadi variabel *factor* dan nilai,
+* Menggabungkan dua dataset, dan,
+* Modifikasi lainnya.
+
+### Melakukan Subset Dataset
+
+### Agregasi Variabel pada Dataset
+
+### Melakukan *Drop* Observasi pada Dataset
+
+### Melakukan *Drop* Observasi dengan *Missing Value*
+
+### Mengelompokkan Variabel Menjadi Variabel *Factor* dan Nilai
+
+### Menggabungkan Dua Dataset
+
+### Modifikasi Lainnya
 
 

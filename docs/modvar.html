@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.8 Memodifikasi Variabel pada Data | Analisis Statistika Menggunakan R Commander</title>
+  <meta name="description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.8 Memodifikasi Variabel pada Data | Analisis Statistika Menggunakan R Commander" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.png" />
+  <meta property="og:description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
+  <meta name="github-repo" content="mohrosidi/Rcmdr-book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.8 Memodifikasi Variabel pada Data | Analisis Statistika Menggunakan R Commander" />
+  
+  <meta name="twitter:description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
+  <meta name="twitter:image" content="images/cover.png" />
+
+<meta name="author" content="Mohammad Rosidi" />
+
+
+<meta name="date" content="2020-01-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="meyimpan-dan-memuat-data.html"/>
+<link rel="next" href="transdata.html"/>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Analisis Statistika Menggunakan Rcmdr</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Pengenalan <code>R</code> dan <code>R Commander</code></a><ul>
+<li class="chapter" data-level="1.1" data-path="whatR.html"><a href="whatR.html"><i class="fa fa-check"></i><b>1.1</b> Apa Itu <code>R</code> dan <code>Rcmdr</code>?</a></li>
+<li class="chapter" data-level="1.2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>1.2</b> Memasang <code>R</code> dan <code>R Commander</code></a><ul>
+<li class="chapter" data-level="1.2.1" data-path="install.html"><a href="install.html#memasang-r-pada-windows"><i class="fa fa-check"></i><b>1.2.1</b> Memasang <code>R</code> pada Windows</a></li>
+<li class="chapter" data-level="1.2.2" data-path="install.html"><a href="install.html#memasang-r-pada-mac-os-x"><i class="fa fa-check"></i><b>1.2.2</b> Memasang <code>R</code> pada Mac OS X</a></li>
+<li class="chapter" data-level="1.2.3" data-path="install.html"><a href="install.html#memasang-r-pada-linux-dan-unix"><i class="fa fa-check"></i><b>1.2.3</b> Memasang <code>R</code> pada Linux dan Unix</a></li>
+<li class="chapter" data-level="1.2.4" data-path="install.html"><a href="install.html#installrcmdr"><i class="fa fa-check"></i><b>1.2.4</b> Memasang <code>R Commander</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="loadrcmdr.html"><a href="loadrcmdr.html"><i class="fa fa-check"></i><b>1.3</b> Menjalankan <code>R</code> dan <code>R Commander</code></a></li>
+<li class="chapter" data-level="1.4" data-path="tampilan-r-dan-r-commander.html"><a href="tampilan-r-dan-r-commander.html"><i class="fa fa-check"></i><b>1.4</b> Tampilan <code>R</code> dan <code>R Commander</code></a><ul>
+<li class="chapter" data-level="1.4.1" data-path="tampilan-r-dan-r-commander.html"><a href="tampilan-r-dan-r-commander.html#antarmuka-r"><i class="fa fa-check"></i><b>1.4.1</b> Antarmuka <code>R</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="tampilan-r-dan-r-commander.html"><a href="tampilan-r-dan-r-commander.html#antarmuka-r-commander"><i class="fa fa-check"></i><b>1.4.2</b> Antarmuka <code>R Commander</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="datamanage.html"><a href="datamanage.html"><i class="fa fa-check"></i><b>2</b> Manajemen Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html"><i class="fa fa-check"></i><b>2.1</b> Operator Operasi Pada <code>R</code></a><ul>
+<li class="chapter" data-level="2.1.1" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html#aritmatikop"><i class="fa fa-check"></i><b>2.1.1</b> Operator Aritmatika</a></li>
+<li class="chapter" data-level="2.1.2" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html#operator-perbandingan"><i class="fa fa-check"></i><b>2.1.2</b> Operator Perbandingan</a></li>
+<li class="chapter" data-level="2.1.3" data-path="operator-operasi-pada-r.html"><a href="operator-operasi-pada-r.html#operator-logika"><i class="fa fa-check"></i><b>2.1.3</b> Operator Logika</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="tipe-dan-struktur-data.html"><a href="tipe-dan-struktur-data.html"><i class="fa fa-check"></i><b>2.2</b> Tipe dan Struktur Data</a></li>
+<li class="chapter" data-level="2.3" data-path="tidydata.html"><a href="tidydata.html"><i class="fa fa-check"></i><b>2.3</b> Konsep <em>Tidy Data</em></a></li>
+<li class="chapter" data-level="2.4" data-path="input-data-pada-r-commander.html"><a href="input-data-pada-r-commander.html"><i class="fa fa-check"></i><b>2.4</b> Input Data pada <code>R Commander</code></a></li>
+<li class="chapter" data-level="2.5" data-path="impeks.html"><a href="impeks.html"><i class="fa fa-check"></i><b>2.5</b> Membaca Data dari File Eksternal</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="impeks.html"><a href="impeks.html#membaca-data-dari-sumber-plain-text"><i class="fa fa-check"></i><b>2.5.1</b> Membaca Data dari Sumber <em>Plain Text</em></a></li>
+<li class="chapter" data-level="2.5.2" data-path="impeks.html"><a href="impeks.html#membaca-data-dari-sumber-spreadsheet-dan-lainnya"><i class="fa fa-check"></i><b>2.5.2</b> Membaca Data dari Sumber <em>Spreadsheet</em> dan Lainnya</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html"><i class="fa fa-check"></i><b>2.6</b> Membaca Data dari Paket</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html#memuat-paket"><i class="fa fa-check"></i><b>2.6.1</b> Memuat Paket</a></li>
+<li class="chapter" data-level="2.6.2" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html#memuat-dataset-pada-paket"><i class="fa fa-check"></i><b>2.6.2</b> Memuat Dataset Pada Paket</a></li>
+<li class="chapter" data-level="2.6.3" data-path="membaca-data-dari-paket.html"><a href="membaca-data-dari-paket.html#membaca-data"><i class="fa fa-check"></i><b>2.6.3</b> Membaca Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="meyimpan-dan-memuat-data.html"><a href="meyimpan-dan-memuat-data.html"><i class="fa fa-check"></i><b>2.7</b> Meyimpan dan Memuat Data</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="meyimpan-dan-memuat-data.html"><a href="meyimpan-dan-memuat-data.html#menyimpan-dataset"><i class="fa fa-check"></i><b>2.7.1</b> Menyimpan Dataset</a></li>
+<li class="chapter" data-level="2.7.2" data-path="meyimpan-dan-memuat-data.html"><a href="meyimpan-dan-memuat-data.html#memuat-data"><i class="fa fa-check"></i><b>2.7.2</b> Memuat Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="modvar.html"><a href="modvar.html"><i class="fa fa-check"></i><b>2.8</b> Memodifikasi Variabel pada Data</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="modvar.html"><a href="modvar.html#revar"><i class="fa fa-check"></i><b>2.8.1</b> Variabel <em>Recoding</em></a></li>
+<li class="chapter" data-level="2.8.2" data-path="modvar.html"><a href="modvar.html#komputasi-variabel-baru"><i class="fa fa-check"></i><b>2.8.2</b> Komputasi Variabel Baru</a></li>
+<li class="chapter" data-level="2.8.3" data-path="modvar.html"><a href="modvar.html#menambahkan-variabel-nomor-observasi-pada-dataset"><i class="fa fa-check"></i><b>2.8.3</b> Menambahkan Variabel Nomor Observasi Pada Dataset</a></li>
+<li class="chapter" data-level="2.8.4" data-path="modvar.html"><a href="modvar.html#standardisasi-variabel"><i class="fa fa-check"></i><b>2.8.4</b> Standardisasi Variabel</a></li>
+<li class="chapter" data-level="2.8.5" data-path="modvar.html"><a href="modvar.html#numfac"><i class="fa fa-check"></i><b>2.8.5</b> Merubah Variabel <em>Numeric</em> Menjadi <em>Factor</em></a></li>
+<li class="chapter" data-level="2.8.6" data-path="modvar.html"><a href="modvar.html#melakukan-binning-pada-variabel-numeric"><i class="fa fa-check"></i><b>2.8.6</b> Melakukan <em>Binning</em> pada Variabel <em>Numeric</em></a></li>
+<li class="chapter" data-level="2.8.7" data-path="modvar.html"><a href="modvar.html#merubah-urutan-factor-levels"><i class="fa fa-check"></i><b>2.8.7</b> Merubah Urutan <em>Factor Levels</em></a></li>
+<li class="chapter" data-level="2.8.8" data-path="modvar.html"><a href="modvar.html#melakukan-drop-pada-factor-levels"><i class="fa fa-check"></i><b>2.8.8</b> Melakukan <em>Drop</em> pada <em>Factor Levels</em></a></li>
+<li class="chapter" data-level="2.8.9" data-path="modvar.html"><a href="modvar.html#merubah-nama-variabel-pada-data"><i class="fa fa-check"></i><b>2.8.9</b> Merubah Nama Variabel pada Data</a></li>
+<li class="chapter" data-level="2.8.10" data-path="modvar.html"><a href="modvar.html#menghapus-variabel"><i class="fa fa-check"></i><b>2.8.10</b> Menghapus Variabel</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="transdata.html"><a href="transdata.html"><i class="fa fa-check"></i><b>2.9</b> Memanipulasi Dataset</a><ul>
+<li class="chapter" data-level="2.9.1" data-path="transdata.html"><a href="transdata.html#melakukan-subset-dataset"><i class="fa fa-check"></i><b>2.9.1</b> Melakukan Subset Dataset</a></li>
+<li class="chapter" data-level="2.9.2" data-path="transdata.html"><a href="transdata.html#agregasi-variabel-pada-dataset"><i class="fa fa-check"></i><b>2.9.2</b> Agregasi Variabel pada Dataset</a></li>
+<li class="chapter" data-level="2.9.3" data-path="transdata.html"><a href="transdata.html#melakukan-drop-observasi-pada-dataset"><i class="fa fa-check"></i><b>2.9.3</b> Melakukan <em>Drop</em> Observasi pada Dataset</a></li>
+<li class="chapter" data-level="2.9.4" data-path="transdata.html"><a href="transdata.html#melakukan-drop-observasi-dengan-missing-value"><i class="fa fa-check"></i><b>2.9.4</b> Melakukan <em>Drop</em> Observasi dengan <em>Missing Value</em></a></li>
+<li class="chapter" data-level="2.9.5" data-path="transdata.html"><a href="transdata.html#mengelompokkan-variabel-menjadi-variabel-factor-dan-nilai"><i class="fa fa-check"></i><b>2.9.5</b> Mengelompokkan Variabel Menjadi Variabel <em>Factor</em> dan Nilai</a></li>
+<li class="chapter" data-level="2.9.6" data-path="transdata.html"><a href="transdata.html#menggabungkan-dua-dataset"><i class="fa fa-check"></i><b>2.9.6</b> Menggabungkan Dua Dataset</a></li>
+<li class="chapter" data-level="2.9.7" data-path="transdata.html"><a href="transdata.html#modifikasi-lainnya"><i class="fa fa-check"></i><b>2.9.7</b> Modifikasi Lainnya</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ringkasan-dan-visualisasi-data.html"><a href="ringkasan-dan-visualisasi-data.html"><i class="fa fa-check"></i><b>3</b> Ringkasan dan Visualisasi Data</a></li>
+<li class="chapter" data-level="4" data-path="uji-statistik-sederhana.html"><a href="uji-statistik-sederhana.html"><i class="fa fa-check"></i><b>4</b> Uji Statistik Sederhana</a></li>
+<li class="chapter" data-level="5" data-path="linier-dan-generalized-linear-model.html"><a href="linier-dan-generalized-linear-model.html"><i class="fa fa-check"></i><b>5</b> Linier dan <em>Generalized Linear</em> Model</a></li>
+<li class="chapter" data-level="6" data-path="distribusi-probabilitas-dan-simulasi.html"><a href="distribusi-probabilitas-dan-simulasi.html"><i class="fa fa-check"></i><b>6</b> Distribusi Probabilitas dan Simulasi</a></li>
+<li class="chapter" data-level="" data-path="referensi.html"><a href="referensi.html"><i class="fa fa-check"></i>Referensi</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analisis Statistika Menggunakan R Commander</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modvar" class="section level2">
+<h2><span class="header-section-number">2.8</span> Memodifikasi Variabel pada Data</h2>
+<style>
+body{
+text-align: justify}
+</style>
+<p>Menu <code>Data/Manage variables in active data set</code> merupakan menu yang dibuat untuk memodifikasi variabel dan membuat variabel baru pada dataset. Pada Chapter <a href="modvar.html#modvar">2.8</a>, penulis akan memjelaskan cara menggunakan submenu <code>Recode variables</code> untuk merubah level pada tipe data <code>factor</code> dan membuat variabel baru dari variabel dengan tipe data <code>numeric</code>, penulis juga akan menjelaskan cara menggunakan submenu <code>Reorder Factor Levels</code> untuk mengubah urutan <code>factor</code> yang semula berdasarkan urutan alfabet menjadi sesuai dengan yang kita inginkan, serta informasi lain terkait penggunaan submenu pada menu <code>Data/Manage variables in active data set</code>.</p>
+<div id="revar" class="section level3">
+<h3><span class="header-section-number">2.8.1</span> Variabel <em>Recoding</em></h3>
+<p>Terdapat dua kegunaan submenu <code>Recode Variables</code>, yaitu: membuat <code>factor</code> baru dengan cara mentransformasi variabel <code>numeric</code> menjadi <code>factor</code>, serta merubah urutan level suatu <code>factor</code>.</p>
+<p>Ketentuan <em>recode</em> pada <code>Recode Variables</code> secara umum memiliki formula <code>*nilai-lama=nilai-baru*</code>, dimana <code>nilai-baru</code> (nilai awal variabel tercatat) dispesifikasi sesuai dengan Tabel <a href="modvar.html#tab:recodevar">2.12</a>. Berikut adalah sejumlah informasi yang perlu pembaca perhatikan untuk memahami penggunaan submenu <code>Recode Varibles</code>:</p>
+<ul>
+<li>Jika nilai variabel lama yang tercatat sama sekali ketentuan <em>recode</em> yang kita tetapkan, nilai tersebut hanya dibawa menuju <code>Recode Variables</code>. Sebagai contoh, jika aturan <code>"sangat setuju"="setuju"</code> ditetapkan, tapi nilai lama untuk <code>factor</code> <code>"setuju"</code> tidak dicatat, maka kedua nilai lama (<code>factor</code> lama) tersebut digabung menjadi satu sehingga <code>("sangat setuju","setuju")="setuju"</code>.</li>
+<li>Jika nilai variabel lama yang dicatat memenuhi lebih dari satu ketetapan <em>recode</em>, maka ketentuan pertama yang berlaku diterapkan. Sebagai contoh, jika terdapat variabel <code>pendapatan</code> dengan ketentuan <em>recode</em> <code>lo:2.500.000="rendah"</code> dan <code>2.500.000:7.500.000="sedang"</code>, maka sebuah observasi dengan variabel <code>pendapatan</code> bernilai <code>2.500.000</code> akan dikategorikan sebagai <code>"rendah"</code>.</li>
+<li>Seperti yang telah dijabarkan pada poin sebelumnya, karakter spesial <code>lo</code> digunakan untuk menyatakan nilai variabel <code>numeric</code> terkecil, sedangkan <code>hi</code> digunakan untuk variabel <code>numeric</code> dengan nilai tertinggi.</li>
+<li>Pada setiap ketentuan <em>recode</em> pastikan diakhiri dengan nilai <code>else</code> yang menunjukkan nilai lain diluar ketentuan <em>recode</em> sebelumnya (termasuk <em>missing value</em>).</li>
+</ul>
+<table>
+<caption><span id="tab:recodevar">Tabel 2.12: </span> Ketentuan recode pada submenu Recode Variables.</caption>
+<colgroup>
+<col width="6%" />
+<col width="25%" />
+<col width="67%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>No.</strong></th>
+<th align="left"><strong>Nilai Lama</strong></th>
+<th align="left"><strong>Contoh Ketentuan <em>Recode</em></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1.</td>
+<td align="left">nilai individual(<code>a</code>)</td>
+<td align="left"><code>99=NA</code>; <code>NA="missing"</code>; <code>"sangat setuju="setuju"</code></td>
+</tr>
+<tr class="even">
+<td align="left">2.</td>
+<td align="left">sebuah set nilai (<code>a,b,...,k</code>)</td>
+<td align="left"><code>1,3,5,..,k="ganjil"</code>; <code>"sangat setuju","cukup setuju"="setuju"</code></td>
+</tr>
+<tr class="odd">
+<td align="left">3.</td>
+<td align="left">rentang numerik (<code>a:b</code>)</td>
+<td align="left"><code>1901:2000="abad 21"</code>; <code>lo:2.000.000="rendah"</code>; <code>10.000.000:hi="tinggi"</code></td>
+</tr>
+<tr class="even">
+<td align="left">4.</td>
+<td align="left">lainnya (<code>else</code>)</td>
+<td align="left"><code>else="lainnya"</code></td>
+</tr>
+</tbody>
+</table>
+<p>Pada dataset <code>mtcars</code> (lihat Tabel <a href="impeks.html#tab:mtcars">2.8</a>), misalkan kita ingin menambahkan variabel baru berupa <code>factor</code> yang menyatakan klasifikasi kendaraan berdasarkan tingkat penggunaan bahan bakar per mil (<code>mpg</code>). Untuk kendaraan dengan ketentuan <code>mpg</code> <code>lo:20="boros"</code>, <code>20:30="sedang"</code>, dan <code>else="hemat"</code>. Berikut adalah langkah-langkah untuk melakukannya:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Manage variables in active data set/Recode variables..</code>.</li>
+<li>Pada jendela yang muncul pilih variabel yang ingin dilakukan <em>recoding</em>, tentukan ketentuan <em>recodingnya</em>, dan nama variabel baru yang dihasilkan. Penjelasan terkait jendela tersebut ditampilkan pada Tabel <a href="modvar.html#tab:recodevar2">2.13</a>.</li>
+<li>Spesifikasikan apakah tipe data variabel tersebut adalah <code>factor</code> atau bukan dengan mencentang <em>checkbox</em>. Klik <code>OK</code>.</li>
+<li>Untuk melihat variabel baru yang telah terbentuk, klik <code>View data set</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="modvar.html#fig:recode">2.11</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:recode"></span>
+<img src="images/chp2/recodevar.png" alt="Tampilan tahapan recoding variabel." width="70%" />
+<p class="caption">
+Gambar 2.11: Tampilan tahapan recoding variabel.
+</p>
+</div>
+<p>Proses tersebut akan memunculkan sintaks pada <code>R Script</code> sebagai berikut:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">mtcars &lt;-<span class="st"> </span><span class="kw">within</span>(mtcars, {kategori &lt;-<span class="st"> </span><span class="kw">Recode</span>(mpg,</a>
+<a class="sourceLine" id="cb66-2" title="2">          <span class="st">`</span><span class="dt">lo:20.0=&quot;boros&quot;; 20.0:30.0=&quot;sedang&quot;; else=&quot;hemat&quot;; ;&#39;,</span></a>
+<a class="sourceLine" id="cb66-3" title="3"><span class="dt">          as.factor=TRUE)</span></a>
+<a class="sourceLine" id="cb66-4" title="4"><span class="dt">})</span></a></code></pre></div>
+<table>
+<caption><span id="tab:recodevar2">Tabel 2.13: </span> Penjelasan jendela Recode Variables.</caption>
+<colgroup>
+<col width="7%" />
+<col width="26%" />
+<col width="17%" />
+<col width="48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>No.</strong></th>
+<th align="left"><strong>Item</strong></th>
+<th align="left"><strong>Jenis Input</strong></th>
+<th align="left"><strong>Keterangan</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1.</td>
+<td align="left">Variables to recode</td>
+<td align="left"><em>select box</em></td>
+<td align="left">daftar nama variabel yang akan di <em>recode</em></td>
+</tr>
+<tr class="even">
+<td align="left">2.</td>
+<td align="left">New variable name or..</td>
+<td align="left"><em>text input</em></td>
+<td align="left">nama baru untuk variabel yang dibuat</td>
+</tr>
+<tr class="odd">
+<td align="left">3.</td>
+<td align="left">Make (each) variable..</td>
+<td align="left"><em>check box</em></td>
+<td align="left">pilihan apakah variabel baru adalah factor</td>
+</tr>
+<tr class="even">
+<td align="left">4.</td>
+<td align="left">Enter recode directives</td>
+<td align="left"><em>text input</em></td>
+<td align="left">kotak untuk memasukkan ketentuan <em>recode</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="komputasi-variabel-baru" class="section level3">
+<h3><span class="header-section-number">2.8.2</span> Komputasi Variabel Baru</h3>
+<p>Pada saat analisis data, variabel yang kita miliki terkadang tidak cukup untuk menjelaskan suatu fenomena. Namun, kita dapat membentuk sebuah variabel baru yang dapat membantu menjelaskan fenomena tersebut. Pembentukan variabel baru dapat berupa tranformasi sebuah variabel atau pembentukan variabel berdasarkan beberapa formulasi beberapa variabel lain.</p>
+<p>Dalam melakukan tranformasi variabel, kita dapat memanfaatkan sejumlah operator operasi yang telah penulis jelaskan pada Chapter <a href="operator-operasi-pada-r.html#aritmatikop">2.1.1</a>. Selain operator tersebut, terdapat sejumlah fungsi operasi arimatika yang tersedia pada <code>R</code>. Fungsi-fungsi tersebut, antara lain:</p>
+<ol style="list-style-type: decimal">
+<li>Logaritma dan eksponensial</li>
+</ol>
+<p>Untuk contoh fungsi logaritmik dan eksponensial jalankan sintaks berikut:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="kw">log2</span>(<span class="dv">8</span>) <span class="co"># logaritma basis 2 untuk 8</span></a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw">log10</span>(<span class="dv">8</span>) <span class="co"># logaritma basis 10 untuk 8</span></a></code></pre></div>
+<pre><code>## [1] 0.9031</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="kw">exp</span>(<span class="dv">8</span>) <span class="co"># eksponensial 8</span></a></code></pre></div>
+<pre><code>## [1] 2981</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Fungsi trigonometri</li>
+</ol>
+<p>fungsi trigonometri yang ditampilkan seperti sin,cos, tan, dll.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="kw">cos</span>(x) <span class="co"># cos x</span></a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="kw">sin</span>(x) <span class="co"># Sin x</span></a>
+<a class="sourceLine" id="cb73-3" title="3"><span class="kw">tan</span>(x) <span class="co"># Tan x</span></a>
+<a class="sourceLine" id="cb73-4" title="4"><span class="kw">acos</span>(x) <span class="co"># arc-cos x</span></a>
+<a class="sourceLine" id="cb73-5" title="5"><span class="kw">asin</span>(x) <span class="co"># arc-sin x</span></a>
+<a class="sourceLine" id="cb73-6" title="6"><span class="kw">atan</span>(x) <span class="co">#arc-tan x</span></a></code></pre></div>
+<blockquote>
+<p>**PENTING!!!: x dalam fungsi trigonometri memiliki satuan radian</p>
+</blockquote>
+<p>Berikut adalah salah satu contoh penggunaannya:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="kw">cos</span>(pi)</a></code></pre></div>
+<pre><code>## [1] -1</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Fungsi matematik lainnya</li>
+</ol>
+<p>Fungsi lainnya yang dapat digunakan adalah fungsi absolut, akar kuadrat, dll. Berikut adalah contoh sintaks penggunaan fungsi absolut dan akar kuadrat.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="kw">abs</span>(<span class="op">-</span><span class="dv">2</span>) <span class="co"># nilai absolut -2</span></a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="kw">sqrt</span>(<span class="dv">4</span>) <span class="co"># akar kuadrat 4</span></a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Untuk memahami permasalahan terkait komputasi variabel baru, kita akan membuat variabel baru pada dataset <code>mtcars</code> yang telah dijelaskan pada Tabel <a href="impeks.html#tab:mtcars">2.8</a>. Variabel baru yang akan kita buat adalah variabel rasio antara jarak tempuh per satuan bahan bakar (<code>mpg</code>) terhadap berat kendaraan (<code>wt</code>) dan kita namai variabel baru tersebut <code>rwt</code>. Variabel baru ini dapat menjadi alternatif lain dalam menjelaskan efisiensi suatu mobil yang ditandai dengan rasio antara jarak tempuh terhadap bobot dan konsumsi bahan bakarnya. Berikut adalah tahapan untuk melakukannya:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Manage variables in active data set/Compute new variable</code>.</li>
+<li>Pada jendela yang muncul, ketikkan formula pembentuk variabel baru pada kotak <code>Expression to compute</code>.</li>
+<li>Untuk memasukkan nama variabel ke dalam formula, pembaca dapat mengetikkan nama variabel secara manual atau melakukan <em>double click</em> nama variabel yang tersedia pada kotak <code>Current variables</code>.</li>
+<li>Ketikkan nama variabel baru pada kotak <code>New variable name</code>. Klik <code>OK</code>.</li>
+<li>Untuk mengecek variabel yang telah terbentuk, klik <code>View data set</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="modvar.html#fig:computevar">2.12</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:computevar"></span>
+<img src="images/chp2/computevar.png" alt="Tampilan tahapan komputasi variabel baru." width="70%" />
+<p class="caption">
+Gambar 2.12: Tampilan tahapan komputasi variabel baru.
+</p>
+</div>
+<p>Berdasarkan tahapan tersebut, sintaks yang terbentuk pada <code>R Script</code> adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">mtcars<span class="op">$</span>rwt &lt;-<span class="st"> </span><span class="kw">with</span>(mtcars, mpg<span class="op">/</span><span class="st"> </span>wt)</a></code></pre></div>
+</div>
+<div id="menambahkan-variabel-nomor-observasi-pada-dataset" class="section level3">
+<h3><span class="header-section-number">2.8.3</span> Menambahkan Variabel Nomor Observasi Pada Dataset</h3>
+<p>Untuk menambahkan variabel nomor observasi pada dataset jalankan langkah-langkah berikut:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Manage variables in active data set/Add observation numbers to data set</code>.</li>
+<li>Variabel <code>ObsNumber</code> berupa nomor observasi akan secara otomatis ditambahkan pada akhir kolom dataset.</li>
+<li>Untuk mengecek variabel baru tersebut, klik <em>toolbar</em> <code>View data set</code>.</li>
+</ol>
+<p>Pada akhir tahapan, sintaks berikut tercetak pada <code>R Script</code>:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1">dataset<span class="op">$</span>ObsNumber &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="st">&quot;number of observation&quot;</span></a></code></pre></div>
+</div>
+<div id="standardisasi-variabel" class="section level3">
+<h3><span class="header-section-number">2.8.4</span> Standardisasi Variabel</h3>
+<p>Standardisasi variabel bertujuan untuk mentransformasi variabel sehingga variabel tersebut memiliki nilai rata-rata 0 dan simpangan baku 1. Tahapan melakukan standardisasi variabel pada <code>R Commander</code> adalah sebagai berikut:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Manage variables in active data set/Standardize variables...</code>.</li>
+<li>Pada jendela yang muncul, pilih variabel yang akan di standardisasi. Pembaca dapat memilih lebih dari satu variabel dengan cara menekan tombol ctrl+klik (pada Windows) saat memilih variabel. Klik <code>OK</code>.</li>
+<li>Untuk mengecek variabel yang telah distandadrdisasi, klik <em>toolbar</em> <code>View data set</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="modvar.html#fig:stanvar">2.13</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:stanvar"></span>
+<img src="images/chp2/stanvar.png" alt="Tampilan tahapan standardisasi variabel." width="70%" />
+<p class="caption">
+Gambar 2.13: Tampilan tahapan standardisasi variabel.
+</p>
+</div>
+<p>Sintaks yang digunakan dalam tahapan tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1">dataset &lt;-<span class="st"> </span><span class="kw">local</span>({</a>
+<a class="sourceLine" id="cb82-2" title="2">  .Z &lt;-<span class="st"> </span><span class="kw">scale</span>(dataset[,<span class="kw">c</span>(<span class="st">&quot;namavariabel&quot;</span>)])</a>
+<a class="sourceLine" id="cb82-3" title="3">  <span class="kw">within</span>(dataset, {</a>
+<a class="sourceLine" id="cb82-4" title="4">    Z.namavariabel &lt;-<span class="st"> </span>.Z[,nomor_kolom_variabel] </a>
+<a class="sourceLine" id="cb82-5" title="5">  })</a>
+<a class="sourceLine" id="cb82-6" title="6">})</a></code></pre></div>
+</div>
+<div id="numfac" class="section level3">
+<h3><span class="header-section-number">2.8.5</span> Merubah Variabel <em>Numeric</em> Menjadi <em>Factor</em></h3>
+<p>Pada Chapter <a href="modvar.html#revar">2.8.1</a>, kita telah belajar bagaimana cara melakukan <em>recoding</em> variabel dan membentuk <em>factor</em>. Pada Chapter <a href="modvar.html#numfac">2.8.5</a>, kita akan membahas cara merubah variabel <em>numeric</em> menjadi <em>factor</em> tanpa perlu melakukan proses <em>recoding</em>. Pada Chapter ini, kita hanya perlu mesuplai variabel <em>numeric</em> yang akan diubah menjadi <em>factor</em>. Kita juga dapat menambahkan label pada <em>factor</em> tersebut. Untuk melakukannya jalankan langkah-langkah berikut:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Manage variables in active data set/Convert numeric varibles to factors</code>.</li>
+<li>Spesifikasikan variabel yang akan diubah menjadi <em>factor</em> (lihat Tabel <a href="modvar.html#tab:numtofac2">2.14</a>). Klik <code>OK</code></li>
+<li>Untuk mengecek apakah variabel telah terkonversi menjadi <em>factor</em>, klik <code>Statistics/Summaries/Active data set</code>. Variabel yang telah dikonversi menjadi <em>factor</em> akan memberikan ringkasan data berupa tabel kontingensi (tidak menampilkan mean, min, max, dll).</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="modvar.html#fig:numtofac">2.14</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:numtofac"></span>
+<img src="images/chp2/numtofac.png" alt="Tampilan tahapan merubah variabel numeric menjadi factor." width="70%" />
+<p class="caption">
+Gambar 2.14: Tampilan tahapan merubah variabel numeric menjadi factor.
+</p>
+</div>
+<p>Sintaks yang dihasilkan pada proses tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co"># use numbers</span></a>
+<a class="sourceLine" id="cb83-2" title="2">dataset &lt;-<span class="st"> </span><span class="kw">within</span>(dataset, {</a>
+<a class="sourceLine" id="cb83-3" title="3">  namavariabel &lt;-<span class="st"> </span><span class="kw">as.factor</span>(namavariabel)</a>
+<a class="sourceLine" id="cb83-4" title="4">})</a>
+<a class="sourceLine" id="cb83-5" title="5"></a>
+<a class="sourceLine" id="cb83-6" title="6"><span class="co"># supply level names</span></a>
+<a class="sourceLine" id="cb83-7" title="7">dataset&lt;-<span class="st"> </span><span class="kw">within</span>(dataset, {</a>
+<a class="sourceLine" id="cb83-8" title="8">  namavariabel &lt;-<span class="st"> </span><span class="kw">factor</span>(namavariabel, </a>
+<a class="sourceLine" id="cb83-9" title="9">                         <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&#39;label1&#39;</span>,<span class="st">&#39;label2&#39;</span>,...))</a>
+<a class="sourceLine" id="cb83-10" title="10">})</a></code></pre></div>
+<table>
+<caption><span id="tab:numtofac2">Tabel 2.14: </span> Penjelasan convert numeric variables to factors.</caption>
+<colgroup>
+<col width="4%" />
+<col width="15%" />
+<col width="10%" />
+<col width="69%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>No.</strong></th>
+<th align="left"><strong>Item</strong></th>
+<th align="left"><strong>Jenis Input</strong></th>
+<th align="left"><strong>Keterangan</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1.</td>
+<td align="left">Variables</td>
+<td align="left"><em>select box</em></td>
+<td align="left">daftar nama variabel yang akan diubah menjadi <em>factor</em></td>
+</tr>
+<tr class="even">
+<td align="left">2.</td>
+<td align="left">Factor levels</td>
+<td align="left"><em>radio button</em></td>
+<td align="left">pilihan apakah perlu menambahkan label pada <em>factor</em> atau tidak</td>
+</tr>
+<tr class="odd">
+<td align="left">3.</td>
+<td align="left">New variable name or…</td>
+<td align="left"><em>text input</em></td>
+<td align="left">jika tidak diisi maka variabel lama akan diganti variabel baru (tidak ada variabel baru ditambahkan)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="melakukan-binning-pada-variabel-numeric" class="section level3">
+<h3><span class="header-section-number">2.8.6</span> Melakukan <em>Binning</em> pada Variabel <em>Numeric</em></h3>
+<p><em>Binning</em> variabel numeric merupakan cara untuk mengelompokkan nilai variabel <em>numeric</em> ke dalam suatu kelas berdasarkan rentang tertentu. Penetapan rentang pada proses <em>binning</em> di <code>R Commander</code> terbagi atas 3 metode, yaitu:</p>
+<ul>
+<li><strong><em>Equal-width</em></strong> : membagi data ke dalam kelas berdasarkan interval yang seragam.</li>
+<li><strong><em>Equal-count</em></strong> : membagi data ke dalam kelas berdasarkan jumlah kelas yang sama.</li>
+<li><strong><em>Natural break</em></strong> : membagi data ke dalam kelas berdasarkan jarak terdekat (biasanya menggunakan jarak Euclidian) pada pusat masing-masing kelas. Algoritma pengelompokan yang biasa digunakan adalah algoritma <em>k-means</em> (baca <a href="https://id.wikipedia.org/wiki/K-means">K-Means</a>).</li>
+</ul>
+<p>Tahapan untuk melakukan proses <em>binning</em> variabel numeric antara lain:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Manage variables in active data set/Bin numeric variable...</code>.</li>
+<li>Pada jendela yang muncul spesifikasikan variabel numeric yang akan di <em>binning</em> dan metode pengelompokan yang digunakan (lihat Tabel <a href="modvar.html#tab:binvartab">2.15</a>. Klik <code>OK</code>.</li>
+<li>Untuk mengecek variabel hasil <em>binning</em>, klik <em>toolbar</em> <code>View data set</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="modvar.html#fig:binvar">2.15</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:binvar"></span>
+<img src="images/chp2/binvar.png" alt="Tampilan tahapan binning variabel numeric." width="70%" />
+<p class="caption">
+Gambar 2.15: Tampilan tahapan binning variabel numeric.
+</p>
+</div>
+<p>Sintaks yang digunakan pada masing-masing metode <em>binning</em>, antara lain:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="co"># Equal-width</span></a>
+<a class="sourceLine" id="cb84-2" title="2">dataset<span class="op">$</span>namavariabel &lt;-<span class="st"> </span><span class="kw">with</span>(dataset, <span class="kw">binVariable</span>(variabel, </a>
+<a class="sourceLine" id="cb84-3" title="3">                        <span class="dt">bins=</span><span class="st">&quot;jumlah_bin&quot;</span>, <span class="dt">method=</span><span class="st">&#39;intervals&#39;</span>,</a>
+<a class="sourceLine" id="cb84-4" title="4">                        <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;label1&quot;</span>,...)))</a>
+<a class="sourceLine" id="cb84-5" title="5">dataset<span class="op">$</span>namavariabel &lt;-<span class="st"> </span><span class="kw">with</span>(dataset, <span class="kw">binVariable</span>(variabel, </a>
+<a class="sourceLine" id="cb84-6" title="6">                        <span class="dt">bins=</span><span class="st">&quot;jumlah_bin&quot;</span>, <span class="dt">method=</span><span class="st">&#39;proportions&#39;</span>, </a>
+<a class="sourceLine" id="cb84-7" title="7">                        <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;label1&quot;</span>,...)))</a>
+<a class="sourceLine" id="cb84-8" title="8">dataset<span class="op">$</span>namavariabel &lt;-<span class="st"> </span><span class="kw">with</span>(dataset, <span class="kw">binVariable</span>(variabel, </a>
+<a class="sourceLine" id="cb84-9" title="9">                        <span class="dt">bins=</span><span class="st">&quot;jumlah_bin&quot;</span>, <span class="dt">method=</span><span class="st">&#39;natural&#39;</span>,</a>
+<a class="sourceLine" id="cb84-10" title="10">                        <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;label1&quot;</span>,...)))</a></code></pre></div>
+<table>
+<caption><span id="tab:binvartab">Tabel 2.15: </span> Penjelasan convert numeric variables to factors.</caption>
+<colgroup>
+<col width="4%" />
+<col width="15%" />
+<col width="10%" />
+<col width="69%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>No.</strong></th>
+<th align="left"><strong>Item</strong></th>
+<th align="left"><strong>Jenis Input</strong></th>
+<th align="left"><strong>Keterangan</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1.</td>
+<td align="left">Variables to bin</td>
+<td align="left"><em>select box</em></td>
+<td align="left">daftar nama variabel <em>numeric</em> yang akan dilakukan <em>binning</em></td>
+</tr>
+<tr class="even">
+<td align="left">2.</td>
+<td align="left">New variable name</td>
+<td align="left"><em>text input</em></td>
+<td align="left">Input nama variabel baru</td>
+</tr>
+<tr class="odd">
+<td align="left">3.</td>
+<td align="left">Number of bins</td>
+<td align="left"><em>slider</em></td>
+<td align="left">spesifikasi jumlah bin atau kelas yang digunakan</td>
+</tr>
+<tr class="even">
+<td align="left">4.</td>
+<td align="left">Level Names</td>
+<td align="left"><em>radio button</em></td>
+<td align="left">spesifikasi metode penamaan bin</td>
+</tr>
+<tr class="odd">
+<td align="left">5.</td>
+<td align="left">Binning Method</td>
+<td align="left"><em>radio button</em></td>
+<td align="left">spesifikasi metode <em>binning</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="merubah-urutan-factor-levels" class="section level3">
+<h3><span class="header-section-number">2.8.7</span> Merubah Urutan <em>Factor Levels</em></h3>
+<p>Secara umum saat kita merubah sebuah variabel <em>character</em> atau <em>string</em> menjadi <em>factor</em> level <em>factor</em> hasil konversi tersebut diurutkan berdasarkan abjad. Sebuah variabel yang terdiri dari nilai “setuju”, “netral”, dan “tidak setuju”, jika diubah menjadi <em>factor</em> akan memiliki urutan level “netral”, “setuju”, dan “tidak setuju”. Urutan tersebut tidak benar dan perlu dirubah. Untuk melakukannya pada <code>R Commander</code> jalankan langkah-langkah berikut:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Manage variables in active data set/Reorder factor levels...</code>.</li>
+<li>Pada jendela yang muncul spesifikasikan variable <em>factor</em> yang akan dirubah (lihat Tabel <a href="modvar.html#tab:reofac">2.16</a>. Klik <code>OK</code>.</li>
+<li>Pada jendela yang muncul, rubah urutan <em>factor</em> lama. Klik <code>OK</code>.</li>
+<li>Untuk mengecek <em>factor level</em>, jalankan sintaks berikut:</li>
+</ol>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># ubah nama dataset dan variabel</span></a>
+<a class="sourceLine" id="cb85-2" title="2"><span class="kw">levels</span>(dataset<span class="op">$</span>namavariabel)</a></code></pre></div>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="modvar.html#fig:reorderfac">2.16</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:reorderfac"></span>
+<img src="images/chp2/reorderfac.png" alt="Tampilan tahapan merubah urutan factor level." width="70%" />
+<p class="caption">
+Gambar 2.16: Tampilan tahapan merubah urutan factor level.
+</p>
+</div>
+<p>Sintaks dari tahapan merubah urutan <em>factor</em> secara umum ditampilkan sebagai berikut:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1">dataset<span class="op">$</span>namavariabel &lt;-<span class="st"> </span><span class="kw">with</span>(dataset, <span class="kw">factor</span>(namavariabel, </a>
+<a class="sourceLine" id="cb86-2" title="2">                                  <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;level1&#39;</span>,</a>
+<a class="sourceLine" id="cb86-3" title="3">                                            <span class="st">&#39;level2&#39;</span>,</a>
+<a class="sourceLine" id="cb86-4" title="4">                                            ....), </a>
+<a class="sourceLine" id="cb86-5" title="5">                            <span class="dt">ordered=</span><span class="ot">TRUE</span>))</a></code></pre></div>
+<table>
+<caption><span id="tab:reofac">Tabel 2.16: </span> Penjelasan jendela reorder factor levels.</caption>
+<colgroup>
+<col width="4%" />
+<col width="15%" />
+<col width="10%" />
+<col width="69%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>No.</strong></th>
+<th align="left"><strong>Item</strong></th>
+<th align="left"><strong>Jenis Input</strong></th>
+<th align="left"><strong>Keterangan</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1.</td>
+<td align="left">Factor</td>
+<td align="left"><em>select box</em></td>
+<td align="left">daftar variabel <em>factor</em> pada dataset</td>
+</tr>
+<tr class="even">
+<td align="left">2.</td>
+<td align="left">Name for factor</td>
+<td align="left"><em>text input</em></td>
+<td align="left">nama variabel <em>factor</em> yang baru (jika ingin membuat variabel baru)</td>
+</tr>
+<tr class="odd">
+<td align="left">3.</td>
+<td align="left">Make ordered factor</td>
+<td align="left"><em>check box</em></td>
+<td align="left">spesifikasi apakah <em>factor</em> akan diurutkan atau tidak</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="melakukan-drop-pada-factor-levels" class="section level3">
+<h3><span class="header-section-number">2.8.8</span> Melakukan <em>Drop</em> pada <em>Factor Levels</em></h3>
+<p>Saat melakukan subset pada dataset yang akan dijelaskan pada Chapter <a href="transdata.html#transdata">2.9</a> sering kali tidak semua <em>factor level</em> ada pada dataset tersebut (sejumlah <em>factor level</em> memiliki observasi nol) yang berpengaruh pada analisis data yang kita lakukan. Untuk mengatasinya, kita dapat melakukan <em>drop</em> pada <em>factor level tersebut</em>. Untuk melakukannya, jalankan langkah-langkah berikut:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Manage variables in active data set/Drop unused factor levels...</code>.</li>
+<li>Pada jendela yang muncul spesifikasikan variable <em>factor</em> yang akan didrop <em>factor levelnya</em>. Klik <code>OK</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="modvar.html#fig:dropfac">2.17</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:dropfac"></span>
+<img src="images/chp2/dropfact.png" alt="Tampilan tahapan drop factor level." width="70%" />
+<p class="caption">
+Gambar 2.17: Tampilan tahapan drop factor level.
+</p>
+</div>
+<p>Sintaks untuk melakukan <em>drop factor levels</em> secara umum adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1">dataset &lt;-<span class="st"> </span><span class="kw">within</span>(dataset, {</a>
+<a class="sourceLine" id="cb87-2" title="2">  namavariabel &lt;-<span class="st"> </span><span class="kw">droplevels</span>(namavariabel) </a>
+<a class="sourceLine" id="cb87-3" title="3">})</a></code></pre></div>
+</div>
+<div id="merubah-nama-variabel-pada-data" class="section level3">
+<h3><span class="header-section-number">2.8.9</span> Merubah Nama Variabel pada Data</h3>
+<p>Untuk merubah nama variabel pada <code>R Commander</code> dapat dilakukan dengan dua cara, antara lain:</p>
+<p><strong>Cara 1</strong></p>
+<ol style="list-style-type: decimal">
+<li>Klik <em>toolbar</em> <code>Edit data set</code>.</li>
+<li>Pada jendela dataset yang muncul , <em>double click</em> nama variabel yang ingin dirubah dan ubah nama variabel tersebut. Klik <code>OK</code></li>
+</ol>
+<p><strong>Cara 2</strong></p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Manage variables in active data set/Rename variables...</code>.</li>
+<li>Pada jendela yang muncul pilih variabel yang ingin dirubah namanya. Klik <code>OK</code>.</li>
+<li>Pada jendela yang muncul, isikan nama variabel baru dan Klik <code>OK</code> jika telah selesai.</li>
+<li>Untuk mengecek apakah proses telah berhasil, klik <em>toolbar</em> <code>View data set</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="modvar.html#fig:renamevar">2.18</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:renamevar"></span>
+<img src="images/chp2/renamevar.png" alt="Tampilan tahapan merubah nama variabel." width="70%" />
+<p class="caption">
+Gambar 2.18: Tampilan tahapan merubah nama variabel.
+</p>
+</div>
+<p>Sintaks untuk merubah nama variabel secara umum adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="kw">names</span>(dataset)[<span class="kw">c</span>(nomorvariabel)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;namavariabelbaru&quot;</span>)</a></code></pre></div>
+</div>
+<div id="menghapus-variabel" class="section level3">
+<h3><span class="header-section-number">2.8.10</span> Menghapus Variabel</h3>
+<p>Untuk menghapus variabel pada dataset, jalankan langkah-langkah berikut:</p>
+<ol style="list-style-type: decimal">
+<li>Pada menu <code>Data</code>, klik <code>Data/Manage variables in active data set/Delete variables from data set...</code>.</li>
+<li>Pada jendela yang muncul pilih variabel yang ingin dihapus. Klik <code>OK</code>.</li>
+<li>Untuk mengecek apakah proses telah berhasil, klik <em>toolbar</em> <code>View data set</code>.</li>
+</ol>
+<p>Visualisasi tahapan tersebut ditampilkan pada Gambar <a href="modvar.html#fig:deletevar">2.19</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:deletevar"></span>
+<img src="images/chp2/deletevar.png" alt="Tampilan tahapan menghapus variabel." width="70%" />
+<p class="caption">
+Gambar 2.19: Tampilan tahapan menghapus variabel.
+</p>
+</div>
+<p>Sintaks untuk menghapus variabel secara umum adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">dataset &lt;-<span class="st"> </span><span class="kw">within</span>(dataset, {</a>
+<a class="sourceLine" id="cb89-2" title="2">  namavariabel1 &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb89-3" title="3">  namavariabel2 &lt;-<span class="st"> </span><span class="ot">NULL</span> </a>
+<a class="sourceLine" id="cb89-4" title="4">})</a></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="meyimpan-dan-memuat-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="transdata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mohrosidi/Rcmdr-book/02-manajemen_data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Rcmdr-book.pdf", "Rcmdr-book.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

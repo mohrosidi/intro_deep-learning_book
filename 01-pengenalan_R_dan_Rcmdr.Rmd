@@ -1,7 +1,7 @@
 \mainmatter
 
 
-# Pengenalan R dan Rcmdr {#intro}
+# Pengenalan `R` dan `R Commander` {#intro}
 
 <style>
 body{

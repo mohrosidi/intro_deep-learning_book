@@ -9,6 +9,7 @@ text-align: justify}
 1. Fox, J. 2005. **The R Commander: A Basic-Statistics Graphical User Interface to R**. Journal of Statistical Software.Vol:14(9), p:1-42.
 2. Fox, J. 2017. **Using the R Commader: A Point-and-Click Interface for R**. CRC Press.
 3. Fox, J. Valat, M.B. 2018. **Getting Started With the R Commander**.<https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/Getting-Started-with-the-Rcmdr.pdf>.
+4. Gio, P.U. Irawan, D.E. 2016. **Belajar Statistika dengan R (disertai beberapa contoh perhitungan manual)**. USU Press : Medan.
 4. Nguyen-Feng, V. Stellmack, M.A. 2016. **A Guide to Data Aalysis in R Commander**. University of Minnesota.
 5. Primartha, R. 2018. **Belajar Machine Learning Teori dan Praktik**. Penerbit Informatika : Bandung.
 6. Quick-R. **Data Input**. <https://www.statmethods.net/input/index.html>
@@ -21,5 +22,6 @@ text-align: justify}
 13. STDHA. **Getting Help With Functions In R Programming**. <http://www.sthda.com/english/wiki/getting-help-with-functions-in-r-programming> .
 14. Venables, W.N. Smith D.M. and R Core Team. 2018. **An Introduction to R**. R Manuals.
 15. Wickham, H. Grolemund G. 2016. **R For Data Science: Import, Tidy, Transform, Visualize, And Model Data**. O'Reilly Media, Inc.
+16. Widodo, B. Rachmawati, R.N. 2013. **Pengantar Praktis Pemrograman R untuk Ilmu Komputer**. Halaman Moeka Publishing : Jakarta. 
 
 

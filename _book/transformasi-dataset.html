@@ -4,43 +4,43 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.9 Transformasi Dataset | Analisis Statistika Menggunakan Rcmdr</title>
+  <title>2.9 Transformasi Dataset | Analisis Statistika Menggunakan R Commander</title>
   <meta name="description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.9 Transformasi Dataset | Analisis Statistika Menggunakan Rcmdr" />
+  <meta property="og:title" content="2.9 Transformasi Dataset | Analisis Statistika Menggunakan R Commander" />
   <meta property="og:type" content="book" />
   
-  
+  <meta property="og:image" content="images/cover.png" />
   <meta property="og:description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
-  
+  <meta name="github-repo" content="mohrosidi/Rcmdr-book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.9 Transformasi Dataset | Analisis Statistika Menggunakan Rcmdr" />
+  <meta name="twitter:title" content="2.9 Transformasi Dataset | Analisis Statistika Menggunakan R Commander" />
   
   <meta name="twitter:description" content="Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika." />
-  
+  <meta name="twitter:image" content="images/cover.png" />
 
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2020-01-03" />
+<meta name="date" content="2020-01-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="modifikasi-variabel.html"/>
+<link rel="prev" href="modvar.html"/>
 <link rel="next" href="ringkasan-dan-visualisasi-data.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Pengenalan R dan Rcmdr</a><ul>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Pengenalan <code>R</code> dan <code>R Commander</code></a><ul>
 <li class="chapter" data-level="1.1" data-path="whatR.html"><a href="whatR.html"><i class="fa fa-check"></i><b>1.1</b> Apa Itu <code>R</code> dan <code>Rcmdr</code>?</a></li>
 <li class="chapter" data-level="1.2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>1.2</b> Memasang <code>R</code> dan <code>R Commander</code></a><ul>
 <li class="chapter" data-level="1.2.1" data-path="install.html"><a href="install.html#memasang-r-pada-windows"><i class="fa fa-check"></i><b>1.2.1</b> Memasang <code>R</code> pada Windows</a></li>
@@ -168,7 +168,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.1" data-path="meyimpan-dan-memuat-data.html"><a href="meyimpan-dan-memuat-data.html#menyimpan-dataset"><i class="fa fa-check"></i><b>2.7.1</b> Menyimpan Dataset</a></li>
 <li class="chapter" data-level="2.7.2" data-path="meyimpan-dan-memuat-data.html"><a href="meyimpan-dan-memuat-data.html#memuat-data"><i class="fa fa-check"></i><b>2.7.2</b> Memuat Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="modifikasi-variabel.html"><a href="modifikasi-variabel.html"><i class="fa fa-check"></i><b>2.8</b> Modifikasi Variabel</a></li>
+<li class="chapter" data-level="2.8" data-path="modvar.html"><a href="modvar.html"><i class="fa fa-check"></i><b>2.8</b> Memodifikasi Variabel pada Data</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="modvar.html"><a href="modvar.html#revar"><i class="fa fa-check"></i><b>2.8.1</b> Variabel <em>Recoding</em></a></li>
+<li class="chapter" data-level="2.8.2" data-path="modvar.html"><a href="modvar.html#komputasi-variabel-baru"><i class="fa fa-check"></i><b>2.8.2</b> Komputasi Variabel Baru</a></li>
+<li class="chapter" data-level="2.8.3" data-path="modvar.html"><a href="modvar.html#menambahkan-variabel-nomor-observasi-pada-dataset"><i class="fa fa-check"></i><b>2.8.3</b> Menambahkan Variabel Nomor Observasi Pada Dataset</a></li>
+<li class="chapter" data-level="2.8.4" data-path="modvar.html"><a href="modvar.html#standardisasi-variabel"><i class="fa fa-check"></i><b>2.8.4</b> Standardisasi Variabel</a></li>
+<li class="chapter" data-level="2.8.5" data-path="modvar.html"><a href="modvar.html#numfac"><i class="fa fa-check"></i><b>2.8.5</b> Merubah Variabel <em>Numeric</em> Menjadi <em>Factor</em></a></li>
+<li class="chapter" data-level="2.8.6" data-path="modvar.html"><a href="modvar.html#melakukan-binning-pada-variabel-numeric"><i class="fa fa-check"></i><b>2.8.6</b> Melakukan <em>Binning</em> pada Variabel <em>Numeric</em></a></li>
+<li class="chapter" data-level="2.8.7" data-path="modvar.html"><a href="modvar.html#merubah-urutan-factor-levels"><i class="fa fa-check"></i><b>2.8.7</b> Merubah Urutan <em>Factor Levels</em></a></li>
+<li class="chapter" data-level="2.8.8" data-path="modvar.html"><a href="modvar.html#melakukan-drop-pada-factor-levels"><i class="fa fa-check"></i><b>2.8.8</b> Melakukan <em>Drop</em> pada <em>Factor Levels</em></a></li>
+<li class="chapter" data-level="2.8.9" data-path="modvar.html"><a href="modvar.html#merubah-dan-menghapus-variabel-pada-data"><i class="fa fa-check"></i><b>2.8.9</b> Merubah dan Menghapus Variabel pada Data</a></li>
+</ul></li>
 <li class="chapter" data-level="2.9" data-path="transformasi-dataset.html"><a href="transformasi-dataset.html"><i class="fa fa-check"></i><b>2.9</b> Transformasi Dataset</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ringkasan-dan-visualisasi-data.html"><a href="ringkasan-dan-visualisasi-data.html"><i class="fa fa-check"></i><b>3</b> Ringkasan dan Visualisasi Data</a></li>
@@ -188,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analisis Statistika Menggunakan Rcmdr</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analisis Statistika Menggunakan R Commander</a>
           </h1>
         </div>
 
@@ -210,19 +220,19 @@ text-align: justify}
           </div>
         </div>
       </div>
-<a href="modifikasi-variabel.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modvar.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="ringkasan-dan-visualisasi-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

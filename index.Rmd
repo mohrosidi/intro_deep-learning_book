@@ -1,5 +1,5 @@
 --- 
-title: "Analisis Statistika Menggunakan Rcmdr"
+title: "Analisis Statistika Menggunakan R Commander"
 author: "Mohammad Rosidi"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -14,8 +14,31 @@ fontsize: 12pt
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
 link-citations: yes
+github-repo: mohrosidi/Rcmdr-book
 description: "Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika."
+tags: [statistics, ecology, tutorial, r-programming]
+cover-image: images/cover.png
 ---
+
+```{r setup, include=FALSE}
+
+options(
+
+  htmltools.dir.version = FALSE, formatR.indent = 2,
+
+  width = 55, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE
+
+)
+
+
+
+lapply(c(), function(pkg) {
+
+  if (system.file(package = pkg) == '') install.packages(pkg)
+
+})
+
+```
 
 # Pengantar{-}
 
@@ -25,5 +48,8 @@ body{
 text-align: justify}
 </style>
 
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), out.width='50%'}
 
+knitr::include_graphics('images/cover.png', dpi = NA)
+```
 
