@@ -25,7 +25,7 @@
 \usepackage{hyperref}
 \PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 \hypersetup{unicode=true,
-            pdftitle={Analisis Statistika Menggunakan R Commander},
+            pdftitle={Panduan Lengkap Analisis Statistika Menggunakan R Commander},
             pdfauthor={Mohammad Rosidi},
             colorlinks=true,
             linkcolor=Maroon,
@@ -121,7 +121,7 @@
 
 \setlength{\droptitle}{-2em}
 
-  \title{Analisis Statistika Menggunakan R Commander}
+  \title{Panduan Lengkap Analisis Statistika Menggunakan R Commander}
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
     \author{Mohammad Rosidi}
@@ -129,7 +129,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2020-01-05}
+    \date{2020-01-07}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -936,8 +936,8 @@ Pada Chapter \ref{datamanage}, penulis akan menjelaskan kepada pembaca bagaimana
   Memanipulasi Dataset.
 \end{itemize}
 
-\hypertarget{operator-operasi-pada-r}{%
-\section{\texorpdfstring{Operator Operasi Pada \texttt{R}}{Operator Operasi Pada R}}\label{operator-operasi-pada-r}}
+\hypertarget{opop}{%
+\section{\texorpdfstring{Operator Operasi Pada \texttt{R}}{Operator Operasi Pada R}}\label{opop}}
 
 Terdapat sejumlah operator operasi yang penting untuk pembaca ketahui, antara lain:
 
@@ -2126,7 +2126,7 @@ Pada \texttt{R\ Script} dan kotak \texttt{Output} akan muncul sintaks berikut ya
 \end{Shaded}
 
 \begin{longtable}[]{@{}llll@{}}
-\caption{\label{tab:exdata} Penjelasan jendela Export active data set.}\tabularnewline
+\caption{\label{tab:exdata} Penjelasan item jendela Export active data set.}\tabularnewline
 \toprule
 \begin{minipage}[b]{0.05\columnwidth}\raggedright
 \textbf{No.}\strut
@@ -2339,7 +2339,7 @@ Proses tersebut akan memunculkan sintaks pada \texttt{R\ Script} sebagai berikut
 \end{Shaded}
 
 \begin{longtable}[]{@{}llll@{}}
-\caption{\label{tab:recodevar2} Penjelasan jendela Recode Variables.}\tabularnewline
+\caption{\label{tab:recodevar2} Penjelasan item jendela Recode Variables.}\tabularnewline
 \toprule
 \begin{minipage}[b]{0.07\columnwidth}\raggedright
 \textbf{No.}\strut
@@ -2661,7 +2661,7 @@ Sintaks yang dihasilkan pada proses tersebut adalah sebagai berikut:
 \end{Shaded}
 
 \begin{longtable}[]{@{}llll@{}}
-\caption{\label{tab:numtofac2} Penjelasan convert numeric variables to factors.}\tabularnewline
+\caption{\label{tab:numtofac2} Penjelasan item convert numeric variables to factors.}\tabularnewline
 \toprule
 \begin{minipage}[b]{0.04\columnwidth}\raggedright
 \textbf{No.}\strut
@@ -2773,7 +2773,7 @@ Sintaks yang digunakan pada masing-masing metode \emph{binning}, antara lain:
 \end{Shaded}
 
 \begin{longtable}[]{@{}llll@{}}
-\caption{\label{tab:binvartab} Penjelasan convert numeric variables to factors.}\tabularnewline
+\caption{\label{tab:binvartab} Penjelasan item jendela convert numeric variables to factors.}\tabularnewline
 \toprule
 \begin{minipage}[b]{0.04\columnwidth}\raggedright
 \textbf{No.}\strut
@@ -2895,7 +2895,7 @@ Sintaks dari tahapan merubah urutan \emph{factor} secara umum ditampilkan sebaga
 \end{Shaded}
 
 \begin{longtable}[]{@{}llll@{}}
-\caption{\label{tab:reofac} Penjelasan jendela reorder factor levels.}\tabularnewline
+\caption{\label{tab:reofac} Penjelasan item jendela reorder factor levels.}\tabularnewline
 \toprule
 \begin{minipage}[b]{0.04\columnwidth}\raggedright
 \textbf{No.}\strut
@@ -3099,20 +3099,633 @@ Pada Chapter \ref{transdata}, kita akan belajar bagaimana memanipuasi dataset. A
 \hypertarget{melakukan-subset-dataset}{%
 \subsection{Melakukan Subset Dataset}\label{melakukan-subset-dataset}}
 
-\hypertarget{agregasi-variabel-pada-dataset}{%
-\subsection{Agregasi Variabel pada Dataset}\label{agregasi-variabel-pada-dataset}}
+Pada analisis data, kita sering kali tidak membutuhkan seluruh observasi dari data yang kita miliki. Kita akan melakukan filter untuk memperoleh data sesuai dengan keperluan kita. Selain itu, melihat subset data berdasarkan kriteria tertentu membantu kita untuk melakukan analisis ekspolarif terhadap data yang kita miliki.
+
+Untuk melakukan subset data, kita memelukan sebuah ekpresi atau formula yang dapat mengecek satu persatu data yang memenuhi formula subset yang telah dibentuk. Sebagai contoh, kita ingin memperoleh dataset tanpa nilai \emph{missing value} pada variabel \texttt{namavariabel}. Berikut adalah contoh sintaks formula atau ekspresi yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(namavariabel)}
+\end{Highlighting}
+\end{Shaded}
+
+Untuk membuat formula atau ekspresi tersebut, kita dapat menggunakan kembali operator operasi yang telah dijelaskan pada Chapter \ref{opop}. Langkah-langkah untuk melakukan subset pada dataset adalah sebagai berikut:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Pada menu \texttt{Data}, klik \texttt{Data/Active\ data\ set/Subset\ active\ data\ set...}.
+\item
+  Pada jendela yang muncul spesifikasikan variabel yang akan dipilih pada dataset baru dan formula subset yang digunakan (lihat Tabel \ref{tab:subset}). Klik \texttt{OK}.
+\item
+  Untuk mengecek dataset, klik \emph{toolbar} \texttt{View\ data\ set}.
+\end{enumerate}
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \ref{fig:subsetdata}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{./images/chp2/subsetdata} 
+
+}
+
+\caption{Tampilan tahapan melakukan subset pada dataset.}\label{fig:subsetdata}
+\end{figure}
+
+Secara umum sintaks untuk melakukan proses subset adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contoh_subset <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(dataset,}\DataTypeTok{subset=}\NormalTok{formula_subset)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llll@{}}
+\caption{\label{tab:subset} Penjelasan item jendela subset data set.}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+1.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Include all variables\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{check box}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+opsi apakah akan menyertakan seluruh variabel pada hasil subset\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+2.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Variables\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{select box}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+daftar nama variabel yang dapat dipilih untuk ditampilkan pada hasil subset\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+3.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Subset expression\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{text input}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+formula atau ekpresi subset yang digunakan\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+4.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Name for new data set\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{text imput}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+opsi untuk memberikan nama pada dataset baru atau tidak (dataset lama akan dihapus)\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{agregat-variabel-pada-dataset}{%
+\subsection{Agregat Variabel pada Dataset}\label{agregat-variabel-pada-dataset}}
+
+Submenu \texttt{agregate\ variables\ in\ active\ dataset} memberikan ringkasan nilai satu atau beberapa variabel berdasarkan level variabel \emph{factor} dan menghasilkan dataset baru dengan satu observasi untuk tiap level \emph{factor}. Proses agregasi mengaplikasikan beberapa fungsi seperti \texttt{mean()}, \texttt{sum()}, atau fungsi lainnya untuk menghasilkan sebuah nilai untuk setiap observasi pada tiap variabel dan level \emph{factor}.
+
+Fungsi statistika deskriptif bawaan yang dapat digunakan pada \texttt{R\ Commander} ditampilkan pada Tabel \ref{tab:builtinfun}.
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{\label{tab:builtinfun} Fungsi statistika deskriptif bawaan pada R.}\tabularnewline
+\toprule
+\textbf{Fungsi} & \textbf{Keterangan}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\textbf{Fungsi} & \textbf{Keterangan}\tabularnewline
+\midrule
+\endhead
+\texttt{mean} & rata-rata\tabularnewline
+\texttt{median} & median\tabularnewline
+\texttt{sum} & jumlah seluruh observasi dalam sebuah variabel\tabularnewline
+\texttt{quantile} & kuantil data\tabularnewline
+\texttt{min} & nilai observasi minimum\tabularnewline
+\texttt{max} & nilai observasi maksimum\tabularnewline
+\texttt{IQR} & rentang antar kuartil\tabularnewline
+\texttt{mad} & simpangan absolut median\tabularnewline
+\texttt{sd} & simpangan baku\tabularnewline
+\texttt{var} & varians\tabularnewline
+\bottomrule
+\end{longtable}
+
+Tahapan agregasi variabel dilakukan melalui langkah-langkah berikut:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Pada menu \texttt{Data}, klik \texttt{Data/Active\ data\ set/Aggregate\ variables\ in\ active\ data\ set...}.
+\item
+  Spesifikan variabel yang akan dilakukan agregasi, \emph{factor level} yang digunakan, dan fungsi agregat yang digunakan (lihat Tabel \ref{tab:agregat}). Klik \texttt{OK}.
+\item
+  Untuk mengecek dataset, klik \emph{toolbar} \texttt{View\ data\ set}.
+\end{enumerate}
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \ref{fig:agregatdata}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{./images/chp2/agregatvar} 
+
+}
+
+\caption{Tampilan tahapan agregasi variabel.}\label{fig:agregatdata}
+\end{figure}
+
+\begin{longtable}[]{@{}llll@{}}
+\caption{\label{tab:agregat} Penjelasan item jendela aggregate observations.}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+1.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Name for aggregated..\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{text input}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+input nama dataset baru yang dihasilkan\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+2.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Variables to aggregate\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{select box}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+daftar nama variabel yang dapat dipilih untuk diagregasi\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+3.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Aggregated by\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{select box}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+daftar nama variabel factor yang digunakan untuk agregasi\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+4.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Statistic\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{text imput}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+fungsi statistik yang digunakan untuk agregasi\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Sintaks untuk melakukan proses agragasi secara umu dituliskan sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datasetbaru<-}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(dataframe }\OperatorTok{~}\StringTok{ }\NormalTok{var_factor, }
+                        \DataTypeTok{data=}\NormalTok{dataset, }\DataTypeTok{FUN=}\NormalTok{statistic, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+Argumen \texttt{...} pada sintaks tersebut merupakan argumen tambahan pada fungsi statistik yang digunakan. Secara umum argumen tambahan yang digunakan fungsi yang ditampilkan pada Tabel \ref{tab:builtinfun} adalah \texttt{na.rm=TRUE}, yaitu: jika data mengandung \emph{missing value}, maka observasi yang mengandung \emph{missing value} tersebut akan di drop. Selain argumen tersebut, fungsi \texttt{quantile} memerlukan argumen spesifikasi \texttt{prob} atau spesifikasi kuantil yang akan ditampilkan (misal:\texttt{prob=0.5} untuk kuantil ke-50 atau median). Untuk menambahkan argumen tersebut, pembaca dapat menspesifikasikannya pada bagian \texttt{Statistic} pada jendela \texttt{aggregate\ observations} yaitu pada pilihan \texttt{Other\ (specify)} seperti yang ditunjukkan pada Gambar \ref{fig:agregatdata}.
 
 \hypertarget{melakukan-drop-observasi-pada-dataset}{%
 \subsection{\texorpdfstring{Melakukan \emph{Drop} Observasi pada Dataset}{Melakukan Drop Observasi pada Dataset}}\label{melakukan-drop-observasi-pada-dataset}}
 
+Kita dapat melakukan drop terhadap sejumlah baris observasi berdasarkan indeks (nomor baris observasinya) atau nama baris observasinya. Seleksi baris yang akan di\emph{drop} dilakukan menggunakan metode yang ditampilkan pada Tabel \ref{tab:recodevar}, yaitu: baris individual (contoh: \texttt{1}), set baris (contoh: \texttt{1,2,3..,k}), atau rentang baris (contoh: \texttt{1:5}) untuk seleksi menggunakan indeks. Langkah-langkah untuk melakukan seleksi baris yang akan di\emph{drop} adalah sebagai berikut:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Pada menu \texttt{Data}, klik \texttt{Data/Active\ data\ set/Remove\ row(s)\ from\ active\ data\ set...}.
+\item
+  Spesifikan index baris yang akan di drop dan nama output dataset baru (lihat Tabel \ref{tab:remove}). Klik \texttt{OK}.
+\item
+  Untuk mengecek dataset, klik \emph{toolbar} \texttt{View\ data\ set}.
+\end{enumerate}
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \ref{fig:removerow}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{./images/chp2/removerow} 
+
+}
+
+\caption{Tampilan tahapan melakukan drop observasi.}\label{fig:removerow}
+\end{figure}
+
+Sintaks yang digunakan untuk melakukan \emph{drop} baris observasi secara umu adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datasetbaru <-}\StringTok{ }\NormalTok{dataset[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(indeks),]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llll@{}}
+\caption{\label{tab:remove} Penjelasan item jendela remove rows from active data set.}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+1.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Indices or quoted\ldots{}\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{text input}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+indeks atau nama baris yang akan di \emph{drop} atau di hapus\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+2.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Name for new data set\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{text input}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+input nama dataset baru yang dihasilkan\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
 \hypertarget{melakukan-drop-observasi-dengan-missing-value}{%
 \subsection{\texorpdfstring{Melakukan \emph{Drop} Observasi dengan \emph{Missing Value}}{Melakukan Drop Observasi dengan Missing Value}}\label{melakukan-drop-observasi-dengan-missing-value}}
+
+Selain menggunakan submenu \texttt{subset\ active\ data\ set}, \emph{drop missing value} dapat pula dilakukan dengan menggunakan submenu \texttt{remove\ cases\ with\ missing\ data}. Perbedaan antara metode pertama dan kedua adalah pada metode kedua \emph{drop missing value} dilakukan pada seluruh variabel dalam dataset. Tahapan untuk melakukannya adalah sebagai berikut:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Pada menu \texttt{Data}, klik \texttt{Data/Active\ data\ set/Remove\ cases\ with\ missing\ data...}.
+\item
+  Spesifikan variabel yang akan dipilih untuk dataset baru dan nama output dataset (lihat Tabel \ref{tab:missing}). Klik \texttt{OK}.
+\item
+  Untuk mengecek dataset, klik \emph{toolbar} \texttt{View\ data\ set}.
+\end{enumerate}
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \ref{fig:missingval}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{./images/chp2/missingval} 
+
+}
+
+\caption{Tampilan tahapan melakukan drop observasi dengan missing value.}\label{fig:missingval}
+\end{figure}
+
+Sintaks untuk melakukan \emph{drop missing value} pada seluruh variabel dalam dataset secara umum adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datasetbaru <-}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(dataset)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llll@{}}
+\caption{\label{tab:missing} Penjelasan item jendela remove missing data.}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+1.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Include all variables\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{check box}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+pilihan apakah akan menyertakan seluruh variabel pada dataset baru atau tidak\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+2.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Variables\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{select box}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+daftar variabel yang dapat dipilih untuk disertakan dalam dataset baru\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+3.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Name for new data set\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{text input}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+input nama dataset baru\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
 \hypertarget{mengelompokkan-variabel-menjadi-variabel-factor-dan-nilai}{%
 \subsection{\texorpdfstring{Mengelompokkan Variabel Menjadi Variabel \emph{Factor} dan Nilai}{Mengelompokkan Variabel Menjadi Variabel Factor dan Nilai}}\label{mengelompokkan-variabel-menjadi-variabel-factor-dan-nilai}}
 
+Submenu \texttt{stack\ variables\ in\ active\ data\ set} membuat sebuah dataset baru dimana dua atau lebih variabel ditumpuk menjadi variabel satu variabel dengan nilai variabel sebelumnya ditampilkan pada variabel nilai. Jika terdapat \(n\) observasi dalam dataset dan \(k\) variabel, maka dataset baru akan terdiri dari 2 variabel (\emph{factor} dan \emph{numeric}) dan \(n\times k\) observasi. Tahapan untuk melakukannya adalah sebagai berikut:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Pada menu \texttt{Data}, klik \texttt{Data/Active\ data\ set/Stack\ variables\ in\ active\ data\ set...}.
+\item
+  Spesifikan variabel yang akan dipilih untuk dataset baru dan nama output dataset (lihat Tabel \ref{tab:stack}). Klik \texttt{OK}.
+\item
+  Untuk mengecek dataset, klik \emph{toolbar} \texttt{View\ data\ set}.
+\end{enumerate}
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \ref{fig:stackvar}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{./images/chp2/stackvar} 
+
+}
+
+\caption{Tampilan tahapan mengelompokkan variabel menjadi variabel factor dan nilai.}\label{fig:stackvar}
+\end{figure}
+
+Terdapat dua buah sintaks dalam melakukan proses pengelompokan data. Sintaks pertama melakukan pengelompokan data, sedangkan sintaks kedua merubah nama kolom dataset baru. Kedua sintaks tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datasetbaru <-}\StringTok{ }\KeywordTok{stack}\NormalTok{(dataset[, }\KeywordTok{c}\NormalTok{(}\StringTok{"variabel1"}\NormalTok{,}\StringTok{"variabel2"}\NormalTok{,..)])}
+\KeywordTok{names}\NormalTok{(datasetbaru) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"value"}\NormalTok{, }\StringTok{"factor"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llll@{}}
+\caption{\label{tab:stack} Penjelasan item jendela stack variables.}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+1.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Variables\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{select box}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+daftar variabel yang dapat dipilih untuk dikelompokkan\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+2.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Name for staked data..\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{text input}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+nama dataset baru hasil pengelompokan\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+3.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Name for variable\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{text input}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+nama variabel nilai hasil pengelompokkan\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+4.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Name for factor\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{text input}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+nama variabel \emph{factor} hasil pengelompokan nama variabel pada dataset sebelumnya\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
 \hypertarget{menggabungkan-dua-dataset}{%
 \subsection{Menggabungkan Dua Dataset}\label{menggabungkan-dua-dataset}}
+
+Untuk menggabungkan dua buah dataset, kedua dataset perlu memiliki elemen kunci yang sama. Secara \emph{default} \texttt{R\ Commander} mengambil \emph{rownames} sebagai elemen kunci, sehingga elemen kunci yang dimiliki oleh masing-masing dataframe haruslah konsisten satu sama lain. Penggabungan dataset dapat dilakukan melalui penggabungan kolom dan baris. Penggabungan juga dapat dilakukan melalui elemen unik dari baris maupun kolom. Maksudnya adalah \texttt{R\ Commander} hanya menggabungkan dataset yang memiliki elemen kunci sama (\emph{rownames} sama) pada kedua dataset. Jika terdapat observasi pada dataset 1 dan tidak memiliki \emph{rownames} atau elemen kunci sama pada dataset 2, maka observasi tersebut akan dihapus dari proses penggabungan data. Tahapan penggabungan dua buah dataset adalah sebagai berikut:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Pada menu \texttt{Data}, klik \texttt{Data/Merge\ data\ set...}.
+\item
+  Pada jendela yang muncul, klik dataset yang akan digabungkan dan cara penggabungannya (lihat Tabel \ref{tab:merge}). Klik \texttt{OK}.
+\item
+  Untuk mengecek dataset, klik \emph{toolbar} \texttt{View\ data\ set}.
+\end{enumerate}
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \ref{fig:mergedata}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{./images/chp2/merge} 
+
+}
+
+\caption{Tampilan tahapan menggabungkan dua buah dataset.}\label{fig:mergedata}
+\end{figure}
+
+Sintaks yang digunakan untuk menggabungkan dua buah dataset secara umum adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# penggabungan baris tanpa mempertimbangkan}
+\CommentTok{# elemen unik}
+\NormalTok{datasetbaru <-}\StringTok{ }\KeywordTok{mergeRows}\NormalTok{(data1, data2, }\DataTypeTok{common.only=}\OtherTok{FALSE}\NormalTok{)}
+
+\CommentTok{# pengagbungan kolom dengan mempertimbangkan}
+\CommentTok{# elemen unik}
+\NormalTok{datasetbaru <-}\StringTok{ }\KeywordTok{merge}\NormalTok{(data1, data2, }\DataTypeTok{all=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{by=}\StringTok{"row.names"}\NormalTok{)}
+\KeywordTok{rownames}\NormalTok{(datasetbaru) <-}\StringTok{ }\NormalTok{datasetbaru}\OperatorTok{$}\NormalTok{Row.names}
+\NormalTok{datasetbaru}\OperatorTok{$}\NormalTok{Row.names <-}\StringTok{ }\OtherTok{NULL}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llll@{}}
+\caption{\label{tab:merge} Penjelasan item jendela merge data sets.}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright
+\textbf{No.}\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+\textbf{Item}\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright
+\textbf{Jenis Input}\strut
+\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\textbf{Keterangan}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+1.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Name for merge data set\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{text input}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+input nama dataset baru\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+2.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+First Data set\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{select box}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+daftar dataset pertama yang akan digabung\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+3.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Second Data set\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{select box}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+daftar dataset kedua yang akan digabung\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+4.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Direction or Merge\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{radio button}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+pilihan cara penggabungan\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.04\columnwidth}\raggedright
+5.\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+Merge only common\ldots{}\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright
+\emph{check box}\strut
+\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
+opsi apakah hanya observasi dengan elemen unik yang ada pada dua buah dataset yang akan digabungkan\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
 \hypertarget{modifikasi-lainnya}{%
 \subsection{Modifikasi Lainnya}\label{modifikasi-lainnya}}
