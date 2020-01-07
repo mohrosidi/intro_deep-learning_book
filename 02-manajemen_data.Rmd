@@ -17,7 +17,7 @@ Pada Chapter \@ref(datamanage), penulis akan menjelaskan kepada pembaca bagaiman
 * Memodifikasi Variabel pada data, dan
 * Memanipulasi Dataset.
 
-## Operator Operasi Pada `R`
+## Operator Operasi Pada `R` {#opop}
 
 <style>
 body{
@@ -616,7 +616,7 @@ write.table(mtcars, "D:/mtcars2.csv", sep=",",
 |4.     | `Missing values`                | *text input*  |simbol atau karakter *missing value* yang digunakan pada file csv         |
 |5.     | `Field Separator`               | *radio button*|pemisah antar kolom data yang digunakan                                   |
 
-: (\#tab:exdata) Penjelasan jendela Export active data set.
+: (\#tab:exdata) Penjelasan item jendela Export active data set.
 
 
 ### Memuat Data
@@ -698,7 +698,7 @@ mtcars <- within(mtcars, {kategori <- Recode(mpg,
 |3.     |Make (each) variable.. | *check box*   |pilihan apakah variabel baru adalah factor |
 |4.     |Enter recode directives| *text input*  |kotak untuk memasukkan ketentuan *recode*  |
 
-: (\#tab:recodevar2) Penjelasan jendela Recode Variables.
+: (\#tab:recodevar2) Penjelasan item jendela Recode Variables.
 
 ### Komputasi Variabel Baru
 
@@ -854,7 +854,7 @@ dataset<- within(dataset, {
 |2.     |Factor levels          | *radio button*|pilihan apakah perlu menambahkan label pada *factor* atau tidak                                      |
 |3.     |New variable name or...| *text input*  |jika tidak diisi maka variabel lama akan diganti variabel baru (tidak ada variabel baru ditambahkan) |
 
-: (\#tab:numtofac2) Penjelasan convert numeric variables to factors.
+: (\#tab:numtofac2) Penjelasan item convert numeric variables to factors.
 
 ### Melakukan *Binning* pada Variabel *Numeric*
 
@@ -902,7 +902,7 @@ dataset$namavariabel <- with(dataset, binVariable(variabel,
 |4.     |Level Names            | *radio button*|spesifikasi metode penamaan bin                                                                      |
 |5.     |Binning Method         | *radio button*|spesifikasi metode *binning*                                                                         |
 
-: (\#tab:binvartab) Penjelasan convert numeric variables to factors.
+: (\#tab:binvartab) Penjelasan item jendela convert numeric variables to factors.
 
 
 ### Merubah Urutan *Factor Levels*
@@ -944,7 +944,7 @@ dataset$namavariabel <- with(dataset, factor(namavariabel,
 |2.     |Name for factor        | *text input*  |nama variabel *factor* yang baru (jika ingin membuat variabel baru)                                  |
 |3.     |Make ordered factor    | *check box*   |spesifikasi apakah *factor* akan diurutkan atau tidak                                                |
 
-: (\#tab:reofac) Penjelasan jendela reorder factor levels.
+: (\#tab:reofac) Penjelasan item jendela reorder factor levels.
 
 
 ### Melakukan *Drop* pada *Factor Levels*
@@ -1049,15 +1049,238 @@ Pada Chapter \@ref(transdata), kita akan belajar bagaimana memanipuasi dataset. 
 
 ### Melakukan Subset Dataset
 
-### Agregasi Variabel pada Dataset
+Pada analisis data, kita sering kali tidak membutuhkan seluruh observasi dari data yang kita miliki. Kita akan melakukan filter untuk memperoleh data sesuai dengan keperluan kita. Selain itu, melihat subset data berdasarkan kriteria tertentu membantu kita untuk melakukan analisis ekspolarif terhadap data yang kita miliki.
+
+Untuk melakukan subset data, kita memelukan sebuah ekpresi atau formula yang dapat mengecek satu persatu data yang memenuhi formula subset yang telah dibentuk. Sebagai contoh, kita ingin memperoleh dataset tanpa nilai *missing value* pada variabel `namavariabel`. Berikut adalah contoh sintaks formula atau ekspresi yang digunakan:
+
+```{r, eval=FALSE}
+!is.na(namavariabel)
+```
+
+Untuk membuat formula atau ekspresi tersebut, kita dapat menggunakan kembali operator operasi yang telah dijelaskan pada Chapter \@ref(opop). Langkah-langkah untuk melakukan subset pada dataset adalah sebagai berikut:
+
+1. Pada menu `Data`, klik `Data/Active data set/Subset active data set...`.
+2. Pada jendela yang muncul spesifikasikan variabel yang akan dipilih pada dataset baru dan formula subset yang digunakan (lihat Tabel \@ref(tab:subset)). Klik `OK`.
+3. Untuk mengecek dataset, klik *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:subsetdata).
+
+```{r subsetdata, echo=FALSE, fig.cap='Tampilan tahapan melakukan subset pada dataset.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/subsetdata.png"
+include_graphics(img1_path)
+
+```
+
+Secara umum sintaks untuk melakukan proses subset adalah sebagai berikut:
+
+```{r, eval=FALSE}
+contoh_subset <- subset(dataset,subset=formula_subset)
+```
+
+
+|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |Include all variables  | *check box*   |opsi apakah akan menyertakan seluruh variabel pada hasil subset                                      |
+|2.     |Variables              | *select box*  |daftar nama variabel yang dapat dipilih untuk ditampilkan pada hasil subset                          |
+|3.     |Subset expression      | *text input*  |formula atau ekpresi subset yang digunakan                                                           |
+|4.     |Name for new data set  | *text imput*  |opsi untuk memberikan nama pada dataset baru atau tidak (dataset lama akan dihapus)                  |
+
+: (\#tab:subset) Penjelasan item jendela subset data set.
+
+### Agregat Variabel pada Dataset
+
+Submenu `agregate variables in active dataset` memberikan ringkasan nilai satu atau beberapa variabel berdasarkan level variabel *factor* dan menghasilkan dataset baru dengan satu observasi untuk tiap level *factor*. Proses agregasi mengaplikasikan beberapa fungsi seperti `mean()`, `sum()`, atau fungsi lainnya untuk menghasilkan sebuah nilai untuk setiap observasi pada tiap variabel dan level *factor*.
+
+Fungsi statistika deskriptif bawaan yang dapat digunakan pada `R Commander` ditampilkan pada Tabel \@ref(tab:builtinfun).
+
+**Fungsi**     | **Keterangan**           
+---------------|----------------------------------
+`mean`         | rata-rata
+`median`       | median
+`sum`          | jumlah seluruh observasi dalam sebuah variabel
+`quantile`     | kuantil data
+`min`          | nilai observasi minimum
+`max`          | nilai observasi maksimum
+`IQR`          | rentang antar kuartil
+`mad`          | simpangan absolut median
+`sd`           | simpangan baku
+`var`          | varians
+
+: (\#tab:builtinfun) Fungsi statistika deskriptif bawaan pada R.
+
+Tahapan agregasi variabel dilakukan melalui langkah-langkah berikut:
+
+1. Pada menu `Data`, klik `Data/Active data set/Aggregate variables in active data set...`.
+2. Spesifikan variabel yang akan dilakukan agregasi, *factor level* yang digunakan, dan fungsi agregat yang digunakan (lihat Tabel \@ref(tab:agregat)). Klik `OK`.
+3. Untuk mengecek dataset, klik *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:agregatdata).
+
+```{r agregatdata, echo=FALSE, fig.cap='Tampilan tahapan agregasi variabel.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/agregatvar.png"
+include_graphics(img1_path)
+
+```
+
+|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |Name for aggregated..  | *text input*  |input nama dataset baru yang dihasilkan                                                              |
+|2.     |Variables to aggregate | *select box*  |daftar nama variabel yang dapat dipilih untuk diagregasi                                             |
+|3.     |Aggregated by          | *select box*  |daftar nama variabel factor yang digunakan untuk agregasi                                            |
+|4.     |Statistic              | *text imput*  |fungsi statistik yang digunakan untuk agregasi                                                       |
+
+: (\#tab:agregat) Penjelasan item jendela aggregate observations.
+
+Sintaks untuk melakukan proses agragasi secara umu dituliskan sebagai berikut:
+
+```{r, eval=FALSE}
+datasetbaru<- aggregate(dataframe ~ var_factor, 
+                        data=dataset, FUN=statistic, ...)
+```
+
+Argumen `...` pada sintaks tersebut merupakan argumen tambahan pada fungsi statistik yang digunakan. Secara umum argumen tambahan yang digunakan fungsi yang ditampilkan pada Tabel \@ref(tab:builtinfun) adalah `na.rm=TRUE`, yaitu: jika data mengandung *missing value*, maka observasi yang mengandung *missing value* tersebut akan di drop. Selain argumen tersebut, fungsi `quantile` memerlukan argumen spesifikasi `prob` atau spesifikasi kuantil yang akan ditampilkan (misal:`prob=0.5` untuk kuantil ke-50 atau median). Untuk menambahkan argumen tersebut, pembaca dapat menspesifikasikannya pada bagian `Statistic` pada jendela `aggregate observations` yaitu pada pilihan `Other (specify)` seperti yang ditunjukkan pada Gambar \@ref(fig:agregatdata).
+
 
 ### Melakukan *Drop* Observasi pada Dataset
 
+Kita dapat melakukan drop terhadap sejumlah baris observasi berdasarkan indeks (nomor baris observasinya) atau nama baris observasinya. Seleksi baris yang akan di*drop* dilakukan menggunakan metode yang ditampilkan pada Tabel \@ref(tab:recodevar), yaitu: baris individual (contoh: `1`), set baris (contoh: `1,2,3..,k`), atau rentang baris (contoh: `1:5`) untuk seleksi menggunakan indeks. Langkah-langkah untuk melakukan seleksi baris yang akan di*drop* adalah sebagai berikut:
+
+1. Pada menu `Data`, klik `Data/Active data set/Remove row(s) from active data set...`.
+2. Spesifikan index baris yang akan di drop dan nama output dataset baru (lihat Tabel \@ref(tab:remove)). Klik `OK`.
+3. Untuk mengecek dataset, klik *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:removerow).
+
+```{r removerow, echo=FALSE, fig.cap='Tampilan tahapan melakukan drop observasi.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/removerow.png"
+include_graphics(img1_path)
+
+```
+
+Sintaks yang digunakan untuk melakukan *drop* baris observasi secara umu adalah sebagai berikut:
+
+```{r, eval=FALSE}
+datasetbaru <- dataset[-c(indeks),]
+```
+
+|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |Indices or quoted...   | *text input*  |indeks atau nama baris yang akan di  *drop* atau di hapus                                            |
+|2.     |Name for new data set  | *text input*  |input nama dataset baru yang dihasilkan                                                              |
+
+: (\#tab:remove) Penjelasan item jendela remove rows from active data set.
+
+
 ### Melakukan *Drop* Observasi dengan *Missing Value*
+
+Selain menggunakan submenu `subset active data set`, *drop missing value* dapat pula dilakukan dengan menggunakan submenu `remove cases with missing data`. Perbedaan antara metode pertama dan kedua  adalah pada metode kedua *drop missing value* dilakukan pada seluruh variabel dalam dataset. Tahapan untuk melakukannya adalah sebagai berikut:
+
+1. Pada menu `Data`, klik `Data/Active data set/Remove cases with missing data...`.
+2. Spesifikan variabel yang akan dipilih untuk dataset baru dan nama output dataset (lihat Tabel \@ref(tab:missing)). Klik `OK`.
+3. Untuk mengecek dataset, klik *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:missingval).
+
+```{r missingval, echo=FALSE, fig.cap='Tampilan tahapan melakukan drop observasi dengan missing value.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/missingval.png"
+include_graphics(img1_path)
+
+```
+
+Sintaks untuk melakukan *drop missing value* pada seluruh variabel dalam dataset secara umum adalah sebagai berikut:
+
+```{r,eval=FALSE}
+datasetbaru <- na.omit(dataset)
+```
+
+|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |Include all variables  | *check box*   |pilihan apakah akan menyertakan seluruh variabel pada dataset baru atau tidak                        |
+|2.     |Variables              | *select box*  |daftar variabel yang dapat dipilih untuk disertakan dalam dataset baru                               |
+|3.     |Name for new data set  | *text input*  |input nama dataset baru                                                                              |
+
+: (\#tab:missing) Penjelasan item jendela remove missing data.
 
 ### Mengelompokkan Variabel Menjadi Variabel *Factor* dan Nilai
 
+Submenu `stack variables in active data set` membuat sebuah dataset baru dimana dua atau lebih variabel ditumpuk menjadi variabel satu variabel dengan nilai variabel sebelumnya ditampilkan pada variabel nilai. Jika terdapat $n$ observasi dalam dataset dan $k$ variabel, maka dataset baru akan terdiri dari 2 variabel (*factor* dan *numeric*) dan $n\times k$ observasi. Tahapan untuk melakukannya adalah sebagai berikut:
+
+1. Pada menu `Data`, klik `Data/Active data set/Stack variables in active data set...`.
+2. Spesifikan variabel yang akan dipilih untuk dataset baru dan nama output dataset (lihat Tabel \@ref(tab:stack)). Klik `OK`.
+3. Untuk mengecek dataset, klik *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:stackvar).
+
+```{r stackvar, echo=FALSE, fig.cap='Tampilan tahapan mengelompokkan variabel menjadi variabel factor dan nilai.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/stackvar.png"
+include_graphics(img1_path)
+
+```
+
+Terdapat dua buah sintaks dalam melakukan proses pengelompokan data. Sintaks pertama melakukan pengelompokan data, sedangkan sintaks kedua merubah nama kolom dataset baru. Kedua sintaks tersebut adalah sebagai berikut:
+
+```{r,eval=FALSE}
+datasetbaru <- stack(dataset[, c("variabel1","variabel2",..)])
+names(datasetbaru) <- c("value", "factor")
+```
+
+
+|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |Variables              | *select box*  |daftar variabel yang dapat dipilih untuk dikelompokkan                                               |
+|2.     |Name for staked data.. | *text input*  |nama dataset baru hasil pengelompokan                                                                |
+|3.     |Name for variable      | *text input*  |nama variabel nilai hasil pengelompokkan                                                             |
+|4.     |Name for factor        | *text input*  |nama variabel *factor* hasil pengelompokan nama variabel pada dataset sebelumnya                     |
+
+: (\#tab:stack) Penjelasan item jendela stack variables.
+
 ### Menggabungkan Dua Dataset
+
+Untuk menggabungkan dua buah dataset, kedua dataset perlu memiliki elemen kunci yang sama. Secara *default* `R Commander` mengambil *rownames* sebagai elemen kunci, sehingga elemen kunci yang dimiliki oleh masing-masing dataframe haruslah konsisten satu sama lain. Penggabungan dataset dapat dilakukan melalui penggabungan kolom dan baris. Penggabungan juga dapat dilakukan melalui elemen unik dari baris maupun kolom. Maksudnya adalah `R Commander` hanya menggabungkan dataset yang memiliki elemen kunci sama (*rownames* sama) pada kedua dataset. Jika terdapat observasi pada dataset 1 dan tidak memiliki *rownames* atau elemen kunci sama pada dataset 2, maka  observasi tersebut akan dihapus dari proses penggabungan data. Tahapan penggabungan dua buah dataset adalah sebagai berikut:
+
+1. Pada menu `Data`, klik `Data/Merge data set...`.
+2. Pada jendela yang muncul, klik dataset yang akan digabungkan dan cara penggabungannya (lihat Tabel \@ref(tab:merge)). Klik `OK`.
+3. Untuk mengecek dataset, klik *toolbar* `View data set`.
+
+Visualisasi tahapan tersebut ditampilkan pada Gambar \@ref(fig:mergedata).
+
+```{r mergedata, echo=FALSE, fig.cap='Tampilan tahapan menggabungkan dua buah dataset.', tidy=FALSE, out.width='70%', fig.align='center', warning=FALSE, message=FALSE}
+library(knitr)
+img1_path <- "./images/chp2/merge.png"
+include_graphics(img1_path)
+
+```
+
+Sintaks yang digunakan untuk menggabungkan dua buah dataset secara umum adalah sebagai berikut:
+
+```{r,eval=FALSE}
+# penggabungan baris tanpa mempertimbangkan
+# elemen unik
+datasetbaru <- mergeRows(data1, data2, common.only=FALSE)
+
+# pengagbungan kolom dengan mempertimbangkan
+# elemen unik
+datasetbaru <- merge(data1, data2, all=FALSE, by="row.names")
+rownames(datasetbaru) <- datasetbaru$Row.names
+datasetbaru$Row.names <- NULL
+
+```
+
+|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |Name for merge data set| *text input*  |input nama dataset baru                                                                              |
+|2.     |First Data set         | *select box*  |daftar dataset pertama yang akan digabung                                                            |
+|3.     |Second Data set        | *select box*  |daftar dataset kedua yang akan digabung                                                              |
+|4.     |Direction or Merge     | *radio button*|pilihan cara penggabungan                                                                            |
+|5.     |Merge only common...   | *check box*   |opsi apakah hanya observasi dengan elemen unik yang ada pada dua buah dataset yang akan digabungkan  |
+
+: (\#tab:merge) Penjelasan item jendela merge data sets.
+
 
 ### Modifikasi Lainnya
 

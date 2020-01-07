@@ -1,5 +1,5 @@
 --- 
-title: "Analisis Statistika Menggunakan R Commander"
+title: "Panduan Lengkap Analisis Statistika Menggunakan R Commander"
 author: "Mohammad Rosidi"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
