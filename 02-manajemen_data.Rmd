@@ -1284,4 +1284,73 @@ datasetbaru$Row.names <- NULL
 
 ### Modifikasi Lainnya
 
+Daftar submenu yang digunakan untuk melakukan modifikasi dataset lainnya pada `R Commander`, antara lain:
+
+* `Select active data set` : submenu ini memiliki fungsi sama dengan *toolbar* `Data set`, yaitu: memilih dataset yang diaktifkan. Jika pada jendela yang muncul terdapat beberapa dataset yang dapat diaktifkan, pembaca dapat memilih satu dataset dari daftar tersebut untuk diaktifkan.
+* `Refresh active data set` : submenu yang berfungsi untuk melakukan *reset* informasi yang dipertahankan terkait dataset yang aktif, seperti: nama vraiabel pada dataset, jenis data pada dataset tersebut, dll. Pembaca mungkinperlu melakukan *refresh* terhadap dataset yang aktif jika pembaca melakukan sebuah perubahan pada dataset tersebut diluar menu `R Commander`.
+* `Help on active data set` : menampilkan dokumentasi terkait dataset yang aktif (biasanya dataset yang ada dalam sebuah paket).
+* `Variables in active data set` : menampilkan daftar variabel yang ada dalam data set.
+* `Set case name` : memilih sebuah variabel pada dataset aktif dan selanjutnya menjadikan variabel tersebut sebagai *rownames* observasi dalam dataset tersebut.
+
+## Latihan
+
+1. Sebuah IPAL memiliki laporan hasil pemantauan parameter *dissolved oxygen* (DO) dan *biochemical oxygen demand* (BOD) pada outlet IPAL yang ditampilkan pada Tabel \@ref(tab:soal1). Inputkan data tersebut ke dalam `R Commander`!
+
+```{r soal1, echo=FALSE, message=FALSE, warning=FALSE}
+Bulan <- 1:12
+DO <- round(rnorm(12, mean=4, sd=2),2)
+BOD <- round(rnorm(12, mean=10, sd=1.5),2)
+
+df <- data.frame(Bulan, DO, BOD)
+
+
+knitr::kable(
+  df, caption = 'Hasil pemantauan parameter DO dan BOD outlet IPAL X'
+)
+```
+
+2. Data pengukuran inlet dan outlet konsentrasi BOD, COD, dan DO dari 10 IPAL yang ada di Kota X ditampilkan pada Tabel \@ref(tab:soal2). Hitung efisiensi pengolahan masing-masing IPAL tersebut untuk ketiga parameter tersebut dan amati perubahan rasio BOD/COD pada inlet dan outlet masing-masing IPAL tersebut!
+
+```{r soal2, echo=FALSE, message=FALSE, warning=FALSE}
+IPAL <- 1:10
+nama <- NULL
+for(i in IPAL){
+  nama[i] <- paste0("IPAL ", i)
+}
+DOinlet <- round(rnorm(10, mean=5, sd=1),2)
+BODinlet <- round(rnorm(10, mean=35, sd=4),2)
+CODinlet <- round(rnorm(10, mean=50, sd=5),2)
+DOoutlet <- round(rnorm(10, mean=2, sd=1),2)
+BODoutlet <- round(rnorm(10, mean=10, sd=4),2)
+CODoutlet <- round(rnorm(10, mean=20, sd=5),2)
+
+df <- data.frame(DOinlet, DOoutlet, BODinlet, BODoutlet, CODinlet, CODoutlet)
+rownames(df) <- nama
+
+
+knitr::kable(
+  df, caption = 'Hasil pemantauan parameter DO,BOD,dan COD 10 IPAL Kota X'
+)
+```
+
+3. Lakukan *data merging* pada elemen unik antara Tabel \@ref(tab:soal2) dan Tabel \@ref(tab:soal3)!
+
+```{r soal3, echo=FALSE, message=FALSE, warning=FALSE}
+IPAL <- 1:12
+nama <- NULL
+for(i in IPAL){
+  nama[i] <- paste0("IPAL ", i)
+}
+TSSinlet <- round(rnorm(12, mean=20, sd=1),2)
+TSSoutlet <- round(rnorm(12, mean=10, sd=4),2)
+
+
+df <- data.frame(TSSinlet,TSSoutlet)
+rownames(df) <- nama
+
+
+knitr::kable(
+  df, caption = 'Hasil pemantauan parameter TSS 12 IPAL Kota X'
+)
+```
 

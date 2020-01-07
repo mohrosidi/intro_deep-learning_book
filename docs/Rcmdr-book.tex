@@ -3730,6 +3730,149 @@ opsi apakah hanya observasi dengan elemen unik yang ada pada dua buah dataset ya
 \hypertarget{modifikasi-lainnya}{%
 \subsection{Modifikasi Lainnya}\label{modifikasi-lainnya}}
 
+Daftar submenu yang digunakan untuk melakukan modifikasi dataset lainnya pada \texttt{R\ Commander}, antara lain:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Select\ active\ data\ set} : submenu ini memiliki fungsi sama dengan \emph{toolbar} \texttt{Data\ set}, yaitu: memilih dataset yang diaktifkan. Jika pada jendela yang muncul terdapat beberapa dataset yang dapat diaktifkan, pembaca dapat memilih satu dataset dari daftar tersebut untuk diaktifkan.
+\item
+  \texttt{Refresh\ active\ data\ set} : submenu yang berfungsi untuk melakukan \emph{reset} informasi yang dipertahankan terkait dataset yang aktif, seperti: nama vraiabel pada dataset, jenis data pada dataset tersebut, dll. Pembaca mungkinperlu melakukan \emph{refresh} terhadap dataset yang aktif jika pembaca melakukan sebuah perubahan pada dataset tersebut diluar menu \texttt{R\ Commander}.
+\item
+  \texttt{Help\ on\ active\ data\ set} : menampilkan dokumentasi terkait dataset yang aktif (biasanya dataset yang ada dalam sebuah paket).
+\item
+  \texttt{Variables\ in\ active\ data\ set} : menampilkan daftar variabel yang ada dalam data set.
+\item
+  \texttt{Set\ case\ name} : memilih sebuah variabel pada dataset aktif dan selanjutnya menjadikan variabel tersebut sebagai \emph{rownames} observasi dalam dataset tersebut.
+\end{itemize}
+
+\hypertarget{latihan}{%
+\section{Latihan}\label{latihan}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Sebuah IPAL memiliki laporan hasil pemantauan parameter \emph{dissolved oxygen} (DO) dan \emph{biochemical oxygen demand} (BOD) pada outlet IPAL yang ditampilkan pada Tabel \ref{tab:soal1}. Inputkan data tersebut ke dalam \texttt{R\ Commander}!
+\end{enumerate}
+
+\begin{table}
+
+\caption{\label{tab:soal1}Hasil pemantauan parameter DO dan BOD outlet IPAL X}
+\centering
+\begin{tabular}[t]{r|r|r}
+\hline
+Bulan & DO & BOD\\
+\hline
+1 & 1.09 & 10.09\\
+\hline
+2 & 5.23 & 8.13\\
+\hline
+3 & 6.95 & 11.13\\
+\hline
+4 & 4.35 & 9.27\\
+\hline
+5 & 6.96 & 12.01\\
+\hline
+6 & -0.96 & 10.26\\
+\hline
+7 & 3.47 & 11.84\\
+\hline
+8 & 3.98 & 11.40\\
+\hline
+9 & 5.68 & 9.20\\
+\hline
+10 & 4.72 & 9.55\\
+\hline
+11 & 4.13 & 8.04\\
+\hline
+12 & 5.93 & 11.05\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Data pengukuran inlet dan outlet konsentrasi BOD, COD, dan DO dari 10 IPAL yang ada di Kota X ditampilkan pada Tabel \ref{tab:soal2}. Hitung efisiensi pengolahan masing-masing IPAL tersebut untuk ketiga parameter tersebut dan amati perubahan rasio BOD/COD pada inlet dan outlet masing-masing IPAL tersebut!
+\end{enumerate}
+
+\begin{table}
+
+\caption{\label{tab:soal2}Hasil pemantauan parameter DO,BOD,dan COD 10 IPAL Kota X}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r|r}
+\hline
+  & DOinlet & DOoutlet & BODinlet & BODoutlet & CODinlet & CODoutlet\\
+\hline
+IPAL 1 & 6.27 & 0.87 & 34.35 & 9.08 & 59.30 & 11.62\\
+\hline
+IPAL 2 & 5.10 & 2.12 & 37.19 & 9.11 & 53.20 & 25.19\\
+\hline
+IPAL 3 & 4.26 & 2.76 & 28.87 & 10.24 & 49.30 & 27.90\\
+\hline
+IPAL 4 & 4.29 & 3.02 & 37.38 & 4.75 & 51.94 & 17.89\\
+\hline
+IPAL 5 & 5.51 & 1.66 & 24.23 & 13.54 & 54.57 & 28.06\\
+\hline
+IPAL 6 & 4.19 & 0.32 & 33.26 & 8.63 & 45.55 & 23.26\\
+\hline
+IPAL 7 & 6.18 & 2.82 & 31.13 & 11.14 & 50.75 & 23.36\\
+\hline
+IPAL 8 & 6.00 & 1.51 & 32.37 & 13.51 & 54.50 & 8.00\\
+\hline
+IPAL 9 & 4.03 & 0.87 & 38.60 & 6.98 & 49.33 & 18.27\\
+\hline
+IPAL 10 & 4.92 & 2.61 & 33.78 & 8.76 & 58.32 & 28.17\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Lakukan \emph{data merging} pada elemen unik antara Tabel \ref{tab:soal2} dan Tabel \ref{tab:soal3}!
+\end{enumerate}
+
+\begin{table}
+
+\caption{\label{tab:soal3}Hasil pemantauan parameter TSS 12 IPAL Kota X}
+\centering
+\begin{tabular}[t]{l|r|r}
+\hline
+  & TSSinlet & TSSoutlet\\
+\hline
+IPAL 1 & 20.69 & 8.01\\
+\hline
+IPAL 2 & 20.23 & 20.62\\
+\hline
+IPAL 3 & 19.21 & 14.88\\
+\hline
+IPAL 4 & 18.66 & 12.91\\
+\hline
+IPAL 5 & 20.31 & 6.45\\
+\hline
+IPAL 6 & 18.54 & 9.33\\
+\hline
+IPAL 7 & 21.25 & 5.27\\
+\hline
+IPAL 8 & 19.56 & 17.32\\
+\hline
+IPAL 9 & 19.09 & 9.68\\
+\hline
+IPAL 10 & 21.04 & 9.41\\
+\hline
+IPAL 11 & 20.43 & 15.62\\
+\hline
+IPAL 12 & 20.19 & 8.42\\
+\hline
+\end{tabular}
+\end{table}
+
 \hypertarget{ringkasan-dan-visualisasi-data}{%
 \chapter{Ringkasan dan Visualisasi Data}\label{ringkasan-dan-visualisasi-data}}
 
