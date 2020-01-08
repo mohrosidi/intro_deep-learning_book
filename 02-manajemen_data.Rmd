@@ -218,13 +218,13 @@ Data pada `R` dapat dikelompokan berdasarkan beberapa tipe. Tipe data pada `R` d
 
 **Tipe Data**  | **Contoh**              | **Keterangan**
 ---------------|-------------------------|---------------------------------------------------------------------------------
-Logical        | TRUE, FALSE             | Nilai Boolean
-Numeric        | 12.3, 5, 999            | Segala jenis angka
-Integer        | 23L, 97L, 3L            | Bilangan integer (bilangan bulat)
-Complex        | 2i, 3i, 9i              | Bilangan kompleks
-Character      | 'a', "b", "123"         | Karakter dan string
-Factor         | 1, 0, "Merah"           | Dapat berupa numerik atau string (namun pada proses akan terbaca sebagai angka)
-Raw            | Identik dengan "hello"  | Segala jenis data yang disimpan sebagai raw bytes
+`Logical`      | TRUE, FALSE             | Nilai Boolean
+`Numeric`      | 12.3, 5, 999            | Segala jenis angka
+`Integer`      | 23L, 97L, 3L            | Bilangan integer (bilangan bulat)
+`Complex`      | 2i, 3i, 9i              | Bilangan kompleks
+`Character`    | 'a', "b", "123"         | Karakter dan string
+`Factor`       | 1, 0, "Merah"           | Dapat berupa numerik atau string (namun pada proses akan terbaca sebagai angka)
+`Raw `         | Identik dengan "hello"  | Segala jenis data yang disimpan sebagai raw bytes
 
 : (\#tab:tipedata) Tipe data `R`.
 
@@ -691,12 +691,12 @@ mtcars <- within(mtcars, {kategori <- Recode(mpg,
 })
 ```
 
-|**No.**|**Item**               |**Jenis Input**| **Keterangan**                            |
-|:------|:----------------------|:--------------|:------------------------------------------|
-|1.     |Variables to recode    | *select box*  |daftar nama variabel yang akan di *recode* |
-|2.     |New variable name or.. | *text input*  |nama baru untuk variabel yang dibuat       |
-|3.     |Make (each) variable.. | *check box*   |pilihan apakah variabel baru adalah factor |
-|4.     |Enter recode directives| *text input*  |kotak untuk memasukkan ketentuan *recode*  |
+|**No.**|**Item**                 |**Jenis Input**| **Keterangan**                            |
+|:------|:------------------------|:--------------|:------------------------------------------|
+|1.     |`Variables to recode`    | *select box*  |daftar nama variabel yang akan di *recode* |
+|2.     |`New variable name ...`  | *text input*  |nama baru untuk variabel yang dibuat       |
+|3.     |`Make (each) variable..` | *check box*   |pilihan apakah variabel baru adalah factor |
+|4.     |`Enter recode directives`| *text input*  |kotak untuk memasukkan ketentuan *recode*  |
 
 : (\#tab:recodevar2) Penjelasan item jendela Recode Variables.
 
@@ -848,11 +848,11 @@ dataset<- within(dataset, {
 })
 ```
 
-|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
-|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
-|1.     |Variables              | *select box*  |daftar nama variabel yang akan diubah menjadi *factor*                                               |
-|2.     |Factor levels          | *radio button*|pilihan apakah perlu menambahkan label pada *factor* atau tidak                                      |
-|3.     |New variable name or...| *text input*  |jika tidak diisi maka variabel lama akan diganti variabel baru (tidak ada variabel baru ditambahkan) |
+|**No.**|**Item**                 |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:------------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |`Variables`              | *select box*  |daftar nama variabel yang akan diubah menjadi *factor*                                               |
+|2.     |`Factor levels`          | *radio button*|pilihan apakah perlu menambahkan label pada *factor* atau tidak                                      |
+|3.     |`New variable name or...`| *text input*  |jika tidak diisi maka variabel lama akan diganti variabel baru (tidak ada variabel baru ditambahkan) |
 
 : (\#tab:numtofac2) Penjelasan item convert numeric variables to factors.
 
@@ -896,11 +896,11 @@ dataset$namavariabel <- with(dataset, binVariable(variabel,
 
 |**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
 |:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
-|1.     |Variables to bin       | *select box*  |daftar nama variabel *numeric* yang akan dilakukan *binning*                                         |
-|2.     |New variable name      | *text input*  |Input nama variabel baru                                                                             |
-|3.     |Number of bins         | *slider*      |spesifikasi jumlah bin atau kelas yang digunakan                                                     |
-|4.     |Level Names            | *radio button*|spesifikasi metode penamaan bin                                                                      |
-|5.     |Binning Method         | *radio button*|spesifikasi metode *binning*                                                                         |
+|1.     |`Variables to bin`     | *select box*  |daftar nama variabel *numeric* yang akan dilakukan *binning*                                         |
+|2.     |`New variable name`    | *text input*  |Input nama variabel baru                                                                             |
+|3.     |`Number of bins`       | *slider*      |spesifikasi jumlah bin atau kelas yang digunakan                                                     |
+|4.     |`Level Names`          | *radio button*|spesifikasi metode penamaan bin                                                                      |
+|5.     |`Binning Method`       | *radio button*|spesifikasi metode *binning*                                                                         |
 
 : (\#tab:binvartab) Penjelasan item jendela convert numeric variables to factors.
 
@@ -940,9 +940,9 @@ dataset$namavariabel <- with(dataset, factor(namavariabel,
 
 |**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
 |:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
-|1.     |Factor                 | *select box*  |daftar variabel *factor* pada dataset                                                                |
-|2.     |Name for factor        | *text input*  |nama variabel *factor* yang baru (jika ingin membuat variabel baru)                                  |
-|3.     |Make ordered factor    | *check box*   |spesifikasi apakah *factor* akan diurutkan atau tidak                                                |
+|1.     |`Factor`               | *select box*  |daftar variabel *factor* pada dataset                                                                |
+|2.     |`Name for factor`      | *text input*  |nama variabel *factor* yang baru (jika ingin membuat variabel baru)                                  |
+|3.     |`Make ordered factor`  | *check box*   |spesifikasi apakah *factor* akan diurutkan atau tidak                                                |
 
 : (\#tab:reofac) Penjelasan item jendela reorder factor levels.
 
@@ -1081,10 +1081,10 @@ contoh_subset <- subset(dataset,subset=formula_subset)
 
 |**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
 |:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
-|1.     |Include all variables  | *check box*   |opsi apakah akan menyertakan seluruh variabel pada hasil subset                                      |
-|2.     |Variables              | *select box*  |daftar nama variabel yang dapat dipilih untuk ditampilkan pada hasil subset                          |
-|3.     |Subset expression      | *text input*  |formula atau ekpresi subset yang digunakan                                                           |
-|4.     |Name for new data set  | *text imput*  |opsi untuk memberikan nama pada dataset baru atau tidak (dataset lama akan dihapus)                  |
+|1.     |`Include all variables`| *check box*   |opsi apakah akan menyertakan seluruh variabel pada hasil subset                                      |
+|2.     |`Variables`            | *select box*  |daftar nama variabel yang dapat dipilih untuk ditampilkan pada hasil subset                          |
+|3.     |`Subset expression`    | *text input*  |formula atau ekpresi subset yang digunakan                                                           |
+|4.     |`Name for new data set`| *text imput*  |opsi untuk memberikan nama pada dataset baru atau tidak (dataset lama akan dihapus)                  |
 
 : (\#tab:subset) Penjelasan item jendela subset data set.
 
@@ -1124,12 +1124,12 @@ include_graphics(img1_path)
 
 ```
 
-|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
-|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
-|1.     |Name for aggregated..  | *text input*  |input nama dataset baru yang dihasilkan                                                              |
-|2.     |Variables to aggregate | *select box*  |daftar nama variabel yang dapat dipilih untuk diagregasi                                             |
-|3.     |Aggregated by          | *select box*  |daftar nama variabel factor yang digunakan untuk agregasi                                            |
-|4.     |Statistic              | *text imput*  |fungsi statistik yang digunakan untuk agregasi                                                       |
+|**No.**|**Item**                 |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:------------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |`Name for aggregated..`  | *text input*  |input nama dataset baru yang dihasilkan                                                              |
+|2.     |`Variables to aggregate` | *select box*  |daftar nama variabel yang dapat dipilih untuk diagregasi                                             |
+|3.     |`Aggregated by`          | *select box*  |daftar nama variabel factor yang digunakan untuk agregasi                                            |
+|4.     |`Statistic`              | *text imput*  |fungsi statistik yang digunakan untuk agregasi                                                       |
 
 : (\#tab:agregat) Penjelasan item jendela aggregate observations.
 
@@ -1168,8 +1168,8 @@ datasetbaru <- dataset[-c(indeks),]
 
 |**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
 |:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
-|1.     |Indices or quoted...   | *text input*  |indeks atau nama baris yang akan di  *drop* atau di hapus                                            |
-|2.     |Name for new data set  | *text input*  |input nama dataset baru yang dihasilkan                                                              |
+|1.     |`Indices or quoted...` | *text input*  |indeks atau nama baris yang akan di  *drop* atau di hapus                                            |
+|2.     |`Name for new data set`| *text input*  |input nama dataset baru yang dihasilkan                                                              |
 
 : (\#tab:remove) Penjelasan item jendela remove rows from active data set.
 
@@ -1199,9 +1199,9 @@ datasetbaru <- na.omit(dataset)
 
 |**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
 |:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
-|1.     |Include all variables  | *check box*   |pilihan apakah akan menyertakan seluruh variabel pada dataset baru atau tidak                        |
-|2.     |Variables              | *select box*  |daftar variabel yang dapat dipilih untuk disertakan dalam dataset baru                               |
-|3.     |Name for new data set  | *text input*  |input nama dataset baru                                                                              |
+|1.     |`Include all variables`| *check box*   |pilihan apakah akan menyertakan seluruh variabel pada dataset baru atau tidak                        |
+|2.     |`Variables`            | *select box*  |daftar variabel yang dapat dipilih untuk disertakan dalam dataset baru                               |
+|3.     |`Name for new data set`| *text input*  |input nama dataset baru                                                                              |
 
 : (\#tab:missing) Penjelasan item jendela remove missing data.
 
@@ -1230,12 +1230,12 @@ names(datasetbaru) <- c("value", "factor")
 ```
 
 
-|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
-|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
-|1.     |Variables              | *select box*  |daftar variabel yang dapat dipilih untuk dikelompokkan                                               |
-|2.     |Name for staked data.. | *text input*  |nama dataset baru hasil pengelompokan                                                                |
-|3.     |Name for variable      | *text input*  |nama variabel nilai hasil pengelompokkan                                                             |
-|4.     |Name for factor        | *text input*  |nama variabel *factor* hasil pengelompokan nama variabel pada dataset sebelumnya                     |
+|**No.**|**Item**                 |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:------------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |`Variables`              | *select box*  |daftar variabel yang dapat dipilih untuk dikelompokkan                                               |
+|2.     |`Name for staked data..` | *text input*  |nama dataset baru hasil pengelompokan                                                                |
+|3.     |`Name for variable`      | *text input*  |nama variabel nilai hasil pengelompokkan                                                             |
+|4.     |`Name for factor`        | *text input*  |nama variabel *factor* hasil pengelompokan nama variabel pada dataset sebelumnya                     |
 
 : (\#tab:stack) Penjelasan item jendela stack variables.
 
@@ -1271,13 +1271,13 @@ datasetbaru$Row.names <- NULL
 
 ```
 
-|**No.**|**Item**               |**Jenis Input**| **Keterangan**                                                                                      |
-|:------|:----------------------|:--------------|:----------------------------------------------------------------------------------------------------|
-|1.     |Name for merge data set| *text input*  |input nama dataset baru                                                                              |
-|2.     |First Data set         | *select box*  |daftar dataset pertama yang akan digabung                                                            |
-|3.     |Second Data set        | *select box*  |daftar dataset kedua yang akan digabung                                                              |
-|4.     |Direction or Merge     | *radio button*|pilihan cara penggabungan                                                                            |
-|5.     |Merge only common...   | *check box*   |opsi apakah hanya observasi dengan elemen unik yang ada pada dua buah dataset yang akan digabungkan  |
+|**No.**|**Item**                 |**Jenis Input**| **Keterangan**                                                                                      |
+|:------|:------------------------|:--------------|:----------------------------------------------------------------------------------------------------|
+|1.     |`Name for merge data set`| *text input*  |input nama dataset baru                                                                              |
+|2.     |`First Data set`         | *select box*  |daftar dataset pertama yang akan digabung                                                            |
+|3.     |`Second Data set`        | *select box*  |daftar dataset kedua yang akan digabung                                                              |
+|4.     |`Direction or Merge`     | *radio button*|pilihan cara penggabungan                                                                            |
+|5.     |`Merge only common...`   | *check box*   |opsi apakah hanya observasi dengan elemen unik yang ada pada dua buah dataset yang akan digabungkan  |
 
 : (\#tab:merge) Penjelasan item jendela merge data sets.
 
