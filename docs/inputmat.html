@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Pengenalan Deep Learning</title>
+  <title>2.3 Matriks Input | Pengenalan Deep Learning</title>
   <meta name="description" content="Buku ini merupakan reading suplement untuk kursus pengenalan deep learning." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Pengenalan Deep Learning" />
+  <meta property="og:title" content="2.3 Matriks Input | Pengenalan Deep Learning" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/cover.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Pengenalan Deep Learning" />
+  <meta name="twitter:title" content="2.3 Matriks Input | Pengenalan Deep Learning" />
   
   <meta name="twitter:description" content="Buku ini merupakan reading suplement untuk kursus pengenalan deep learning." />
   <meta name="twitter:image" content="images/cover.png" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2020-03-05" />
+<meta name="date" content="2020-03-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="intro.html"/>
+<link rel="prev" href="forwardprop.html"/>
+<link rel="next" href="initialization.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -73,12 +73,8 @@
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Pengantar Deep Learning</a></li>
 <li class="chapter" data-level="2" data-path="DL.html"><a href="DL.html"><i class="fa fa-check"></i><b>2</b> Konsep Proses Pembelajaran <em>Deep Learning</em></a><ul>
 <li class="chapter" data-level="2.1" data-path="notation.html"><a href="notation.html"><i class="fa fa-check"></i><b>2.1</b> Notasi Matematika</a></li>
-<li class="chapter" data-level="2.2" data-path="forwardprop.html"><a href="forwardprop.html"><i class="fa fa-check"></i><b>2.2</b> Konsep Propagasi Maju</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="forwardprop.html"><a href="forwardprop.html#inputmat"><i class="fa fa-check"></i><b>2.2.1</b> Matriks Input</a></li>
-<li class="chapter" data-level="2.2.2" data-path="forwardprop.html"><a href="forwardprop.html#biasmat"><i class="fa fa-check"></i><b>2.2.2</b> Matriks Bias</a></li>
-<li class="chapter" data-level="2.2.3" data-path="forwardprop.html"><a href="forwardprop.html#weightmat"><i class="fa fa-check"></i><b>2.2.3</b> Matriks Bobot</a></li>
-<li class="chapter" data-level="2.2.4" data-path="forwardprop.html"><a href="forwardprop.html#active"><i class="fa fa-check"></i><b>2.2.4</b> Fungsi Aktivasi</a></li>
-</ul></li>
+<li class="chapter" data-level="2.2" data-path="forwardprop.html"><a href="forwardprop.html"><i class="fa fa-check"></i><b>2.2</b> Konsep Propagasi Maju</a></li>
+<li class="chapter" data-level="2.3" data-path="inputmat.html"><a href="inputmat.html"><i class="fa fa-check"></i><b>2.3</b> Matriks Input</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="initialization.html"><a href="initialization.html"><i class="fa fa-check"></i><b>3</b> Inisialisasi Parameter ANN</a></li>
 <li class="chapter" data-level="4" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>4</b> Optimasi Model ANN</a></li>
@@ -103,26 +99,71 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Pengenalan Deep Learning</h1>
-<p class="author"><em>Mohammad Rosidi</em></p>
-<p class="date"><em>2020-03-05</em></p>
-</div>
-<div id="pengantar" class="section level1 unnumbered">
-<h1>Pengantar</h1>
-<style>
-body{
-text-align: justify}
-</style>
+<div id="inputmat" class="section level2">
+<h2><span class="header-section-number">2.3</span> Matriks Input</h2>
+<p>Misalkan terdapat sebuah persamaan linier dengan jumlah fitur <span class="math inline">\(n\)</span> :</p>
+<p><span class="math display" id="eq:lineq">\[\begin{equation}
+y^{\left(i\right)}=w_0+w_1x_1^{\left(i\right)}+w_2x_2^{\left(i\right)}+\cdots+w_nx_n^{\left(i\right)}+\epsilon_i^{\left(i\right)}\ \ untuk\ i=1,\dots,m
+  \tag{2.1}
+\end{equation}\]</span></p>
+<p>Kita dapat merepresentasikan Persamaan <a href="inputmat.html#eq:lineq">(2.1)</a> ke dalam notasi matriks yang ditunjukkan pada Persamaan <a href="inputmat.html#eq:lineq2">(2.2)</a></p>
+<p><span class="math display" id="eq:lineq2">\[\begin{equation}
+\begin{split}
+\begin{bmatrix}
+y_1 \\[0.3em]
+y_2 \\[0.3em]
+\vdots \\[0.3em] 
+y_m 
+\end{bmatrix} &amp; = \begin{bmatrix}
+       1       &amp; x_{1}^{\left(1\right)} &amp; x_{1}^{\left(1\right)} &amp; \cdots &amp; x_{n}^{\left(1\right)}           \\[0.3em]
+       1       &amp; x_{1}^{\left(2\right)} &amp; x_{1}^{\left(2\right)} &amp; \cdots &amp; x_{n}^{\left(2\right)}           \\[0.3em]
+       \vdots  &amp; \vdots                 &amp; \vdots                 &amp; \ddots &amp; \vdots                           \\[0.3em]
+       1       &amp; x_{1}^{\left(m\right)} &amp; x_{1}^{\left(m\right)} &amp; \cdots &amp; x_{n}^{\left(m\right)}           \\[0.3em]
+     \end{bmatrix}
+     
+\begin{bmatrix}
+w_1 \\[0.3em]
+w_2 \\[0.3em]
+\vdots \\[0.3em] 
+w_m
+\end{bmatrix}
+     
++ \begin{bmatrix}
+\epsilon_1 \\[0.3em]
+\epsilon_2 \\[0.3em]
+\vdots \\[0.3em] 
+\epsilon_m
+\end{bmatrix} \\
+&amp; = \begin{bmatrix}
+w_1 &amp; w_2 &amp; \cdots &amp; w_m 
+\end{bmatrix}
+
+\begin{bmatrix}
+       1                            &amp; 1                      &amp;  \cdots                &amp; 1                                         \\[0.3em]
+       x_{1}^{\left(2\right)}       &amp; x_{1}^{\left(2\right)} &amp; \cdots                 &amp; x_{n}^{\left(m\right)}           \\[0.3em]
+       \vdots                       &amp; \vdots                 &amp; \ddots                 &amp; \vdots                                    \\[0.3em]
+       x_{n}^{\left(2\right)}       &amp; x_{n}^{\left(2\right)} &amp; \cdots                 &amp; x_{n}^{\left(m\right)}           \\[0.3em]
+     \end{bmatrix}
+     
++ \begin{bmatrix}
+\epsilon_1 \\[0.3em]
+\epsilon_2 \\[0.3em]
+\vdots \\[0.3em] 
+\epsilon_m
+\end{bmatrix}
+\end{split}
+  \tag{2.2}
+\end{equation}\]</span></p>
 
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="forwardprop.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="initialization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

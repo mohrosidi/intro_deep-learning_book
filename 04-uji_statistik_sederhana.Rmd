@@ -1,6 +1,0 @@
-# Uji Statistik Sederhana
-
-<style>
-body{
-text-align: justify}
-</style>

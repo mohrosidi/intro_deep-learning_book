@@ -1,5 +1,5 @@
 --- 
-title: "Panduan Lengkap Analisis Statistika Menggunakan R Commander"
+title: "Pengenalan Deep Learning"
 author: "Mohammad Rosidi"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -14,9 +14,9 @@ fontsize: 12pt
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
 link-citations: yes
-github-repo: mohrosidi/Rcmdr-book
-description: "Buku yang memberikan tutorial statistika menggunakan R-Commander, sebuah general user interface (GUI) untuk melakukan analisis dan membuat model statistika."
-tags: [statistics, ecology, tutorial, r-programming]
+github-repo: 
+description: "Buku ini merupakan reading suplement untuk kursus pengenalan deep learning."
+tags: [deep-learning, tutorial, r-programming]
 cover-image: images/cover.png
 ---
 
@@ -48,7 +48,7 @@ body{
 text-align: justify}
 </style>
 
-```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), out.width='50%'}
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), out.width='50%', eval=FALSE}
 
 knitr::include_graphics('images/cover.png', dpi = NA)
 ```

@@ -1,6 +1,0 @@
-# Ringkasan dan Visualisasi Data
-
-<style>
-body{
-text-align: justify}
-</style>

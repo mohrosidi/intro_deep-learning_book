@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Pengenalan Deep Learning</title>
+  <title>Chapter 2 Konsep Proses Pembelajaran Deep Learning | Pengenalan Deep Learning</title>
   <meta name="description" content="Buku ini merupakan reading suplement untuk kursus pengenalan deep learning." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Pengenalan Deep Learning" />
+  <meta property="og:title" content="Chapter 2 Konsep Proses Pembelajaran Deep Learning | Pengenalan Deep Learning" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/cover.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Pengenalan Deep Learning" />
+  <meta name="twitter:title" content="Chapter 2 Konsep Proses Pembelajaran Deep Learning | Pengenalan Deep Learning" />
   
   <meta name="twitter:description" content="Buku ini merupakan reading suplement untuk kursus pengenalan deep learning." />
   <meta name="twitter:image" content="images/cover.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="intro.html"/>
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="notation.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -103,26 +103,34 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Pengenalan Deep Learning</h1>
-<p class="author"><em>Mohammad Rosidi</em></p>
-<p class="date"><em>2020-03-05</em></p>
-</div>
-<div id="pengantar" class="section level1 unnumbered">
-<h1>Pengantar</h1>
+<div id="DL" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Konsep Proses Pembelajaran <em>Deep Learning</em></h1>
 <style>
 body{
 text-align: justify}
 </style>
-
+<p>Proses pembelajaran <em>Artificial Neural Network</em> (ANN) pada dasarnya digunakan untuk mencari nilai bobot (<span class="math inline">\(w\)</span>) optimal yang menghubungkan antar lapisan neuron sehingga diperoleh <em>cost</em> atau kesalahan minimum. Proses pembelajaran pada ANN dilakukan melalui dua proses utama, antara lain:</p>
+<ol style="list-style-type: decimal">
+<li>Propagasi maju (<em>forward propagation</em>)</li>
+<li>Propagasi mundur (<em>bacward propagation</em>)</li>
+</ol>
+<p>Secara umum propagasi maju proses dimana ANN memproses input data untuk melakukan prediksi terhadap nilai variabel target. Tahapan ini melibatkan proses perkalian titik antara input dan bobot dan pemjumlahan dengan bias dari masing-masing <em>layer</em> ANN. Hasil penjumlahan selanjutnya transformasi melalui fungsi aktivasi.</p>
+<p>Pada awal proses pembelajaran, bobot dat bias pada tiap jaringan ditetapkan secara acak, sehingga jaringan mengimplementasikan serangkaian transformasi secara acak. Hal ini menyebabkan nilai output yang dihasilkan jauh dari nilai yang diharapkan atau <em>cost</em> yang dihasilkan sangat tinggi. Untuk mengatasi <em>cost</em> yang tinggi tersebut, bobot dilakukan penyesuaian sehingga pada proses pembelajaran selanjutnya nilai <em>cost</em> yang dihasilkan menurun. Proses tersebut diulangi secara terus-menerus hingga diperoleh <em>cost</em> minimum yang konvergen. Tahapan tersebut disebut sebagai tahapan propagasi balik. Pada tahapan ini, hasil prediksi dari proses propagasi balik dihitung nilai <em>cost</em>-nya (error). Nilai tersebut selanjutnya dijadikan sebagai dasar dalam melakukan penyesuaian bobot dan bias pada ANN.</p>
+<p>Gambaran proses pembelajaran ditampilkan pada Gambar <a href="DL.html#fig:learndl">2.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:learndl"></span>
+<img src="images/learndl.PNG" alt="Proses pembelajaran ANN. (Sumber:Chollet, 2018)" width="80%" />
+<p class="caption">
+Gambar 2.1: Proses pembelajaran ANN. (Sumber:Chollet, 2018)
+</p>
+</div> 
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="notation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

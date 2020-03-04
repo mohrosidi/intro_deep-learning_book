@@ -1,6 +1,0 @@
-# Distribusi Probabilitas dan Simulasi
-
-<style>
-body{
-text-align: justify}
-</style>

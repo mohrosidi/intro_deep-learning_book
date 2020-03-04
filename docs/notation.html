@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Pengenalan Deep Learning</title>
+  <title>2.1 Notasi Matematika | Pengenalan Deep Learning</title>
   <meta name="description" content="Buku ini merupakan reading suplement untuk kursus pengenalan deep learning." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Pengenalan Deep Learning" />
+  <meta property="og:title" content="2.1 Notasi Matematika | Pengenalan Deep Learning" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/cover.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Pengenalan Deep Learning" />
+  <meta name="twitter:title" content="2.1 Notasi Matematika | Pengenalan Deep Learning" />
   
   <meta name="twitter:description" content="Buku ini merupakan reading suplement untuk kursus pengenalan deep learning." />
   <meta name="twitter:image" content="images/cover.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="intro.html"/>
+<link rel="prev" href="DL.html"/>
+<link rel="next" href="forwardprop.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -103,26 +103,31 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Pengenalan Deep Learning</h1>
-<p class="author"><em>Mohammad Rosidi</em></p>
-<p class="date"><em>2020-03-05</em></p>
-</div>
-<div id="pengantar" class="section level1 unnumbered">
-<h1>Pengantar</h1>
-<style>
-body{
-text-align: justify}
-</style>
-
+<div id="notation" class="section level2">
+<h2><span class="header-section-number">2.1</span> Notasi Matematika</h2>
+<p>Terdapat sejumlah notasi matematika yang akan digunakan dalam pembahasan Chapter ini. Notasi matematika tersebut antara lain:</p>
+<ol style="list-style-type: decimal">
+<li>Untuk input <span class="math inline">\(x \in R^{n_x}\)</span> (<span class="math inline">\(n\)</span> variabel atau fitur)</li>
+</ol>
+<ul>
+<li>superskrip (<span class="math inline">\(i\)</span>): menunjukkan referensi observasi ke-<span class="math inline">\(i\)</span>, contoh: <span class="math inline">\(x^{\left(2\right)}\)</span> merupakan nilai input pada observasi atau baris kedua.</li>
+<li>subskrip <span class="math inline">\(n\)</span> : menunjukkan referensi fitur atau variabel ke-<span class="math inline">\(n\)</span>, contoh: <span class="math inline">\(x^{\left(2\right)}_{1}\)</span> merupakan observasi kedua pada fitur pertama.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Untuk <em>network layer</em>:</li>
+</ol>
+<ul>
+<li>superskrip [<span class="math inline">\(I\)</span>]: menunjukkan referensi <em>layer</em> ke-<span class="math inline">\(I\)</span>, contoh: <span class="math inline">\(z^{\left[2\right]}\)</span> merupakan fungsi aktivasi pada <em>layer</em> 2.</li>
+<li>subskrip <span class="math inline">\(n\)</span> : menunjukkan referensi node atau neuron ke-<span class="math inline">\(n\)</span>, contoh: <span class="math inline">\(z^{\left[2\right]}_{1}\)</span> merupakan fungsi aktivasi ditambah bias pada node 1 pada <em>layer</em> 2.</li>
+</ul>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="DL.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="forwardprop.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
