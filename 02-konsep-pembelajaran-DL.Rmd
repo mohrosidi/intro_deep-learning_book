@@ -243,6 +243,83 @@ dimana $g$ merupakan sebuah fungsi aktivasi (contoh: sigmoid, linier, dll.).
 
 Matriks $A^{\left[1\right]}$ selanjutnya menjadi matriks input pada *hidden layer* 2. Perkalian titik pada *hidden layer* 2 dapat dituliskan ke dalam persamaan berikut:
 
+\begin{equation}
+\begin{split}
+Z^{\left[2\right]} & = W^{\left[2\right]T} A^{\left[1\right]} + b^{\left[2\right]}
+
+& = \begin{bmatrix}
+w_{11} & w_{12} & w_{13} \\[0.3em]
+w_{21} & w_{22} & w_{23} \\[0.3em]
+w_{31} & w_{32} & w_{33} 
+\end{bmatrix}
+
+\begin{bmatrix}
+g\left(z_{1,1}^{\left[1\right]}\right) & g\left(z_{1,2}^{\left[1\right]}\right) \\[0.3em]
+g\left(z_{2,1}^{\left[1\right]}\right) & g\left(z_{2,2}^{\left[1\right]}\right) \\[0.3em]
+g\left(z_{3,1}^{\left[1\right]}\right) & g\left(z_{3,2}^{\left[1\right]}\right) \\[0.3em]
+\end{bmatrix}
+
++ bias^{\left[2\right]}
+
+\end{split}
+\end{equation}
+
+Fungsi aktivasi berdasarkan input $Z^{\left[2\right]}$ adalah sebagai berikut:
+
+\begin{equation}
+A^{\left[2\right]} =
+\begin{bmatrix}
+g\left(z_{1,1}^{\left[2\right]}\right) & g\left(z_{1,2}^{\left[2\right]}\right) \\[0.3em]
+g\left(z_{2,1}^{\left[2\right]}\right) & g\left(z_{2,2}^{\left[2\right]}\right) \\[0.3em]
+g\left(z_{3,1}^{\left[2\right]}\right) & g\left(z_{3,2}^{\left[2\right]}\right) \\[0.3em]
+\end{bmatrix}
+\end{equation}
+
+Layer terakhir pada skema model yang ditunjukkan pada Gambar \@ref(fig:ANN1) adalah *output layer*. Perkalian titik input pada *layer* tersebut adalah sebagai berikut:
+
+\begin{equation}
+\begin{split}
+Z^{\left[3\right]} & = W^{\left[3\right]T} A^{\left[2\right]} + b^{\left[3\right]}
+
+& = \begin{bmatrix}
+w_{11}  \\[0.3em]
+w_{21}  \\[0.3em]
+w_{31}  
+\end{bmatrix}
+
+\begin{bmatrix}
+g\left(z_{1,1}^{\left[2\right]}\right) & g\left(z_{1,2}^{\left[2\right]}\right) \\[0.3em]
+g\left(z_{2,1}^{\left[2\right]}\right) & g\left(z_{2,2}^{\left[2\right]}\right) \\[0.3em]
+g\left(z_{3,1}^{\left[2\right]}\right) & g\left(z_{3,2}^{\left[2\right]}\right) \\[0.3em]
+\end{bmatrix}
+
++ bias^{\left[3\right]}
+
+\end{split}
+\end{equation}
+
+Berdasarkan $Z^{\left[3\right]}$, dimensi A^{\left[3\right]} adalah (1, 3).
+
+\begin{equation}
+A^{\left[3\right]} =
+\begin{bmatrix}
+g\left(z_{1,1}^{\left[3\right]}\right) & g\left(z_{1,2}^{\left[3\right]}\right)
+\end{bmatrix}
+\end{equation}
+
+
+### *Output Layer* {#outlayer}
+
+Berdasarkan hasil pembahasan sebelumnya, output dari model diperoleh melalui matriks A^{\left[3\right]}. Pada kasus klasifikasi biner, nilai tiap elemen merupakan nilai probabilitas. Pelabelan output selanjutnya dilakukan dengan menetapkan sejumlah batas, seperti: jika $\ge 0,5$ maka labelnya adalah 1, dan jika $ < 0,5$ maka labelnya adalah 0.
+
+### Ringkasan Propagasi Maju
+
+
+
+
+
+
+
 
 
 

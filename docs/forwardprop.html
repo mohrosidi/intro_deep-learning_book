@@ -78,6 +78,8 @@
 <li class="chapter" data-level="2.2.2" data-path="forwardprop.html"><a href="forwardprop.html#biasmat"><i class="fa fa-check"></i><b>2.2.2</b> Matriks Bias</a></li>
 <li class="chapter" data-level="2.2.3" data-path="forwardprop.html"><a href="forwardprop.html#weightmat"><i class="fa fa-check"></i><b>2.2.3</b> Matriks Bobot</a></li>
 <li class="chapter" data-level="2.2.4" data-path="forwardprop.html"><a href="forwardprop.html#active"><i class="fa fa-check"></i><b>2.2.4</b> Fungsi Aktivasi</a></li>
+<li class="chapter" data-level="2.2.5" data-path="forwardprop.html"><a href="forwardprop.html#outlayer"><i class="fa fa-check"></i><b>2.2.5</b> <em>Output Layer</em></a></li>
+<li class="chapter" data-level="2.2.6" data-path="forwardprop.html"><a href="forwardprop.html#ringkasan-propagasi-maju"><i class="fa fa-check"></i><b>2.2.6</b> Ringkasan Propagasi Maju</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="initialization.html"><a href="initialization.html"><i class="fa fa-check"></i><b>3</b> Inisialisasi Parameter ANN</a></li>
@@ -281,6 +283,70 @@ g\left(z_{3,1}^{\left[1\right]}\right) &amp; g\left(z_{3,2}^{\left[1\right]}\rig
 \end{equation}\]</span></p>
 <p>dimana <span class="math inline">\(g\)</span> merupakan sebuah fungsi aktivasi (contoh: sigmoid, linier, dll.).</p>
 <p>Matriks <span class="math inline">\(A^{\left[1\right]}\)</span> selanjutnya menjadi matriks input pada <em>hidden layer</em> 2. Perkalian titik pada <em>hidden layer</em> 2 dapat dituliskan ke dalam persamaan berikut:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{split}
+Z^{\left[2\right]} &amp; = W^{\left[2\right]T} A^{\left[1\right]} + b^{\left[2\right]}
+
+&amp; = \begin{bmatrix}
+w_{11} &amp; w_{12} &amp; w_{13} \\[0.3em]
+w_{21} &amp; w_{22} &amp; w_{23} \\[0.3em]
+w_{31} &amp; w_{32} &amp; w_{33} 
+\end{bmatrix}
+
+\begin{bmatrix}
+g\left(z_{1,1}^{\left[1\right]}\right) &amp; g\left(z_{1,2}^{\left[1\right]}\right) \\[0.3em]
+g\left(z_{2,1}^{\left[1\right]}\right) &amp; g\left(z_{2,2}^{\left[1\right]}\right) \\[0.3em]
+g\left(z_{3,1}^{\left[1\right]}\right) &amp; g\left(z_{3,2}^{\left[1\right]}\right) \\[0.3em]
+\end{bmatrix}
+
++ bias^{\left[2\right]}
+
+\end{split}
+\end{equation}\]</span></p>
+<p>Fungsi aktivasi berdasarkan input <span class="math inline">\(Z^{\left[2\right]}\)</span> adalah sebagai berikut:</p>
+<p><span class="math display">\[\begin{equation}
+A^{\left[2\right]} =
+\begin{bmatrix}
+g\left(z_{1,1}^{\left[2\right]}\right) &amp; g\left(z_{1,2}^{\left[2\right]}\right) \\[0.3em]
+g\left(z_{2,1}^{\left[2\right]}\right) &amp; g\left(z_{2,2}^{\left[2\right]}\right) \\[0.3em]
+g\left(z_{3,1}^{\left[2\right]}\right) &amp; g\left(z_{3,2}^{\left[2\right]}\right) \\[0.3em]
+\end{bmatrix}
+\end{equation}\]</span></p>
+<p>Layer terakhir pada skema model yang ditunjukkan pada Gambar <a href="forwardprop.html#fig:ANN1">2.2</a> adalah <em>output layer</em>. Perkalian titik input pada <em>layer</em> tersebut adalah sebagai berikut:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{split}
+Z^{\left[3\right]} &amp; = W^{\left[3\right]T} A^{\left[2\right]} + b^{\left[3\right]}
+
+&amp; = \begin{bmatrix}
+w_{11}  \\[0.3em]
+w_{21}  \\[0.3em]
+w_{31}  
+\end{bmatrix}
+
+\begin{bmatrix}
+g\left(z_{1,1}^{\left[2\right]}\right) &amp; g\left(z_{1,2}^{\left[2\right]}\right) \\[0.3em]
+g\left(z_{2,1}^{\left[2\right]}\right) &amp; g\left(z_{2,2}^{\left[2\right]}\right) \\[0.3em]
+g\left(z_{3,1}^{\left[2\right]}\right) &amp; g\left(z_{3,2}^{\left[2\right]}\right) \\[0.3em]
+\end{bmatrix}
+
++ bias^{\left[3\right]}
+
+\end{split}
+\end{equation}\]</span></p>
+<p>Berdasarkan <span class="math inline">\(Z^{\left[3\right]}\)</span>, dimensi A^{} adalah (1, 3).</p>
+<p><span class="math display">\[\begin{equation}
+A^{\left[3\right]} =
+\begin{bmatrix}
+g\left(z_{1,1}^{\left[3\right]}\right) &amp; g\left(z_{1,2}^{\left[3\right]}\right)
+\end{bmatrix}
+\end{equation}\]</span></p>
+</div>
+<div id="outlayer" class="section level3">
+<h3><span class="header-section-number">2.2.5</span> <em>Output Layer</em></h3>
+<p>Berdasarkan hasil pembahasan sebelumnya, output dari model diperoleh melalui matriks A^{}. Pada kasus klasifikasi biner, nilai tiap elemen merupakan nilai probabilitas. Pelabelan output selanjutnya dilakukan dengan menetapkan sejumlah batas, seperti: jika <span class="math inline">\(\ge 0,5\)</span> maka labelnya adalah 1, dan jika $ &lt; 0,5$ maka labelnya adalah 0.</p>
+</div>
+<div id="ringkasan-propagasi-maju" class="section level3">
+<h3><span class="header-section-number">2.2.6</span> Ringkasan Propagasi Maju</h3>
 
 </div>
 </div>
