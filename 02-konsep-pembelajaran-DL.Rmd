@@ -24,6 +24,11 @@ include_graphics(img1_path)
 
 ## Notasi Matematika {#notation}
 
+<style>
+body{
+text-align: justify}
+</style>
+
 Terdapat sejumlah notasi matematika yang akan digunakan dalam pembahasan Chapter ini. Notasi matematika tersebut antara lain:
 
 1. Untuk input $x \in R^{n_x}$ ($n$ variabel atau fitur)
@@ -74,7 +79,7 @@ y^{\left(i\right)}=w_0+w_1x_1^{\left(i\right)}+w_2x_2^{\left(i\right)}+\cdots+w_
   (\#eq:lineq)
 \end{equation}
 
-Kita dapat merepresentasikan Persamaan \@ref(eq:lineq) ke dalam notasi matriks yang ditunjukkan pada Persamaan \@ref(eq:lineq2) 
+Kita dapat merepresentasikan Persamaan \@ref(eq:lineq) ke dalam notasi matriks yang ditunjukkan pada Persamaan \@ref(eq:lineq2). 
 
 
 \begin{equation}
@@ -314,10 +319,96 @@ Berdasarkan hasil pembahasan sebelumnya, output dari model diperoleh melalui mat
 
 ### Ringkasan Propagasi Maju
 
+Propagasi maju untuk model ANN dengan 3 *layer* dan sebuah observasi dapat diringkas menjadi persamaan berikut:
+
+\begin{equation}
+\begin{matrix}
+z^{\left[1\right]\left(i\right)}=w^{\left[1\right]}x^{\left(i\right)}+b^{\left[1\right]\left(i\right)} \\[0.3em]
+a^{\left[1\right]\left(i\right)}=g^{\left[1\right]}\left(z^{\left[1\right]\left(i\right)}\right) \\[0.3em]
+z^{\left[2\right]\left(i\right)}=w^{\left[2\right]}a^{\left[1\right]\left(i\right)}+b^{\left[2\right]\left(i\right)} \\[0.3em]
+a^{\left[2\right]\left(i\right)}=g^{\left[2\right]}\left(z^{\left[2\right]\left(i\right)}\right) \\[0.3em]
+z^{\left[3\right]\left(i\right)}=w^{\left[3\right]}a^{\left[2\right]\left(i\right)}+b^{\left[3\right]\left(i\right)} \\[0.3em]
+a^{\left[3\right]\left(i\right)}=g^{\left[3\right]}\left(z^{\left[3\right]\left(i\right)}\right)
+\end{matrix}
+\end{equation}
+
+Bentuk tervektorisasi dari persamaan tersebut ditampilkan ke dalam Persamaan \@ref(eq:fpcon).
+
+\begin{equation}
+\begin{matrix}
+untuk\ l\ =\ 1,2,3,\dots,L \\[0.3em]
+Z^{\left[l\right]}=W^{\left[l\right]}A^{\left[l\right]}+b^{\left[l\right]} \\[0.3em]
+A^{\left[l\right]}=g^{\left[l\right]}\left(Z^{\left[l\right]}\right)
+\end{matrix}
+  (\#eq:fpcon)
+\end{equation}
 
 
+Dimensi matriks untuk setiap *layer* ANN diringkas ke dalam Tabel \@ref(tab:dimmat):
 
 
+|         | **Dim W**                                       | **Dim b**                           | **Aktivasi**                                               | **Dim Aktivasi**                               |
+|:--------|:------------------------------------------------|:------------------------------------|:-----------------------------------------------------------|:-----------------------------------------------|
+| Layer 1 | $\left(jumlah\ fitur,n^{\left[1\right]}\right)$ | $\left(n^{\left[1\right]},1\right)$ | $Z^{\left[1\right]}=W^{\left[1\right]}X+b^{\left[1\right]}$ | $\left(n^{\left[1\right]},jumlah\ obs.\right)$ |
+| Layer l | $\left(n^{\left[l-1\right]},n^{\left[l\right]}\right)$ | $\left(n^{\left[l\right]},1\right)$ | $Z^{\left[l\right]}=W^{\left[l\right]}A^{\left[l-1\right]}+b^{\left[l\right]}$ | $\left(n^{\left[l\right]},jumlah\ obs.\right)$ |
+| Layer L | $\left(n^{\left[L-1\right]},n^{\left[L\right]}\right)$ | $\left(n^{\left[L\right]},1\right)$ | $Z^{\left[L\right]}=W^{\left[L\right]}A^{\left[L-1\right]}+b^{\left[L\right]}$ | $\left(n^{\left[L\right]},jumlah\ obs.\right)$ |
+
+: (\#tab:dimmat) Dimensi matriks bobot. bias, dan fungsi aktivasi pada tiap *layer* ANN.
+
+## Fungsi Aktivasi {#actfun}
+
+<style>
+body{
+text-align: justify}
+</style>
+
+Fungsi aktivasi merupakan fungsi matematika yang berfungsi untuk mentransformasi input data dari layer sebelumnya menjadi sebuah nilai yang mendekati nilai variabel target. Dalam ANN terdapat dua buah jenis fungsi aktivasi, yaitu:
+
+* Fungsi aktivasi linier
+
+Fungsi aktivasi linier berupa garis lurus (lihat Gambar \@ref(fig:actlin)), dimana output dari fungsi memiliki rentang dari $- \infty$ sampai dengan $+ \infty$. Fungsi aktivasi ini biasa digunakan jika kita ingin membuat model regresi menggunakan ANN. Kekurangan fungsi aktivasi ini adalah fungsi ini tidak banyak membantu menangani kompleksitas data dan parameter yang ada pada ANN. 
+
+```{r actlin,echo=FALSE, fig.cap='Fungsi linier.', tidy=FALSE, out.width='80%', fig.align='center', message=FALSE, warning=FALSE}
+library(knitr)
+img1_path <- "./images/actlin.png"
+include_graphics(img1_path)
+```
+
+* Fungsi aktivasi non-linier
+
+Sebagian besar pola data yang ada di permasalahan di dunia nyata adalah pola non-linier, sehingga untuk dapat menangkap pola tersebut ke dalam ANN diperlukan fungsi aktivasi yang non-linier. Fungsi aktivasi tersebut haruslah dapat menerima input data pada rentang $- \infty$ sampai dengan $+ \infty$ dan mentransformasikannya ke dalam rentang output terbatas seperti: [0, 1] atau [-1,1], dll. Fungsi aktivasi non-linier yang sering digunakan  dan akan dibahas lebih lanjut dalam buku ini, antara lain: sigmoid, tanh, ReLU, dan softmax.
+
+### Sigmoid
+
+Fungsi aktivasi sigmoid merupakan fungsi aktivasi yang menghasilkan kurva logistik (lihat Gambar \@ref(fig:actlog)) dengan rentang ouput nilai [0,1]. Fungsi ini sering digunakan pada model klasifikasi biner. Persamaan fungsi aktivasi sigmoid  ditampilkan pada Persamaan \@ref(eq:logfun).
+
+```{r actlog,echo=FALSE, fig.cap='Fungsi sigmoid.', tidy=FALSE, out.width='80%', fig.align='center', message=FALSE, warning=FALSE}
+library(knitr)
+img1_path <- "./images/actlog.png"
+include_graphics(img1_path)
+```
+
+\begin{equation}
+\sigma\left(Z\right)=\frac{1}{1+\exp^{-Z}}
+  (\#eq:logfun)
+\end{equation}
+
+Properti yang tidak diinginkan dari fungsi aktivasi sigmoid adalah fungsi ini memiliki pola jenuh (stagnan) di kedua ekor dengan nilai 0 atau 1. Ketika ini terjadi, gradien di wilayah ini hampir mendekati nol. Selama backpropagation, gradien lokal akan dikalikan dengan gradien fungsi aktivasi sigmoid dan jika gradien lokal sangat kecil, hal tersebut akan secara efektif membuat gradien "menghilang" dan tidak ada sinyal yang akan mengalir melalui neuron ke bobot (bobot tidak dapat diperbaharui).
+
+### Tangen Hiperbolik
+
+Fungsi tangen hiperbolik memiliki pola grafik yang sama dengan fungsi aktivasi sigmoid (lihat Gambar \@ref(fig:acttanh)). Perbedaan antara keduanya adalah fungsi tangen hiperbolik memiliki rentang nilai output [-1,1]. Persamaan fungsi tangen hiperbolik ditampilkan pada Persamaan \@ref(eq:tanhfun).
+
+```{r acttanh,echo=FALSE, fig.cap='Fungsi tanh vs sigmoid.', tidy=FALSE, out.width='80%', fig.align='center', message=FALSE, warning=FALSE}
+library(knitr)
+img1_path <- "./images/acttanh.png"
+include_graphics(img1_path)
+```
+
+\begin{equation}
+g\left(Z\right)=\frac{\exp^Z-\exp^{-Z}}{\exp^Z+\exp^{-Z}}
+  (\#eq:tanhfun)
+\end{equation}
 
 
 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Referensi | Pengenalan Deep Learning</title>
+  <title>2.3 Fungsi Aktivasi | Pengenalan Deep Learning</title>
   <meta name="description" content="Buku ini merupakan reading suplement untuk kursus pengenalan deep learning." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Referensi | Pengenalan Deep Learning" />
+  <meta property="og:title" content="2.3 Fungsi Aktivasi | Pengenalan Deep Learning" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/cover.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Referensi | Pengenalan Deep Learning" />
+  <meta name="twitter:title" content="2.3 Fungsi Aktivasi | Pengenalan Deep Learning" />
   
   <meta name="twitter:description" content="Buku ini merupakan reading suplement untuk kursus pengenalan deep learning." />
   <meta name="twitter:image" content="images/cover.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="optimization.html"/>
-
+<link rel="prev" href="forwardprop.html"/>
+<link rel="next" href="initialization.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -109,40 +109,66 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referensi" class="section level1 unnumbered">
-<h1>Referensi</h1>
+<div id="actfun" class="section level2">
+<h2><span class="header-section-number">2.3</span> Fungsi Aktivasi</h2>
 <style>
 body{
 text-align: justify}
 </style>
-<ol style="list-style-type: decimal">
-<li>Fox, J. 2005. <strong>The R Commander: A Basic-Statistics Graphical User Interface to R</strong>. Journal of Statistical Software.Vol:14(9), p:1-42.</li>
-<li>Fox, J. 2017. <strong>Using the R Commader: A Point-and-Click Interface for R</strong>. CRC Press.</li>
-<li>Fox, J. Valat, M.B. 2018. <strong>Getting Started With the R Commander</strong>.<a href="https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/Getting-Started-with-the-Rcmdr.pdf" class="uri">https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/Getting-Started-with-the-Rcmdr.pdf</a>.</li>
-<li>Gio, P.U. Irawan, D.E. 2016. <strong>Belajar Statistika dengan R (disertai beberapa contoh perhitungan manual)</strong>. USU Press : Medan.</li>
-<li>Nguyen-Feng, V. Stellmack, M.A. 2016. <strong>A Guide to Data Aalysis in R Commander</strong>. University of Minnesota.</li>
-<li>Primartha, R. 2018. <strong>Belajar Machine Learning Teori dan Praktik</strong>. Penerbit Informatika : Bandung.</li>
-<li>Quick-R. <strong>Data Input</strong>. <a href="https://www.statmethods.net/input/index.html" class="uri">https://www.statmethods.net/input/index.html</a></li>
-<li>Quick-R. <strong>Data Management</strong>. <a href="https://www.statmethods.net/management/index.html" class="uri">https://www.statmethods.net/management/index.html</a></li>
-<li>Rosadi,D. 2011. <strong>Analisis Ekonometrika dan Runtun Waktu Terapan dengan R</strong>. Penerbit Andi: Yogyakarta.</li>
-<li>Rosadi,D. 2016. <strong>Analisis Statistika dengan R</strong>. Gadjah Mada University Press: Yogyakarta.</li>
-<li>Rosidi, M. 2019. <strong>Metode Numerik Menggunakan R Untuk Teknik Lingkungan</strong>. <a href="https://bookdown.org/moh_rosidi2610/Metode_Numerik/" class="uri">https://bookdown.org/moh_rosidi2610/Metode_Numerik/</a>.</li>
-<li>STHDA. <strong>Importing Data Into R </strong>. <a href="http://www.sthda.com/english/wiki/importing-data-into-r" class="uri">http://www.sthda.com/english/wiki/importing-data-into-r</a></li>
-<li>STHDA. <strong>Exporting Data From R</strong>. <a href="http://www.sthda.com/english/wiki/exporting-data-from-r" class="uri">http://www.sthda.com/english/wiki/exporting-data-from-r</a></li>
-<li>STDHA. <strong>Getting Help With Functions In R Programming</strong>. <a href="http://www.sthda.com/english/wiki/getting-help-with-functions-in-r-programming" class="uri">http://www.sthda.com/english/wiki/getting-help-with-functions-in-r-programming</a> .</li>
-<li>Venables, W.N. Smith D.M. and R Core Team. 2018. <strong>An Introduction to R</strong>. R Manuals.</li>
-<li>Wickham, H. Grolemund G. 2016. <strong>R For Data Science: Import, Tidy, Transform, Visualize, And Model Data</strong>. O’Reilly Media, Inc.</li>
-<li>Widodo, B. Rachmawati, R.N. 2013. <strong>Pengantar Praktis Pemrograman R untuk Ilmu Komputer</strong>. Halaman Moeka Publishing : Jakarta.</li>
-</ol>
+<p>Fungsi aktivasi merupakan fungsi matematika yang berfungsi untuk mentransformasi input data dari layer sebelumnya menjadi sebuah nilai yang mendekati nilai variabel target. Dalam ANN terdapat dua buah jenis fungsi aktivasi, yaitu:</p>
+<ul>
+<li>Fungsi aktivasi linier</li>
+</ul>
+<p>Fungsi aktivasi linier berupa garis lurus (lihat Gambar <a href="actfun.html#fig:actlin">2.4</a>), dimana output dari fungsi memiliki rentang dari <span class="math inline">\(- \infty\)</span> sampai dengan <span class="math inline">\(+ \infty\)</span>. Fungsi aktivasi ini biasa digunakan jika kita ingin membuat model regresi menggunakan ANN. Kekurangan fungsi aktivasi ini adalah fungsi ini tidak banyak membantu menangani kompleksitas data dan parameter yang ada pada ANN.</p>
+<div class="figure" style="text-align: center"><span id="fig:actlin"></span>
+<img src="images/actlin.PNG" alt="Fungsi linier." width="80%" />
+<p class="caption">
+Gambar 2.4: Fungsi linier.
+</p>
+</div>
+<ul>
+<li>Fungsi aktivasi non-linier</li>
+</ul>
+<p>Sebagian besar pola data yang ada di permasalahan di dunia nyata adalah pola non-linier, sehingga untuk dapat menangkap pola tersebut ke dalam ANN diperlukan fungsi aktivasi yang non-linier. Fungsi aktivasi tersebut haruslah dapat menerima input data pada rentang <span class="math inline">\(- \infty\)</span> sampai dengan <span class="math inline">\(+ \infty\)</span> dan mentransformasikannya ke dalam rentang output terbatas seperti: [0, 1] atau [-1,1], dll. Fungsi aktivasi non-linier yang sering digunakan dan akan dibahas lebih lanjut dalam buku ini, antara lain: sigmoid, tanh, ReLU, dan softmax.</p>
+<div id="sigmoid" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Sigmoid</h3>
+<p>Fungsi aktivasi sigmoid merupakan fungsi aktivasi yang menghasilkan kurva logistik (lihat Gambar <a href="actfun.html#fig:actlog">2.5</a>) dengan rentang ouput nilai [0,1]. Fungsi ini sering digunakan pada model klasifikasi biner. Persamaan fungsi aktivasi sigmoid ditampilkan pada Persamaan <a href="actfun.html#eq:logfun">(2.6)</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:actlog"></span>
+<img src="images/actlog.PNG" alt="Fungsi sigmoid." width="80%" />
+<p class="caption">
+Gambar 2.5: Fungsi sigmoid.
+</p>
+</div>
+<p><span class="math display" id="eq:logfun">\[\begin{equation}
+\sigma\left(Z\right)=\frac{1}{1+\exp^{-Z}}
+  \tag{2.6}
+\end{equation}\]</span></p>
+<p>Properti yang tidak diinginkan dari fungsi aktivasi sigmoid adalah fungsi ini memiliki pola jenuh (stagnan) di kedua ekor dengan nilai 0 atau 1. Ketika ini terjadi, gradien di wilayah ini hampir mendekati nol. Selama backpropagation, gradien lokal akan dikalikan dengan gradien fungsi aktivasi sigmoid dan jika gradien lokal sangat kecil, hal tersebut akan secara efektif membuat gradien “menghilang” dan tidak ada sinyal yang akan mengalir melalui neuron ke bobot (bobot tidak dapat diperbaharui).</p>
+</div>
+<div id="tangen-hiperbolik" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Tangen Hiperbolik</h3>
+<p>Fungsi tangen hiperbolik memiliki pola grafik yang sama dengan fungsi aktivasi sigmoid (lihat Gambar <a href="actfun.html#fig:acttanh">2.6</a>). Perbedaan antara keduanya adalah fungsi tangen hiperbolik memiliki rentang nilai output [-1,1]. Persamaan fungsi tangen hiperbolik ditampilkan pada Persamaan <a href="actfun.html#eq:tanhfun">(2.7)</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:acttanh"></span>
+<img src="images/acttanh.PNG" alt="Fungsi tanh vs sigmoid." width="80%" />
+<p class="caption">
+Gambar 2.6: Fungsi tanh vs sigmoid.
+</p>
+</div>
+<p><span class="math display" id="eq:tanhfun">\[\begin{equation}
+g\left(Z\right)=\frac{\exp^Z-\exp^{-Z}}{\exp^Z+\exp^{-Z}}
+  \tag{2.7}
+\end{equation}\]</span></p>
 
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="optimization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="forwardprop.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="initialization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

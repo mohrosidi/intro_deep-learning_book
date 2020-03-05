@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="notation.html"/>
-<link rel="next" href="initialization.html"/>
+<link rel="next" href="actfun.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -80,6 +80,10 @@
 <li class="chapter" data-level="2.2.4" data-path="forwardprop.html"><a href="forwardprop.html#active"><i class="fa fa-check"></i><b>2.2.4</b> Fungsi Aktivasi</a></li>
 <li class="chapter" data-level="2.2.5" data-path="forwardprop.html"><a href="forwardprop.html#outlayer"><i class="fa fa-check"></i><b>2.2.5</b> <em>Output Layer</em></a></li>
 <li class="chapter" data-level="2.2.6" data-path="forwardprop.html"><a href="forwardprop.html#ringkasan-propagasi-maju"><i class="fa fa-check"></i><b>2.2.6</b> Ringkasan Propagasi Maju</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="actfun.html"><a href="actfun.html"><i class="fa fa-check"></i><b>2.3</b> Fungsi Aktivasi</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="actfun.html"><a href="actfun.html#sigmoid"><i class="fa fa-check"></i><b>2.3.1</b> Sigmoid</a></li>
+<li class="chapter" data-level="2.3.2" data-path="actfun.html"><a href="actfun.html#tangen-hiperbolik"><i class="fa fa-check"></i><b>2.3.2</b> Tangen Hiperbolik</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="initialization.html"><a href="initialization.html"><i class="fa fa-check"></i><b>3</b> Inisialisasi Parameter ANN</a></li>
@@ -135,7 +139,7 @@ Gambar 2.3: Representasi sebuah neuron pada lapisan hidden layer
 y^{\left(i\right)}=w_0+w_1x_1^{\left(i\right)}+w_2x_2^{\left(i\right)}+\cdots+w_nx_n^{\left(i\right)}+\epsilon_i^{\left(i\right)}\ \ untuk\ i=1,\dots,m
   \tag{2.1}
 \end{equation}\]</span></p>
-<p>Kita dapat merepresentasikan Persamaan <a href="forwardprop.html#eq:lineq">(2.1)</a> ke dalam notasi matriks yang ditunjukkan pada Persamaan <a href="forwardprop.html#eq:lineq2">(2.2)</a></p>
+<p>Kita dapat merepresentasikan Persamaan <a href="forwardprop.html#eq:lineq">(2.1)</a> ke dalam notasi matriks yang ditunjukkan pada Persamaan <a href="forwardprop.html#eq:lineq2">(2.2)</a>.</p>
 <p><span class="math display" id="eq:lineq2">\[\begin{equation}
 \begin{split}
 \begin{bmatrix}
@@ -347,17 +351,78 @@ g\left(z_{1,1}^{\left[3\right]}\right) &amp; g\left(z_{1,2}^{\left[3\right]}\rig
 </div>
 <div id="ringkasan-propagasi-maju" class="section level3">
 <h3><span class="header-section-number">2.2.6</span> Ringkasan Propagasi Maju</h3>
-
+<p>Propagasi maju untuk model ANN dengan 3 <em>layer</em> dan sebuah observasi dapat diringkas menjadi persamaan berikut:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{matrix}
+z^{\left[1\right]\left(i\right)}=w^{\left[1\right]}x^{\left(i\right)}+b^{\left[1\right]\left(i\right)} \\[0.3em]
+a^{\left[1\right]\left(i\right)}=g^{\left[1\right]}\left(z^{\left[1\right]\left(i\right)}\right) \\[0.3em]
+z^{\left[2\right]\left(i\right)}=w^{\left[2\right]}a^{\left[1\right]\left(i\right)}+b^{\left[2\right]\left(i\right)} \\[0.3em]
+a^{\left[2\right]\left(i\right)}=g^{\left[2\right]}\left(z^{\left[2\right]\left(i\right)}\right) \\[0.3em]
+z^{\left[3\right]\left(i\right)}=w^{\left[3\right]}a^{\left[2\right]\left(i\right)}+b^{\left[3\right]\left(i\right)} \\[0.3em]
+a^{\left[3\right]\left(i\right)}=g^{\left[3\right]}\left(z^{\left[3\right]\left(i\right)}\right)
+\end{matrix}
+\end{equation}\]</span></p>
+<p>Bentuk tervektorisasi dari persamaan tersebut ditampilkan ke dalam Persamaan <a href="forwardprop.html#eq:fpcon">(2.5)</a>.</p>
+<p><span class="math display" id="eq:fpcon">\[\begin{equation}
+\begin{matrix}
+untuk\ l\ =\ 1,2,3,\dots,L \\[0.3em]
+Z^{\left[l\right]}=W^{\left[l\right]}A^{\left[l\right]}+b^{\left[l\right]} \\[0.3em]
+A^{\left[l\right]}=g^{\left[l\right]}\left(Z^{\left[l\right]}\right)
+\end{matrix}
+  \tag{2.5}
+\end{equation}\]</span></p>
+<p>Dimensi matriks untuk setiap <em>layer</em> ANN diringkas ke dalam Tabel <a href="forwardprop.html#tab:dimmat">2.1</a>:</p>
+<table>
+<caption><span id="tab:dimmat">Tabel 2.1: </span> Dimensi matriks bobot. bias, dan fungsi aktivasi pada tiap <em>layer</em> ANN.</caption>
+<colgroup>
+<col width="4%" />
+<col width="24%" />
+<col width="18%" />
+<col width="29%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"><strong>Dim W</strong></th>
+<th align="left"><strong>Dim b</strong></th>
+<th align="left"><strong>Aktivasi</strong></th>
+<th align="left"><strong>Dim Aktivasi</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Layer 1</td>
+<td align="left"><span class="math inline">\(\left(jumlah\ fitur,n^{\left[1\right]}\right)\)</span></td>
+<td align="left"><span class="math inline">\(\left(n^{\left[1\right]},1\right)\)</span></td>
+<td align="left"><span class="math inline">\(Z^{\left[1\right]}=W^{\left[1\right]}X+b^{\left[1\right]}\)</span></td>
+<td align="left"><span class="math inline">\(\left(n^{\left[1\right]},jumlah\ obs.\right)\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Layer l</td>
+<td align="left"><span class="math inline">\(\left(n^{\left[l-1\right]},n^{\left[l\right]}\right)\)</span></td>
+<td align="left"><span class="math inline">\(\left(n^{\left[l\right]},1\right)\)</span></td>
+<td align="left"><span class="math inline">\(Z^{\left[l\right]}=W^{\left[l\right]}A^{\left[l-1\right]}+b^{\left[l\right]}\)</span></td>
+<td align="left"><span class="math inline">\(\left(n^{\left[l\right]},jumlah\ obs.\right)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Layer L</td>
+<td align="left"><span class="math inline">\(\left(n^{\left[L-1\right]},n^{\left[L\right]}\right)\)</span></td>
+<td align="left"><span class="math inline">\(\left(n^{\left[L\right]},1\right)\)</span></td>
+<td align="left"><span class="math inline">\(Z^{\left[L\right]}=W^{\left[L\right]}A^{\left[L-1\right]}+b^{\left[L\right]}\)</span></td>
+<td align="left"><span class="math inline">\(\left(n^{\left[L\right]},jumlah\ obs.\right)\)</span></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="notation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="initialization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="actfun.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
